@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="Jeronimo Espala" author="1">
+        <createTable tableName="status">
+            <column name="id" type="integer">
+                <constraints nullable="false" primaryKey="true" unique="true"></constraints>
+            </column>
+            <column name="nome" type="varchar2(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Jeronimo Espala">
+        <insert tableName="status">
+            <column name="id" value="1"></column>
+            <column name="nome" value="Pendente"></column>
+        </insert>
+        <insert tableName="status">
+            <column name="id" value="2"></column>
+            <column name="nome" value="Iniciada"></column>
+        </insert>
+        <insert tableName="status">
+            <column name="id" value="3"></column>
+            <column name="nome" value="Concluída"></column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

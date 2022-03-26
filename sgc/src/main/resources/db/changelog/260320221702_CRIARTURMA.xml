@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="Jeronimo Espala" author="1">
+        <createSequence sequenceName="seq_turma" incrementBy="1"></createSequence>
+        <createTable tableName="turma">
+            <column name="id" type="integer">
+                <constraints nullable="false" primaryKey="true" unique="true"></constraints>
+            </column>
+            <column name="nome" type="varchar2(255)">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="descricao" type="text">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="data_inicio" type="date">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="data_termino" type="date">
+                <constraints nullable="false"></constraints>
+            </column>
+            <column name="id_status" type="integer">
+                <constraints nullable="false" foreignKeyName="fk_id_status" references="status(id)"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

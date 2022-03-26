@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="Jeronimo Espala" author="1">
+        <createTable tableName="colaborador_competencia">
+            <column name="id_colaborador" type="integer">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_colaborador_competencia"
+                             foreignKeyName="fk_id_colaborador" referencedTableName="colaborador" referencedColumnNames="id"></constraints>
+            </column>
+            <column name="id_competencia" type="integer">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_colaborador_competencia"
+                             foreignKeyName="fk_id_competencia" referencedTableName="competencia" referencedColumnNames="id"></constraints>
+            </column>
+            <column name="nivel" type="integer">
+                <constraints nullable="false"></constraints>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
