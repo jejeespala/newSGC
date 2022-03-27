@@ -39,6 +39,13 @@ public class CompetenciaResource {
 
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<CompetenciaDTO> atualizar(@RequestBody CompetenciaDTO competenciaDTO){
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(competenciaService.salvar(competenciaDTO));
+
+    }
+
 
 
 

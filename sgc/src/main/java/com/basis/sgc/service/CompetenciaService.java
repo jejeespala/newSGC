@@ -38,4 +38,5 @@ public class CompetenciaService {
         competenciaRepository.deleteById(id);
 
     }
+
 }
