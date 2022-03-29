@@ -25,9 +25,7 @@
             <column name="id_senioridade" type="integer">
                 <constraints nullable="false"></constraints>
             </column>
-            <column name="foto" type="bytea">
-                <constraints nullable="false"></constraints>
-            </column>
+            <column name="foto" type="bytea"></column>
             <column name="data_nasc" type="date">
                 <constraints nullable="false"></constraints>
             </column>
