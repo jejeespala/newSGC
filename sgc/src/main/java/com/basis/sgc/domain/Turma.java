@@ -34,5 +34,5 @@ public class Turma implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_status", nullable = false)
     private Status status;
-    
+
 }
