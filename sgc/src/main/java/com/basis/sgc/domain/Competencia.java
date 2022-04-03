@@ -1,12 +1,15 @@
 package com.basis.sgc.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "competencia")
 @Getter
@@ -29,5 +32,8 @@ public class Competencia implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_categoria", nullable = false)
     private Categoria categoria;
+
+    @OneToMany(mappedBy = "competencia")
+    private Set<ColaboradorCompetencia> colaboradorCompetencias;
 
 }

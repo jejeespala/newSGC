@@ -1,12 +1,15 @@
 package com.basis.sgc.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "colaborador")
 @Getter
@@ -38,11 +41,15 @@ public class Colaborador {
     @Column(name = "data_nasc", nullable = false)
     private LocalDate data_nasc;
 
+
     @Column (name = "data_admi", nullable = false)
     private LocalDate data_admi;
 
     @ManyToOne
     @JoinColumn(name = "id_senioridade", referencedColumnName = "id")
     private Senioridade senioridade;
+
+    @OneToMany(mappedBy = "colaborador")
+    private Set<ColaboradorCompetencia> colaboradorCompetencias;
 
 }
