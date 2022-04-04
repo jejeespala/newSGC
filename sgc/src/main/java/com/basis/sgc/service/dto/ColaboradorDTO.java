@@ -35,4 +35,5 @@ public class ColaboradorDTO {
 
     @NotNull
     private Integer id_senioridade;
+
 }

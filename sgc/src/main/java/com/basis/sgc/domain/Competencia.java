@@ -36,4 +36,7 @@ public class Competencia implements Serializable {
     @OneToMany(mappedBy = "competencia")
     private Set<ColaboradorCompetencia> colaboradorCompetencias;
 
+    @OneToMany(mappedBy = "competencia")
+    private Set<TurmaColaboradorCompetencia> turmaColaboradorCompetencias;
+
 }

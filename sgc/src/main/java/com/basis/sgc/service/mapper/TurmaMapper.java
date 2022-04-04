@@ -13,6 +13,7 @@ public interface TurmaMapper extends EntityMapper<TurmaDTO, Turma> {
     @Mapping(target = "status.id", source = "id_status")
     Turma toEntity(TurmaDTO turmaDTO);
 
+
     @Mapping(target = "id_status", source = "status.id")
     TurmaDTO toDto (Turma turma);
 

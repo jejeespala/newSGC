@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "turma")
@@ -34,5 +36,9 @@ public class Turma implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_status", nullable = false)
     private Status status;
+
+    @OneToMany(mappedBy = "turma")
+    private Set<TurmaColaboradorCompetencia> turmaColaboradorCompetencias;
+
 
 }
