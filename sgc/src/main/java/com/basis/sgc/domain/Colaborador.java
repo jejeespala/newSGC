@@ -52,4 +52,7 @@ public class Colaborador {
     @OneToMany(mappedBy = "colaborador")
     private Set<ColaboradorCompetencia> colaboradorCompetencias;
 
+    @OneToMany(mappedBy = "colaborador")
+    private Set<TurmaColaboradorCompetencia> turmaColaboradorCompetencias;
+
 }

@@ -4,6 +4,8 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Getter
 @Setter
 public class CompetenciaDTO {
@@ -19,4 +21,5 @@ public class CompetenciaDTO {
 
     @NotNull
     private Integer id_categoria;
+
 }
