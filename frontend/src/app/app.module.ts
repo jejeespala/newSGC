@@ -1,3 +1,4 @@
+import { CompetenciaModule } from './modules/competencia/competencia.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -13,17 +14,13 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
-import { CompetenciaComponent } from './modules/competencia/competencia/competencia.component';
-import { CompetenciaListarComponent } from './modules/competencia/components/competencia-listar/competencia-listar.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         AppTopbarComponent,
         AppFooterComponent,
-        DiarioErrosComponent,
-        CompetenciaComponent,
-        CompetenciaListarComponent
+        DiarioErrosComponent
     ],
     imports: [
         BlockUIModule.forRoot({
@@ -40,7 +37,8 @@ import { CompetenciaListarComponent } from './modules/competencia/components/com
         ErrorModule,
         VersionTagModule,
         SecurityModule.forRoot(environment.auth),
-        MenuModule
+        MenuModule,
+        CompetenciaModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }
