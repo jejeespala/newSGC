@@ -13,7 +13,6 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
-import { CompetenciaComponent } from './modules/competencia/competencia/competencia.component';
 import { CompetenciaListarComponent } from './modules/competencia/components/competencia-listar/competencia-listar.component';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { CompetenciaListarComponent } from './modules/competencia/components/com
         AppTopbarComponent,
         AppFooterComponent,
         DiarioErrosComponent,
-        CompetenciaComponent,
         CompetenciaListarComponent
     ],
     imports: [
