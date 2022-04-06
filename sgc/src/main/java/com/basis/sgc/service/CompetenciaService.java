@@ -5,6 +5,7 @@ import com.basis.sgc.repository.CategoriaRepository;
 import com.basis.sgc.repository.CompetenciaRepository;
 import com.basis.sgc.service.dto.CategoriaDTO;
 import com.basis.sgc.service.dto.CompetenciaDTO;
+import com.basis.sgc.service.dto.CompetenciaListDTO;
 import com.basis.sgc.service.mapper.CategoriaMapper;
 import com.basis.sgc.service.mapper.CompetenciaMapper;
 import lombok.AllArgsConstructor;
@@ -20,9 +21,9 @@ public class CompetenciaService {
 
     private final CompetenciaRepository competenciaRepository;
 
-    public List<CompetenciaDTO> buscar(){
+    public List<CompetenciaListDTO> buscar(){
 
-        return competenciaMapper.toDto(competenciaRepository.findAll());
+        return competenciaRepository.listar();
     }
 
     public CompetenciaDTO salvar(CompetenciaDTO competenciaDTO){

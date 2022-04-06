@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from "@angular/core";
 
 const competenciasRoutes = [
-    {path: 'compentecias', component: CompetenciaListarComponent}
+    {path: '', component: CompetenciaListarComponent}
 ];
 
 

@@ -1,1 +1,17 @@
-<p>competencia-listar works!</p>
+<p-table [value]="competencias">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-competencia>
+        <tr>
+            <td>{{competencia.nome}}</td>
+            <td>{{competencia.descricao}}</td>
+            <td>{{competencia.nomeCategoria}}</td>
+
+        </tr>
+    </ng-template>
+</p-table>
