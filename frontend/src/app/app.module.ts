@@ -1,4 +1,3 @@
-import { CompetenciaModule } from './modules/competencia/competencia.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -37,8 +36,7 @@ import { BlockUIModule } from 'ng-block-ui';
         ErrorModule,
         VersionTagModule,
         SecurityModule.forRoot(environment.auth),
-        MenuModule,
-        CompetenciaModule
+        MenuModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy }

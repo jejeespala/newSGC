@@ -1,4 +1,6 @@
-export class Categoria {
+export class CategoriaModel {
 
-    
+    id: number;
+    nome: string;
+
 }
