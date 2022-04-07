@@ -9,8 +9,13 @@ import lombok.Setter;
 public class CategoriaDTO {
 
     @NotNull
-    private Integer id;
+    private String label;
 
     @NotNull
-    private String nome;
+    private Integer value;
+
+    public CategoriaDTO(String label, Integer value) {
+        this.label = label;
+        this.value = value;
+    }
 }
