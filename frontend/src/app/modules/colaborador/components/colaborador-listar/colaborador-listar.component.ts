@@ -1,6 +1,10 @@
 import { ColaboradorService } from './../../service/colaborador.service';
 import { ColaboradorModel } from './../../models/colaborador.model';
 import { Component, OnInit } from '@angular/core';
+import {CompetenciaFormComponent} from '../../../competencia/components/competencia-form/competencia-form.component';
+import {Dialog} from 'primeng';
+import {DialogService} from 'primeng/dynamicdialog';
+import {ColaboradorFormComponent} from '../colaborador-form/colaborador-form.component';
 
 @Component({
   selector: 'app-colaborador-listar',
@@ -12,12 +16,11 @@ export class ColaboradorListarComponent implements OnInit {
   colaboradores : ColaboradorModel[]
 
 
-  constructor(private colaboradorService: ColaboradorService) { }
+  constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService) { }
 
   ngOnInit(): void {
 
     this.listarColaboradores();
-    
   }
 
   listarColaboradores() {
@@ -27,5 +30,12 @@ export class ColaboradorListarComponent implements OnInit {
     });
 
   }
+
+    show() {
+        const ref = this.dialogService.open(ColaboradorFormComponent, {
+            header: 'Cadastrar Colaborador',
+            width: '70%'
+        });
+    }
 
 }

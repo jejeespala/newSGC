@@ -5,17 +5,20 @@ import { CompetenciaListarComponent } from './components/competencia-listar/comp
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {DialogService} from 'primeng/dynamicdialog';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
+import {CompetenciaFormComponent} from './components/competencia-form/competencia-form.component';
+import {MessageService} from 'primeng';
 
 
 
 @NgModule({
-  declarations: [CompetenciaListarComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    CompetenciasRoutingModule
-  ],
-  providers: [CompetenciaService, DialogService, FormBuilder]
+  declarations: [CompetenciaListarComponent, CompetenciaFormComponent],
+    imports: [
+        CommonModule,
+        SharedModule,
+        CompetenciasRoutingModule,
+        ReactiveFormsModule
+    ],
+  providers: [CompetenciaService, DialogService, FormBuilder, MessageService]
 })
 export class CompetenciaModule { }

@@ -1,5 +1,7 @@
 package com.basis.sgc.resource;
 
+import com.basis.sgc.domain.Categoria;
+import com.basis.sgc.domain.Colaborador;
 import com.basis.sgc.service.CategoriaService;
 import com.basis.sgc.service.CompetenciaService;
 import com.basis.sgc.service.dto.CategoriaDTO;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/competencia")
@@ -46,8 +49,5 @@ public class CompetenciaResource {
         return ResponseEntity.status(HttpStatus.CREATED).body(competenciaService.salvar(competenciaDTO));
 
     }
-
-
-
 
 }

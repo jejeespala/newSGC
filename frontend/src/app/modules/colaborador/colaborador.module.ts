@@ -4,16 +4,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ColaboradorListarComponent } from './components/colaborador-listar/colaborador-listar.component';
 import {ColaboradorService} from './service/colaborador.service';
+import {ColaboradorFormComponent} from './components/colaborador-form/colaborador-form.component';
+import {DialogService} from 'primeng/dynamicdialog';
 
 
 
 @NgModule({
-  declarations: [ColaboradorListarComponent],
+  declarations: [ColaboradorListarComponent, ColaboradorFormComponent],
   imports: [
     CommonModule,
     SharedModule,
     ColaboradorRoutingModule
   ],
-  providers: [ColaboradorService]
+  providers: [ColaboradorService, DialogService]
 })
 export class ColaboradorModule { }
