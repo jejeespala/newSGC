@@ -1,1 +1,34 @@
-<p>competencia-form works!</p>
+<div>
+
+    <form style="padding-top: 10px;">
+
+        <div class="p-grid ui-fluid" >
+
+            <div class="p-col-8">
+                <label for="firstname1" >Nome</label>
+                <input id="firstname1" type="text" pInputText>
+            </div>
+
+            <div class="p-col-8">
+                <label for="address">Descrição</label>
+                <textarea id="address" type="text" rows="4" pInputTextarea ></textarea>
+            </div>
+
+            <div class="p-col-8">
+
+                <div class="p-field">
+
+                    <p-dropdown [options]="categorias" placeholder="Selecione a Categoria" ></p-dropdown>
+
+                </div>
+
+            </div>
+
+            <button pButton type="submit" class="ui-button-success" label="Salvar" ></button>
+
+        </div>
+
+
+    </form>
+
+</div>

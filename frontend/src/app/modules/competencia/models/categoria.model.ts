@@ -1,6 +1,6 @@
 export class CategoriaModel {
 
-    id: number;
-    nome: string;
+    label: string;
+    value: number;
 
 }

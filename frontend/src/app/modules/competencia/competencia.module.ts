@@ -5,6 +5,7 @@ import { CompetenciaListarComponent } from './components/competencia-listar/comp
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {DialogService} from 'primeng/dynamicdialog';
+import {FormBuilder} from '@angular/forms';
 
 
 
@@ -15,6 +16,6 @@ import {DialogService} from 'primeng/dynamicdialog';
     SharedModule,
     CompetenciasRoutingModule
   ],
-  providers: [CompetenciaService, DialogService]
+  providers: [CompetenciaService, DialogService, FormBuilder]
 })
 export class CompetenciaModule { }
