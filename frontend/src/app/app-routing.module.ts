@@ -5,12 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { LoginSuccessComponent } from '@nuvem/angular-base';
 import {CompetenciaModule} from './modules/competencia/competencia.module';
+import {TurmaModule} from './modules/turma/turma.module';
 
 const routes: Routes = [
     { path: 'diario-erros', component: DiarioErrosComponent, data: { breadcrumb: 'Diário de Erros'} },
     { path: 'login-success', component: LoginSuccessComponent },
     { path: 'competencia', loadChildren: () => CompetenciaModule },
-    { path: 'colaborador', loadChildren: () => ColaboradorModule }
+    { path: 'colaborador', loadChildren: () => ColaboradorModule },
+    { path: 'turma', loadChildren: () => TurmaModule }
+
 ];
 
 @NgModule({
