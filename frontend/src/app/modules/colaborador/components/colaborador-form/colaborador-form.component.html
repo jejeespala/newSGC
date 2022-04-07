@@ -1,5 +1,51 @@
-<p-card>
-    <div class="grid mb-4 pl-2 pr-2 align-items-center">
-        <h2>Inscrição</h2>
-    </div>
-</p-card>
+<form>
+    <p-card>
+
+        <div class="grid mb-6 pl-2 pr-2 align-items-center">
+            <h2>Formulário de Colaborador</h2>
+            <span class="col"></span>
+
+        </div>
+        <div class="grid">
+            <div class="col-12 sm:col-2 md:col-2">
+                <span class="ui-float-label">
+                    <input id="float-input" type="text" pInputText autocomplete="off" >
+                    <label for="float-input">Nome da turma</label>
+                </span>
+            </div>
+
+            <div class="col-12 sm:col-10 md:col-10">
+                <span class="ui-float-label">
+                    <input id="float-input" type="text" pInputText autocomplete="off" >
+                    <label for="float-input">Descrição</label>
+                </span>
+            </div>
+
+            <div class="col-12 sm:col-2 md:col-2 mt-5">
+                <span class="ui-float-label">
+                    <p-calendar dateFormat="dd/mm/yy" ></p-calendar>
+                    <label for="float-input">Data Inicio</label>
+                </span>
+            </div>
+
+            <div class="col-12 sm:col-2 md:col-2 mt-5">
+                <span class="ui-float-label">
+                    <p-calendar dateFormat="dd/mm/yy" ></p-calendar>
+                    <label for="float-input">Data Termino</label>
+                </span>
+
+            </div>
+
+            <div class="col-12 sm:col-2 md:col-2 mt-5">
+                <span class="ui-float-label">
+                    <p-dropdown  placeholder="." optionLabel="descricao">
+                    </p-dropdown>
+                    <label for="float-input">Status</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid mt-3 pl-2 pr-2">
+            <button type="submit" pButton label="Salvar"></button>
+        </div>
+    </p-card>
+</form>

@@ -16,7 +16,7 @@ export class ColaboradorFormComponent implements OnInit {
   constructor(private colaboradorService: ColaboradorService) { }
 
   ngOnInit(): void {
-      this.listarCompetencias();
+      // this.listarCompetencias();
   }
 
   listarCompetencias() {

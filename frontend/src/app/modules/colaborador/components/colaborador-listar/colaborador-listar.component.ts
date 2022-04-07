@@ -34,7 +34,8 @@ export class ColaboradorListarComponent implements OnInit {
     show() {
         const ref = this.dialogService.open(ColaboradorFormComponent, {
             header: 'Cadastrar Colaborador',
-            width: '70%'
+            width: '70%',
+            contentStyle: {'max-height': '350px', 'overflow': 'auto'}
         });
     }
 

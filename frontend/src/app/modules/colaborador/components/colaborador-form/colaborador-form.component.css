@@ -1,0 +1,15 @@
+.img-wrapper {
+    height: 12rem;
+    width: 12rem;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.img-wrapper>img {
+    height: 100%
+}
+
+#cardButton{
+    position: relative;
+    left:200px;
+}

@@ -8,7 +8,6 @@ import {ColaboradorFormComponent} from './components/colaborador-form/colaborado
 import {DialogService} from 'primeng/dynamicdialog';
 
 
-
 @NgModule({
   declarations: [ColaboradorListarComponent, ColaboradorFormComponent],
   imports: [
