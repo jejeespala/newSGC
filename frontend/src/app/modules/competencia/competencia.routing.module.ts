@@ -1,7 +1,7 @@
 import { CompetenciaListarComponent } from './components/competencia-listar/competencia-listar.component';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { NgModule } from "@angular/core";
+import {NgModule} from '@angular/core';
+
 
 const competenciasRoutes = [
     {path: '', component: CompetenciaListarComponent}

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {CompetenciaService} from '../../service/competencia.service';
 import {CompetenciaModel} from '../../models/competencia.model';
-import {BlockUIService} from 'ng-block-ui';
 import {CategoriaModel} from '../../models/categoria.model';
+import {DialogService} from 'primeng/dynamicdialog';
+import {CompetenciaFormComponent} from '../competencia-form/competencia-form.component';
 
 @Component({
   selector: 'app-competencia-listar',
@@ -14,7 +15,7 @@ export class CompetenciaListarComponent implements OnInit {
     competencias: CompetenciaModel[];
     categorias: CategoriaModel [];
 
-  constructor(private competenciasService: CompetenciaService) { }
+  constructor(private competenciasService: CompetenciaService, private dialogService: DialogService) { }
 
   ngOnInit(): void {
 
@@ -36,5 +37,13 @@ export class CompetenciaListarComponent implements OnInit {
           this.categorias = resposta;
       });
   }
+
+    show() {
+        const ref = this.dialogService.open(CompetenciaFormComponent, {
+            header: 'Choose a Car',
+            width: '70%'
+        });
+    }
+
 
 }
