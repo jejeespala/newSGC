@@ -40,8 +40,9 @@ export class CompetenciaListarComponent implements OnInit {
 
     show() {
         const ref = this.dialogService.open(CompetenciaFormComponent, {
-            header: 'Choose a Car',
-            width: '80%'
+            header: 'Competência',
+            width: '35%',
+            height: '75%'
         });
     }
 
