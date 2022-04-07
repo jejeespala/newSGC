@@ -3,6 +3,7 @@ package com.basis.sgc.service;
 import com.basis.sgc.domain.Turma;
 import com.basis.sgc.repository.TurmaRepository;
 import com.basis.sgc.service.dto.TurmaDTO;
+import com.basis.sgc.service.dto.TurmaListDTO;
 import com.basis.sgc.service.mapper.TurmaMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,9 @@ public class TurmaService {
 
     private final TurmaRepository turmaRepository;
 
-    public List<TurmaDTO> buscar(){
+    public List<TurmaListDTO> buscar(){
 
-        return turmaMapper.toDto(turmaRepository.findAll());
+        return turmaRepository.buscar();
     }
 
     public TurmaDTO salvar(TurmaDTO turmaDTO){

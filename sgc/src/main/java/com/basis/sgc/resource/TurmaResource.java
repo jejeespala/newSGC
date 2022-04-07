@@ -2,6 +2,7 @@ package com.basis.sgc.resource;
 
 import com.basis.sgc.service.TurmaService;
 import com.basis.sgc.service.dto.TurmaDTO;
+import com.basis.sgc.service.dto.TurmaListDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class TurmaResource {
     private final TurmaService turmaService;
 
     @GetMapping
-    public ResponseEntity<List<TurmaDTO>> listar(){
+    public ResponseEntity<List<TurmaListDTO>> listar(){
 
         return ResponseEntity.ok(turmaService.buscar());
     }
