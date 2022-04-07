@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SelectItem} from 'primeng';
+import {MessageService, SelectItem} from 'primeng';
 import {CompetenciaService} from '../../service/competencia.service';
+import {success} from 'ng-packagr/lib/utils/log';
+import {PageNotificationService} from '@nuvem/primeng-components';
 
 @Component({
   selector: 'app-competencia-form',
@@ -14,7 +16,7 @@ export class CompetenciaFormComponent implements OnInit {
     form: FormGroup;
 
 
-  constructor(private fb: FormBuilder, private competenciaService: CompetenciaService) { }
+  constructor(private fb: FormBuilder, private competenciaService: CompetenciaService, private messageService: PageNotificationService) { }
 
   ngOnInit(): void {
       this.novoFormulario();
@@ -22,20 +24,26 @@ export class CompetenciaFormComponent implements OnInit {
   }
 
   novoFormulario() {
-
       this.form = this.fb.group({
           id: [null],
           nome: [null, [Validators.required, Validators.minLength(3)]],
-          descricao: [null, [Validators.required, Validators.minLength(3)]]
+          descricao: [null, [Validators.required, Validators.minLength(3)]],
+          id_categoria: [null, [Validators.required]]
       });
   }
 
   listarCategoria() {
-
       this.competenciaService.buscarCategoria().subscribe(resposta => {
           this.categorias = resposta;
       });
-
   }
+
+  onSubmit() {
+      this.competenciaService.salvarCompetencia(this.form.value).subscribe(
+          succcess => this.messageService.addSuccessMessage('Salvo com sucesso', 'Competência'),
+          error => this.messageService.addErrorMessage('Não foi possível salvar!', 'Competência')
+      );
+  }
+
 
 }

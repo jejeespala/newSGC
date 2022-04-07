@@ -62,6 +62,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import {DynamicDialogModule} from 'primeng';
+import {ReactiveFormsModule} from '@angular/forms';
 
 export const PRIMENG_IMPORTS = [
     AccordionModule,
