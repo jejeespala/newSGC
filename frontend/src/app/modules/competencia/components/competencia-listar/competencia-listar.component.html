@@ -4,6 +4,7 @@
             <th>Nome</th>
             <th>Descrição</th>
             <th>Categoria</th>
+            <th [ngStyle]="{'width': '120px'}">Ação</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-competencia>
@@ -11,6 +12,12 @@
             <td>{{competencia.nome}}</td>
             <td>{{competencia.descricao}}</td>
             <td>{{competencia.nomeCategoria}}</td>
+            <td style="text-align:center">
+                <button pButton type="button" (click)="onEdit(competencia.id)" icon="pi pi-pencil"
+                    styleClass="rounded-button ui-button-help"></button>
+                <button pButton type="button" (click)="confirm(competencia.id)" icon="pi pi-trash"
+                    class="ui-button-danger" styleClass="rounded-button ui-button-danger"></button>
+            </td>
 
         </tr>
     </ng-template>

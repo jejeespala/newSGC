@@ -5,6 +5,7 @@ import com.basis.sgc.domain.Competencia;
 import com.basis.sgc.repository.ColaboradorRepository;
 import com.basis.sgc.repository.CompetenciaRepository;
 import com.basis.sgc.service.dto.ColaboradorDTO;
+import com.basis.sgc.service.dto.ColaboradorListDTO;
 import com.basis.sgc.service.dto.CompetenciaDTO;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
 import com.basis.sgc.service.mapper.CompetenciaMapper;
@@ -21,9 +22,9 @@ public class ColaboradorService {
 
     private final ColaboradorRepository colaboradorRepository;
 
-    public List<ColaboradorDTO> buscar(){
+    public List<ColaboradorListDTO> buscar(){
 
-        return colaboradorMapper.toDto(colaboradorRepository.findAll());
+        return colaboradorRepository.listar();
     }
 
     public ColaboradorDTO salvar(ColaboradorDTO colaboradorDTO){

@@ -3,6 +3,7 @@ package com.basis.sgc.resource;
 import com.basis.sgc.service.ColaboradorService;
 import com.basis.sgc.service.CompetenciaService;
 import com.basis.sgc.service.dto.ColaboradorDTO;
+import com.basis.sgc.service.dto.ColaboradorListDTO;
 import com.basis.sgc.service.dto.CompetenciaDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ColaboradorResource {
     private final ColaboradorService colaboradorService;
 
     @GetMapping
-    public ResponseEntity<List<ColaboradorDTO>> listar(){
+    public ResponseEntity<List<ColaboradorListDTO>> listar(){
 
         return ResponseEntity.ok(colaboradorService.buscar());
     }
