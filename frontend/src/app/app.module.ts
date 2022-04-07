@@ -13,7 +13,7 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
-import { TurmaComponent } from './modules/turma/components/turma.component';
+import { CompetenciaFormComponent } from './modules/competencia/components/competencia-form/competencia-form.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +21,7 @@ import { TurmaComponent } from './modules/turma/components/turma.component';
         AppTopbarComponent,
         AppFooterComponent,
         DiarioErrosComponent,
-        TurmaComponent
+        CompetenciaFormComponent
     ],
     imports: [
         BlockUIModule.forRoot({
