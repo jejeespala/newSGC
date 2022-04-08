@@ -4,5 +4,4 @@ export class ColaboradorModel {
     nome: string;
     email: string;
     senioridade: string;
-    
 }

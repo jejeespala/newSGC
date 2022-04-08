@@ -6,6 +6,7 @@ import com.basis.sgc.service.CategoriaService;
 import com.basis.sgc.service.CompetenciaService;
 import com.basis.sgc.service.dto.CategoriaDTO;
 import com.basis.sgc.service.dto.CompetenciaDTO;
+import com.basis.sgc.service.dto.CompetenciaDropdownDTO;
 import com.basis.sgc.service.dto.CompetenciaListDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,12 @@ public class CompetenciaResource {
     public ResponseEntity<List<CompetenciaListDTO>> listar(){
 
         return ResponseEntity.ok(competenciaService.buscar());
+    }
+
+    @GetMapping(value = "/colaborador")
+    public ResponseEntity<List<CompetenciaDropdownDTO>> listarDrop(){
+
+        return ResponseEntity.ok(competenciaService.listarDrop());
     }
 
     @PostMapping
