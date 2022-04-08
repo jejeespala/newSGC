@@ -13,9 +13,6 @@ import { PageNotificationModule, BreadcrumbModule, MenuModule, ErrorStackModule 
 import { ErrorModule, SecurityModule, VersionTagModule } from '@nuvem/angular-base';
 import { DiarioErrosComponent } from './components/diario-erros/diario-erros.component';
 import { BlockUIModule } from 'ng-block-ui';
-import { CompetenciaFormComponent } from './modules/competencia/components/competencia-form/competencia-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import { ColaboradorFormComponent } from './modules/colaborador/components/colaborador-form/colaborador-form.component';
 
 @NgModule({
     declarations: [

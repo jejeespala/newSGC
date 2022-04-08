@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SelectItem} from 'primeng';
 import {ColaboradorService} from '../../service/colaborador.service';
 import {PageNotificationService} from '@nuvem/primeng-components';
+import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -34,7 +35,8 @@ export class ColaboradorFormComponent implements OnInit {
         email: [null, [Validators.required, Validators.minLength(3)]],
         data_nasc: [null, [Validators.required]],
         data_admi: [null, [Validators.required]],
-        id_senioridade: [null, [Validators.required]]
+        id_senioridade: [null, [Validators.required]],
+        competencias: [[], [Validators.required]]
     });
   }
 
@@ -61,6 +63,12 @@ export class ColaboradorFormComponent implements OnInit {
       //         error => this.messageService.addErrorMessage('Não foi possível realizar o cadastro do colaborador')
       //     );
       // }
+  }
+
+  adicionarCompetencia (competencia: ColaboradorCompetenciaModel) {
+
+      this.formCol.get('competencias').value.push(competencia);
+
   }
 
 
