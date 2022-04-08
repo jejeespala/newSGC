@@ -26,9 +26,9 @@ public class ColaboradorResource {
     }
 
     @PostMapping
-    public ResponseEntity<ColaboradorDTO> salvar(@RequestBody ColaboradorDTO colaboradorDTO){
+    public void salvar(@RequestBody ColaboradorDTO colaboradorDTO){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(colaboradorService.salvar(colaboradorDTO));
+         colaboradorService.salvar(colaboradorDTO);
 
     }
 
@@ -41,9 +41,9 @@ public class ColaboradorResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ColaboradorDTO> atualizar(@RequestBody ColaboradorDTO colaboradorDTO){
+    public void atualizar(@RequestBody ColaboradorDTO colaboradorDTO){
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(colaboradorService.salvar(colaboradorDTO));
+        colaboradorService.salvar(colaboradorDTO);
 
     }
 

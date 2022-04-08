@@ -128,5 +128,6 @@ export const PRIMENG_IMPORTS = [
     TooltipModule,
     TreeModule,
     TreeTableModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    ReactiveFormsModule
 ];

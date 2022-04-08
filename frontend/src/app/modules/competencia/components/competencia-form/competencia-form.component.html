@@ -1,7 +1,7 @@
 
  <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div class="card h-30 rem max-h-0 md:max-h-full border-round bg-yellow-500 text-gray-900 font-bold">
+    <div class="card h-30rem max-h-full">
 
         <div class="field">
             <label for="firstname1">Nome</label>
@@ -17,20 +17,20 @@
 
             <div class="p-field">
 
-                <p-dropdown [options]="categorias" placeholder="Selecione a Categoria" class="inputfield w-full" formControlName="id_categoria" ></p-dropdown>
+                <p-dropdown [options]="categorias" [style]="{'width':'100%'}" placeholder="Selecione a Categoria" class="inputfield w-full" formControlName="id_categoria" ></p-dropdown>
 
             </div>
 
         </div>
-        
+
         <div class="field flex align-items-center justify-content-center">
-            
+
 
             <button pButton type="submit" class="ui-button-success" label="Salvar" ></button>
 
 
         </div>
-        
+
     </div>
 
 

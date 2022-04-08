@@ -13,7 +13,7 @@ import {ColaboradorFormComponent} from '../colaborador-form/colaborador-form.com
 })
 export class ColaboradorListarComponent implements OnInit {
 
-  colaboradores : ColaboradorModel[]
+  colaboradores: ColaboradorModel[];
 
 
   constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService) { }
@@ -35,7 +35,7 @@ export class ColaboradorListarComponent implements OnInit {
         const ref = this.dialogService.open(ColaboradorFormComponent, {
             header: 'Cadastrar Colaborador',
             width: '70%',
-            contentStyle: {'max-height': '350px', 'overflow': 'auto'}
+            contentStyle: {'overflow': 'auto'}
         });
     }
 

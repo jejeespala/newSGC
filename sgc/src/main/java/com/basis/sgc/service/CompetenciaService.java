@@ -3,6 +3,7 @@ package com.basis.sgc.service;
 import com.basis.sgc.domain.Competencia;
 import com.basis.sgc.repository.CompetenciaRepository;
 import com.basis.sgc.service.dto.CompetenciaDTO;
+import com.basis.sgc.service.dto.CompetenciaDropdownDTO;
 import com.basis.sgc.service.dto.CompetenciaListDTO;
 import com.basis.sgc.service.mapper.CompetenciaMapper;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,11 @@ public class CompetenciaService {
     public List<CompetenciaListDTO> buscar(){
 
         return competenciaRepository.listar();
+    }
+
+    public List<CompetenciaDropdownDTO> listarDrop(){
+
+        return competenciaRepository.listarDrop();
     }
 
     public CompetenciaDTO salvar(CompetenciaDTO competenciaDTO){

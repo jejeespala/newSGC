@@ -39,10 +39,13 @@ export class CompetenciaFormComponent implements OnInit {
   }
 
   onSubmit() {
-      this.competenciaService.salvarCompetencia(this.form.value).subscribe(
-          succcess => this.messageService.addSuccessMessage('Salvo com sucesso', 'Competência'),
-          error => this.messageService.addErrorMessage('Não foi possível salvar!', 'Competência')
-      );
+
+      if (this.form.valid) {
+          this.competenciaService.salvarCompetencia(this.form.value).subscribe(
+              succcess => this.messageService.addSuccessMessage('Salvo com sucesso', 'Competência'),
+              error => this.messageService.addErrorMessage('Não foi possível salvar!', 'Competência')
+          );
+      }
   }
 
 

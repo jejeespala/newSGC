@@ -16,8 +16,7 @@ import {MessageService} from 'primeng';
     imports: [
         CommonModule,
         SharedModule,
-        CompetenciasRoutingModule,
-        ReactiveFormsModule
+        CompetenciasRoutingModule
     ],
   providers: [CompetenciaService, DialogService, FormBuilder, MessageService]
 })

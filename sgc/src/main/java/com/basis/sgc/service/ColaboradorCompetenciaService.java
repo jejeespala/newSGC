@@ -38,10 +38,4 @@ public class ColaboradorCompetenciaService {
 
     }
 
-//    public void deletar(Integer id){
-//
-//        colaboradorCompetenciaRepository.deleteById(id);
-//
-//    }
-
 }

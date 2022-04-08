@@ -6,15 +6,16 @@ import { ColaboradorListarComponent } from './components/colaborador-listar/cola
 import {ColaboradorService} from './service/colaborador.service';
 import {ColaboradorFormComponent} from './components/colaborador-form/colaborador-form.component';
 import {DialogService} from 'primeng/dynamicdialog';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [ColaboradorListarComponent, ColaboradorFormComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    ColaboradorRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        ColaboradorRoutingModule
+    ],
   providers: [ColaboradorService, DialogService]
 })
 export class ColaboradorModule { }
