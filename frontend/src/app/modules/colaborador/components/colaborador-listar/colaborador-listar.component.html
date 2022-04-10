@@ -1,28 +1,31 @@
-<div class="grid mb-3 mt-2 pl-2 pr-2 align-items-center">
-    <h2>LISTA DE COLABORADOR</h2>
-    <span class="col"></span>
-    <button pButton type="button" (click)="show()" icon="ui-icon-plus" class="ui-button-success" iconPos="left" label="Novo Colaborador"></button>
-</div>
-<p-table [value]="colaboradores" responsiveLayout="scroll" paginator="true" rows="8">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Senioridade</th>
-            <th [ngStyle]="{'width': '120px'}">Ação</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-colaborador>
-        <tr>
-            <td class="text-center">{{colaborador.nome}}</td>
-            <td class="text-center">{{colaborador.email}}</td>
-            <td class="text-center">{{colaborador.senioridade}}</td>
-            <td style="text-align:center">
-                <button pButton type="button" (click)="editar(colaborador.id)" icon="pi pi-pencil"
-                    styleClass="rounded-button ui-button-help"></button>
-                <button pButton type="button" (click)="deletar(colaborador)" icon="pi pi-trash"
-                    class="ui-button-danger" styleClass="rounded-button ui-button-danger"></button>
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+<p-card>
+    <div class="grid mb-3 mt-2 pl-2 pr-2 align-items-center">
+        <h2>LISTA DE COLABORADOR</h2>
+        <span class="col"></span>
+        <button pButton type="button" (click)="show()" icon="ui-icon-plus" class="ui-button-success" iconPos="left" label="Novo Colaborador"></button>
+    </div>
+    <p-table [value]="colaboradores" responsiveLayout="scroll" paginator="true" rows="8">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Senioridade</th>
+                <th [ngStyle]="{'width': '120px'}">Ação</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-colaborador>
+            <tr>
+                <td class="text-center">{{colaborador.nome}}</td>
+                <td class="text-center">{{colaborador.email}}</td>
+                <td class="text-center">{{colaborador.senioridade}}</td>
+                <td style="text-align:center">
+                    <button pButton type="button" (click)="editar(colaborador.id)" icon="pi pi-pencil"
+                            styleClass="rounded-button ui-button-help"></button>
+                    <button pButton type="button" (click)="deletar(colaborador)" icon="pi pi-trash"
+                            class="ui-button-danger" styleClass="rounded-button ui-button-danger"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+

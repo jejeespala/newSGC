@@ -14,6 +14,7 @@ export class CompetenciaListarComponent implements OnInit {
 
     competencias: CompetenciaModel[];
     categorias: CategoriaModel [];
+    competencia: CompetenciaModel;
 
   constructor(private competenciasService: CompetenciaService, private dialogService: DialogService) { }
 
@@ -35,6 +36,7 @@ export class CompetenciaListarComponent implements OnInit {
 
       this.competenciasService.buscarCategoria().subscribe( resposta => {
           this.categorias = resposta;
+
       });
   }
 
@@ -46,5 +48,20 @@ export class CompetenciaListarComponent implements OnInit {
         });
     }
 
+    showOne(id) {
+
+
+
+      this.competenciasService.buscarCompetenciaId(id).subscribe( resposta => {
+          this.competencia = resposta;
+      })
+        const ref = this.dialogService.open(CompetenciaFormComponent, {
+            data: this.competencia,
+            header: 'Competência',
+            width: '35%',
+            height: '75%'
+        });
+
+    }
 
 }

@@ -6,16 +6,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CategoriaDTO {
+public class IdDTO {
 
     @NotNull
-    private String label;
+    private Integer id;
 
-    @NotNull
-    private Integer value;
-
-    public CategoriaDTO(String label, Integer value) {
-        this.label = label;
-        this.value = value;
-    }
 }

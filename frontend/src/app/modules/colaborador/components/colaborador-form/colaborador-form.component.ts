@@ -15,15 +15,14 @@ export class ColaboradorFormComponent implements OnInit {
     formCol: FormGroup;
     competencias: FormGroup;
     competencia: SelectItem[];
-    nivel: SelectItem[];
+    competenciaTable: ColaboradorCompetenciaModel[];
 
   constructor(private colaboradorService: ColaboradorService, private fb: FormBuilder, private messageService: PageNotificationService) { }
 
   ngOnInit(): void {
 
       this.novoFormularioColaborador();
-      this.listarCompetencias();
-      this.listarNiveis();
+
   }
 
   novoFormularioColaborador() {
@@ -41,18 +40,6 @@ export class ColaboradorFormComponent implements OnInit {
   }
 
 
-
-  listarCompetencias() {
-      this.colaboradorService.buscarCompetencia().subscribe(
-          resposta => {
-              this.competencia = resposta;
-          });
-  }
-
-  listarNiveis() {
-      this.nivel = this.colaboradorService.buscarNivel();
-  }
-
   salvarColaborador() {
 
       console.log('entrou');
@@ -67,9 +54,13 @@ export class ColaboradorFormComponent implements OnInit {
 
   adicionarCompetencia (competencia: ColaboradorCompetenciaModel) {
 
+      this.competenciaTable.push(competencia);
       this.formCol.get('competencias').value.push(competencia);
+      console.log(this.formCol.value)
 
   }
+
+
 
 
 }

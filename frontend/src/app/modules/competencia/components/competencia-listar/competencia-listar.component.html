@@ -19,7 +19,7 @@
                 <td>{{competencia.descricao}}</td>
                 <td>{{competencia.nomeCategoria}}</td>
                 <td style="text-align:center">
-                    <button pButton type="button" icon="pi pi-pencil"></button>
+                    <button pButton type="button" icon="pi pi-pencil" (click)="showOne(competencia.id)"></button>
                     <button pButton type="button" icon="pi pi-trash" class="ui-button-danger"></button>
                 </td>
             </tr>

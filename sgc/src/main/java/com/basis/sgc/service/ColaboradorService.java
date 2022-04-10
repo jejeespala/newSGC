@@ -6,10 +6,7 @@ import com.basis.sgc.domain.Competencia;
 import com.basis.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.sgc.repository.ColaboradorRepository;
 import com.basis.sgc.repository.CompetenciaRepository;
-import com.basis.sgc.service.dto.ColaboradorCompetenciaDTO;
-import com.basis.sgc.service.dto.ColaboradorDTO;
-import com.basis.sgc.service.dto.ColaboradorListDTO;
-import com.basis.sgc.service.dto.CompetenciaDTO;
+import com.basis.sgc.service.dto.*;
 import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
 import com.basis.sgc.service.mapper.CompetenciaMapper;
@@ -33,6 +30,11 @@ public class ColaboradorService {
     public List<ColaboradorListDTO> buscar(){
 
         return colaboradorRepository.listar();
+    }
+
+    public List<ColaboradorDropdownDTO> buscarColaboradorNivelMaximo(Integer id){
+
+        return colaboradorRepository.nivelMaximo(id);
     }
 
     public void salvar(ColaboradorDTO colaboradorDTO){

@@ -24,6 +24,14 @@ public class CompetenciaService {
         return competenciaRepository.listar();
     }
 
+    public CompetenciaDTO buscarPorId(Integer id){
+
+        Competencia competencia = competenciaRepository.findById(id).orElseThrow(()->new RuntimeException("Competencia não encontrada!"));
+
+        return competenciaMapper.toDto(competencia);
+
+    }
+
     public List<CompetenciaDropdownDTO> listarDrop(){
 
         return competenciaRepository.listarDrop();

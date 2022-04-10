@@ -2,6 +2,7 @@ package com.basis.sgc.resource;
 
 import com.basis.sgc.service.StatusService;
 import com.basis.sgc.service.dto.StatusDTO;
+import com.basis.sgc.service.dto.StatusDropdownDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class StatusResource {
     private final StatusService statusService;
 
     @GetMapping
-    private ResponseEntity<List<StatusDTO>> listar(){
+    private ResponseEntity<List<StatusDropdownDTO>> listar(){
 
         return ResponseEntity.ok(statusService.buscar());
 

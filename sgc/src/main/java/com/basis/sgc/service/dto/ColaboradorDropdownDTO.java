@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CompetenciaDropdownDTO {
+public class ColaboradorDropdownDTO {
 
     @NotNull
     private String label;
@@ -14,7 +14,7 @@ public class CompetenciaDropdownDTO {
     @NotNull
     private Integer value;
 
-    public CompetenciaDropdownDTO(String label, Integer value) {
+    public ColaboradorDropdownDTO(String label, Integer value) {
         this.label = label;
         this.value = value;
     }
