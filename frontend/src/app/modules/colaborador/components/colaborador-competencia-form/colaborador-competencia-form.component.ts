@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
 import {ColaboradorService} from "../../service/colaborador.service";
 import {SelectItem} from "primeng";
@@ -47,9 +47,13 @@ export class ColaboradorCompetenciaFormComponent implements OnInit {
 
   adicionar() {
       if (this.form.valid) {
+
           this.aoAdicionar.emit(this.form.value)
+
       }
   }
+
+
 
 
 

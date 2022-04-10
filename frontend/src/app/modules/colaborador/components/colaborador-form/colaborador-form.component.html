@@ -1,4 +1,4 @@
-<form [formGroup]="formCol" (submit)="salvarColaborador()" >
+<form [formGroup]="formCol" >
     <p-card>
         <div class="grid mb-4 pl-2 pr-2 align-items-center">
             <h2>Inscrição</h2>
@@ -57,9 +57,7 @@
                 <p-fileUpload name="myfile[]" accept="image/*" maxFileSize="5000000" customUpload="true" chooseLabel="Escolher Foto">
                 </p-fileUpload>
             </div>
-            <div class="col-1 col-offset-11">
-                <p-button label="Salvar" type="submit" styleClass="ui-button-success"></p-button>
-            </div>
+
         </div>
 
 
@@ -76,7 +74,7 @@
             </div>
 
 
-            <p-table [value]="competenciaTable" responsiveLayout="scroll">
+            <p-table [value]="formCol.get('competencias').value" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Competência</th>
@@ -86,15 +84,19 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-cc>
                     <tr>
-                        <td class="text-center">{{cc.id_competencia}}</td>
+                        <td class="text-center">{{ cc.id_competencia }}</td>
                         <td class="text-center">{{cc.nivel}}</td>
                         <td>
-                            <p-button icon="pi pi-trash" class="ui-button-danger" styleClass="rounded-button ui-button-danger"></p-button>
+                            <p-button icon="pi pi-trash" class="ui-button-danger" (click)="deletarCompetencia(cc)" styleClass="rounded-button ui-button-danger"></p-button>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
+
         </p-card>
+        <div class="col-1 col-offset-11">
+            <p-button label="Salvar" type="submit" styleClass="ui-button-success"></p-button>
+        </div>
     </p-card>
 </form>
 

@@ -33,4 +33,9 @@ export class CompetenciaService {
         return this.httpClient.get<CompetenciaModel>(`${urlComp}/${id}`).pipe(take(1));
     }
 
+    deletar(id) {
+
+        return this.httpClient.delete(`${urlComp}/${id}`).pipe(take(1));
+    }
+
 }

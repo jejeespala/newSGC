@@ -4,6 +4,7 @@ import {SelectItem} from 'primeng';
 import {ColaboradorService} from '../../service/colaborador.service';
 import {PageNotificationService} from '@nuvem/primeng-components';
 import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
+import {CompetenciaService} from "../../../competencia/service/competencia.service";
 
 @Component({
   selector: 'app-colaborador-form',
@@ -14,10 +15,10 @@ export class ColaboradorFormComponent implements OnInit {
 
     formCol: FormGroup;
     competencias: FormGroup;
-    competencia: SelectItem[];
-    competenciaTable: ColaboradorCompetenciaModel[];
 
-  constructor(private colaboradorService: ColaboradorService, private fb: FormBuilder, private messageService: PageNotificationService) { }
+
+  constructor(private colaboradorService: ColaboradorService, private fb: FormBuilder, private messageService: PageNotificationService,
+              private competenciaService: CompetenciaService) { }
 
   ngOnInit(): void {
 
@@ -43,7 +44,7 @@ export class ColaboradorFormComponent implements OnInit {
   salvarColaborador() {
 
       console.log('entrou');
-      console.log(this.formCol.value);
+      // console.log(this.formCol.value);
       // if (this.formCol.valid) {
       //     this.colaboradorService.salvarColaborador(this.formCol.value).subscribe(
       //         success => this.messageService.addSuccessMessage('Colaborador salvo com sucesso!'),
@@ -52,12 +53,31 @@ export class ColaboradorFormComponent implements OnInit {
       // }
   }
 
-  adicionarCompetencia (competencia: ColaboradorCompetenciaModel) {
+  adicionarCompetencia (competencia) {
 
-      this.competenciaTable.push(competencia);
-      this.formCol.get('competencias').value.push(competencia);
+
+
+      if( this.formCol.get('competencias').value.some(cc => cc.id_competencia == competencia.id_competencia)){
+          this.messageService.addErrorMessage('Competência já inserida')
+      }else{
+          this.formCol.get('competencias').value.push(competencia);
+      }
+
+  }
+
+  deletarCompetencia(competencia) {
+
+      this.formCol.get('competencias').value.pop(competencia);
       console.log(this.formCol.value)
+  }
 
+  buscarCompetencia(id) {
+
+      console.log("entrou")
+      this.competenciaService.buscarCompetenciaId(id).subscribe( resposta => {
+
+          return resposta;
+      })
   }
 
 

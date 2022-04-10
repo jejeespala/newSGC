@@ -35,22 +35,15 @@ export class CompetenciaFormComponent implements OnInit {
           id_categoria: [null, [Validators.required]]
       });
 
-
-
-
   }
 
   listarCategoria() {
       this.competenciaService.buscarCategoria().subscribe(resposta => {
           this.categorias = resposta;
 
-          console.log('aqui veio');
           if(this.config.data !== undefined) {
-
-              console.log('entrou')
               this.form.patchValue(this.config.data);
           }
-
       });
   }
 
