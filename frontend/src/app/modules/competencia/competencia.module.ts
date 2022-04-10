@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import {DialogService} from 'primeng/dynamicdialog';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {CompetenciaFormComponent} from './components/competencia-form/competencia-form.component';
-import {MessageService} from 'primeng';
+import {DynamicDialogConfig, MessageService} from 'primeng';
 
 
 
@@ -18,6 +18,6 @@ import {MessageService} from 'primeng';
         SharedModule,
         CompetenciasRoutingModule
     ],
-  providers: [CompetenciaService, DialogService, FormBuilder, MessageService]
+  providers: [CompetenciaService, DialogService, FormBuilder, MessageService, DynamicDialogConfig]
 })
 export class CompetenciaModule { }

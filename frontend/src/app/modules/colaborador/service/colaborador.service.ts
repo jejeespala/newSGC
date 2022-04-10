@@ -38,12 +38,6 @@ export class ColaboradorService {
       return niveis;
   }
 
-  salvarColaborador(colaborador): Observable<ColaboradorPostModel> {
-
-      return this.httpClient.post<ColaboradorPostModel>(urlCol, colaborador).pipe(take(1));
-
-  }
-
   buscarColaboradorNivelMaximo(id): Observable<ColaboradorDropdownModel[]> {
 
       return this.httpClient.get<ColaboradorDropdownModel[]>(`${urlColCompNivelMax}/${id}`).pipe(take(1));

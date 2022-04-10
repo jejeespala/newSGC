@@ -4,6 +4,8 @@ import {CompetenciaModel} from '../../models/competencia.model';
 import {CategoriaModel} from '../../models/categoria.model';
 import {DialogService} from 'primeng/dynamicdialog';
 import {CompetenciaFormComponent} from '../competencia-form/competencia-form.component';
+import {MessageService} from "primeng";
+import {PageNotificationService} from "@nuvem/primeng-components";
 
 @Component({
   selector: 'app-competencia-listar',
@@ -16,7 +18,7 @@ export class CompetenciaListarComponent implements OnInit {
     categorias: CategoriaModel [];
     competencia: CompetenciaModel;
 
-  constructor(private competenciasService: CompetenciaService, private dialogService: DialogService) { }
+  constructor(private competenciasService: CompetenciaService, private dialogService: DialogService, private messageService: PageNotificationService) { }
 
   ngOnInit(): void {
 
@@ -54,13 +56,30 @@ export class CompetenciaListarComponent implements OnInit {
 
       this.competenciasService.buscarCompetenciaId(id).subscribe( resposta => {
           this.competencia = resposta;
+
+          const ref = this.dialogService.open(CompetenciaFormComponent, {
+              data: this.competencia,
+              header: 'Competência',
+              width: '35%',
+              height: '75%'
+          });
       })
-        const ref = this.dialogService.open(CompetenciaFormComponent, {
-            data: this.competencia,
-            header: 'Competência',
-            width: '35%',
-            height: '75%'
-        });
+
+    }
+
+    onDelete(id){
+
+        this.competenciasService.deletar(id)
+            .subscribe({
+                    next: data => {
+                        this.listarCompetencias()
+                    },
+                    error: error => {
+                        this.messageService.addErrorMessage('Não foi possível deletar a competência')
+                    }
+                }
+
+            )
 
     }
 
