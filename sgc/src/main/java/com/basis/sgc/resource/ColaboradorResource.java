@@ -2,9 +2,7 @@ package com.basis.sgc.resource;
 
 import com.basis.sgc.service.ColaboradorService;
 import com.basis.sgc.service.CompetenciaService;
-import com.basis.sgc.service.dto.ColaboradorDTO;
-import com.basis.sgc.service.dto.ColaboradorListDTO;
-import com.basis.sgc.service.dto.CompetenciaDTO;
+import com.basis.sgc.service.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +22,14 @@ public class ColaboradorResource {
 
         return ResponseEntity.ok(colaboradorService.buscar());
     }
+
+    @GetMapping("/competencia/{id}")
+    public ResponseEntity<List<ColaboradorDropdownDTO>> listarNivelMaximo(@PathVariable Integer id){
+
+        return ResponseEntity.ok(colaboradorService.buscarColaboradorNivelMaximo(id));
+    }
+
+
 
     @PostMapping
     public void salvar(@RequestBody ColaboradorDTO colaboradorDTO){

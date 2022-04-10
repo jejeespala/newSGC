@@ -29,4 +29,8 @@ export class CompetenciaService {
       return this.httpClient.post<CompetenciaPostModel>(urlComp, competencia).pipe(take(1));
     }
 
+    buscarCompetenciaId(id): Observable<CompetenciaModel> {
+        return this.httpClient.get<CompetenciaModel>(`${urlComp}/${id}`).pipe(take(1));
+    }
+
 }

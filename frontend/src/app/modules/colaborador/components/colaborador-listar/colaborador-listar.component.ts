@@ -39,4 +39,13 @@ export class ColaboradorListarComponent implements OnInit {
         });
     }
 
+    mostrarUm(id) {
+
+        const ref = this.dialogService.open(ColaboradorFormComponent, {
+            header: 'Atualizar Colaborador',
+            width: '70%',
+            contentStyle: {'overflow': 'auto'}
+        });
+    }
+
 }

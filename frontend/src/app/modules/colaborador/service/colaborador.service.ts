@@ -6,14 +6,15 @@ import { Injectable } from '@angular/core';
 import { ColaboradorModel } from '../models/colaborador.model';
 import {CompetenciaDropdownModel} from '../models/competencia.model';
 import {NivelModel} from '../models/nivel.model';
-import {SelectItem} from 'primeng';
 import {niveis} from './nivel.service';
 import {ColaboradorPostModel} from '../models/colaboradorPost.model';
 import {take} from 'rxjs/operators';
+import {ColaboradorDropdownModel} from "../models/colaboradordropdown.model";
 
 
 const urlCol: string = environment.apiUrl + '/colaborador';
 const urlComp: string = environment.apiUrl + '/competencia/colaborador';
+const urlColCompNivelMax: string = environment.apiUrl + '/colaborador/competencia';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,13 @@ export class ColaboradorService {
 
   salvarColaborador(colaborador): Observable<ColaboradorPostModel> {
 
-      console.log(colaborador);
       return this.httpClient.post<ColaboradorPostModel>(urlCol, colaborador).pipe(take(1));
+
+  }
+
+  buscarColaboradorNivelMaximo(id): Observable<ColaboradorDropdownModel[]> {
+
+      return this.httpClient.get<ColaboradorDropdownModel[]>(`${urlColCompNivelMax}/${id}`).pipe(take(1));
 
   }
 }

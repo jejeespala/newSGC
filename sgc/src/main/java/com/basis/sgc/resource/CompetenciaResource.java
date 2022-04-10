@@ -29,6 +29,12 @@ public class CompetenciaResource {
         return ResponseEntity.ok(competenciaService.buscar());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CompetenciaDTO> buscarPorId(@PathVariable Integer id){
+        return ResponseEntity.ok(competenciaService.buscarPorId(id));
+    }
+
+
     @GetMapping(value = "/colaborador")
     public ResponseEntity<List<CompetenciaDropdownDTO>> listarDrop(){
 
