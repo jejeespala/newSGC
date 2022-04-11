@@ -12,40 +12,33 @@ import com.basis.sgc.service.dto.CompetenciaDTO;
 import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Transactional
 public class ColaboradorCompetenciaService {
 
     private final ColaboradorCompetenciaMapper colaboradorCompetenciaMapper;
 
-    private final ColaboradorRepository colaboradorRepository;
-
-    private final CompetenciaRepository competenciaRepository;
-
     private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     public List<ColaboradorCompetenciaDTO> buscar(){
-
-        return colaboradorCompetenciaMapper.toDto(colaboradorCompetenciaRepository.findAll()) ;
+        List<ColaboradorCompetencia> colaboradorCompetencias = colaboradorCompetenciaRepository.findAll();
+        return colaboradorCompetenciaMapper.toDto(colaboradorCompetencias);
     }
 
     public List<ColaboradorCompetenciaDTO> buscarPorId(Integer id){
-
        return colaboradorCompetenciaRepository.listar(id);
-
-
-
     }
 
     public ColaboradorCompetenciaDTO salvar(ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
-
         ColaboradorCompetencia colaboradorCompetencia = colaboradorCompetenciaMapper.toEntity(colaboradorCompetenciaDTO);
         return colaboradorCompetenciaMapper.toDto(colaboradorCompetenciaRepository.save(colaboradorCompetencia));
-
     }
 
 }

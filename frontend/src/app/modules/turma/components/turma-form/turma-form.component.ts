@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TurmaService} from "../../service/turma.service";
-import {SelectItem} from "primeng";
+import {DynamicDialogConfig, SelectItem} from 'primeng';
 import {ColaboradorService} from "../../../colaborador/service/colaborador.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-turma-form',
@@ -16,7 +16,8 @@ export class TurmaFormComponent implements OnInit {
     colaboradores: SelectItem[];
     formColComp: FormGroup;
 
-  constructor(private turmaService: TurmaService, private colaboradorService: ColaboradorService, private fb: FormBuilder) { }
+  constructor(private turmaService: TurmaService, private colaboradorService: ColaboradorService, private fb: FormBuilder,
+              private config: DynamicDialogConfig) { }
 
   ngOnInit(): void {
 
@@ -29,6 +30,11 @@ export class TurmaFormComponent implements OnInit {
 
       this.formColComp = this.fb.group(
           {
+              nome: [null, [Validators.required]],
+              descricao: [null, [Validators.required]],
+              data_inicio: [null,[Validators.required]],
+              data_termino: [null, [Validators.required]],
+              id_status: [null, [Validators.required]],
               id_colaborador: [null],
               id_competencia: [null]
           }
@@ -51,6 +57,13 @@ export class TurmaFormComponent implements OnInit {
 
           this.competencias = resposta;
       })
+
+      if(this.config.data !== undefined) {
+
+          this.formColComp.patchValue(this.config.data);
+          this.formColComp.patchValue({data_inicio: new Date(this.config.data.data_inicio),
+              data_termino: new Date(this.config.data.data_termino)})
+      }
   }
 
   listarColaborador(id: number) {

@@ -16,11 +16,11 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Intege
     @Query("select new " +
             "com.basis.sgc.service.dto.ColaboradorListDTO(c.id, c.nome, c.email, s.nome)" +
             "from Colaborador c join c.senioridade s")
-    public List<ColaboradorListDTO> listar();
+    List<ColaboradorListDTO> listar();
 
     @Query("select new " +
             "com.basis.sgc.service.dto.ColaboradorDropdownDTO(c.colaborador.nome, c.colaborador.id)" +
             "from ColaboradorCompetencia c where c.nivel = 2 and c.competencia.id = ?1")
-    public List<ColaboradorDropdownDTO> nivelMaximo(Integer id);
+    List<ColaboradorDropdownDTO> nivelMaximo(Integer id);
 
 }

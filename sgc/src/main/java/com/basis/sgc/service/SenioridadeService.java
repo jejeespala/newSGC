@@ -7,12 +7,15 @@ import com.basis.sgc.service.dto.StatusDTO;
 import com.basis.sgc.service.mapper.SenioridadeMapper;
 import com.basis.sgc.service.mapper.StatusMapper;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Transactional
 public class SenioridadeService {
 
     private final SenioridadeMapper senioridadeMapper;
@@ -20,9 +23,7 @@ public class SenioridadeService {
     private final SenioridadeRepository senioridadeRepository;
 
     public List<SenioridadeDTO> buscar(){
-
         return senioridadeMapper.toDto(senioridadeRepository.findAll());
-
     }
 
 

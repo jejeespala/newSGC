@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {DynamicDialogConfig, MessageService, SelectItem} from 'primeng';
+import {DynamicDialogConfig, DynamicDialogRef, MessageService, SelectItem} from 'primeng';
 import {CompetenciaService} from '../../service/competencia.service';
 import {success} from 'ng-packagr/lib/utils/log';
 import {PageNotificationService} from '@nuvem/primeng-components';
@@ -18,7 +18,7 @@ export class CompetenciaFormComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private competenciaService: CompetenciaService, private messageService: PageNotificationService,
-              private config: DynamicDialogConfig ) { }
+              private config: DynamicDialogConfig, private ref: DynamicDialogRef ) { }
 
   ngOnInit(): void {
 
@@ -51,9 +51,11 @@ export class CompetenciaFormComponent implements OnInit {
 
       if (this.form.valid) {
           this.competenciaService.salvarCompetencia(this.form.value).subscribe(
-              succcess => this.messageService.addSuccessMessage('Salvo com sucesso', 'Competência'),
+              succcess => this.ref.close(this.messageService.addSuccessMessage('Salvo com sucesso', 'Competência')),
               error => this.messageService.addErrorMessage('Não foi possível salvar!', 'Competência')
           );
+
+
       }
   }
 

@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="formColComp">
     <p-card>
         <div class="grid mb-6 pl-2 pr-2 align-items-center">
             <h2>Formulário de Turma Formação</h2>
@@ -12,35 +12,35 @@
         <div class="grid">
             <div class="col-12 sm:col-2 md:col-2">
                 <span class="ui-float-label">
-                    <input type="text" pInputText autocomplete="off" >
-                    <label for="float-input">Nome da turma</label>
+                    <input type="text" pInputText autocomplete="off" formControlName="nome" >
+                    <label for="float-input" f>Nome da turma</label>
                 </span>
             </div>
 
             <div class="col-12 sm:col-10 md:col-10">
                 <span class="ui-float-label">
-                    <input id="float-input" type="text" pInputText autocomplete="off" >
-                    <label for="float-input">Descrição</label>
+                    <input id="float-input" type="text" formControlName="descricao" pInputText autocomplete="off" >
+                    <label for="float-input" >Descrição</label>
                 </span>
             </div>
 
             <div class="col-12 sm:col-2 md:col-2 mt-5">
                 <span class="ui-float-label">
-                    <p-calendar dateFormat="dd/mm/yy" ></p-calendar>
+                    <p-calendar  dateFormat="dd/mm/yy" formControlName="data_inicio" ></p-calendar>
                     <label for="float-input">Data Inicio</label>
                 </span>
             </div>
 
             <div class="col-12 sm:col-2 md:col-2 mt-5">
                 <span class="ui-float-label">
-                    <p-calendar dateFormat="dd/mm/yy" ></p-calendar>
+                    <p-calendar dateFormat="dd/mm/yy" formControlName="data_termino"></p-calendar>
                     <label for="float-input">Data Termino</label>
                 </span>
 
 
             <div class="col-12 sm:col-2 md:col-2 mt-5">
                 <span class="ui-float-label">
-                    <p-dropdown [options]="status" >
+                    <p-dropdown [options]="status" formControlName="id_status">
                     </p-dropdown>
                     <label for="float-input">Status</label>
                 </span>

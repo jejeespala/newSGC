@@ -4,8 +4,6 @@ import {DynamicDialogConfig, SelectItem} from 'primeng';
 import {ColaboradorService} from '../../service/colaborador.service';
 import {PageNotificationService} from '@nuvem/primeng-components';
 import {CompetenciaService} from "../../../competencia/service/competencia.service";
-import {DatePipe} from "@angular/common";
-import {config} from "rxjs";
 
 @Component({
   selector: 'app-colaborador-form',
@@ -19,7 +17,7 @@ export class ColaboradorFormComponent implements OnInit {
 
 
   constructor(private colaboradorService: ColaboradorService, private fb: FormBuilder, private messageService: PageNotificationService,
-              private competenciaService: CompetenciaService, private config: DynamicDialogConfig, private datepipe: DatePipe ) { }
+              private competenciaService: CompetenciaService, private config: DynamicDialogConfig ) { }
 
   ngOnInit(): void {
 
@@ -40,13 +38,13 @@ export class ColaboradorFormComponent implements OnInit {
         competencias: [[]]
     });
 
-      if(this.config.data !== undefined) {
+      if(this.config.data) {
 
-          console.log(this.config.data.colaborador)
-          console.log(this.config.data.colaboradorCompetencia)
+
           this.formCol.patchValue(this.config.data.colaborador);
           this.formCol.patchValue({data_nasc: new Date(this.config.data.colaborador.data_nasc),
-                                        data_admi: new Date(this.config.data.colaborador.data_admi)})
+                                        data_admi: new Date(this.config.data.colaborador.data_admi),
+                                        competencias: this.config.data.colaboradorCompetencia})
 
 
       }
@@ -64,8 +62,6 @@ export class ColaboradorFormComponent implements OnInit {
 
   adicionarCompetencia (competencia) {
 
-
-
       if( this.formCol.get('competencias').value.some(cc => cc.id_competencia == competencia.id_competencia)){
           this.messageService.addErrorMessage('Competência já inserida')
       }else{
@@ -77,19 +73,6 @@ export class ColaboradorFormComponent implements OnInit {
   deletarCompetencia(competencia) {
 
       this.formCol.get('competencias').value.pop(competencia);
-      console.log(this.formCol.value)
   }
-
-  buscarCompetencia(id) {
-
-      console.log("entrou")
-      this.competenciaService.buscarCompetenciaId(id).subscribe( resposta => {
-
-          return resposta;
-      })
-  }
-
-
-
 
 }

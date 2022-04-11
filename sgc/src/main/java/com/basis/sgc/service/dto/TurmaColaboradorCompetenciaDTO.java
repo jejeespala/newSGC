@@ -5,9 +5,11 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class TurmaColaboradorCompetenciaDTO {
+public class TurmaColaboradorCompetenciaDTO implements Serializable {
 
     @NotNull
     private Integer id_turma;

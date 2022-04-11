@@ -6,12 +6,15 @@ import com.basis.sgc.service.dto.StatusDropdownDTO;
 import com.basis.sgc.service.mapper.StatusMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Transactional
 public class StatusService {
 
     private final StatusMapper statusMapper;
@@ -19,9 +22,7 @@ public class StatusService {
     private final StatusRepository statusRepository;
 
     public List<StatusDropdownDTO> buscar(){
-
         return statusRepository.listar();
-
     }
 
 
