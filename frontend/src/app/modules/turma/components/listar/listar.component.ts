@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {TurmaModel} from "../../models/turma.model";
 import {TurmaService} from "../../service/turma.service";
-import {ColaboradorFormComponent} from "../../../colaborador/components/colaborador-form/colaborador-form.component";
 import {DialogService} from "primeng/dynamicdialog";
-import {TurmaFormComponent} from "../turma-form/turma-form.component";
+import {FormComponent} from "../form/form.component";
 import {PageNotificationService} from '@nuvem/primeng-components';
 
 @Component({
   selector: 'app-turma-listar',
-  templateUrl: './turma-listar.component.html',
-  styleUrls: ['./turma-listar.component.css']
+  templateUrl: './listar.component.html',
+  styleUrls: ['./listar.component.css']
 })
-export class TurmaListarComponent implements OnInit {
+export class ListarComponent implements OnInit {
 
     turmas: TurmaModel[];
     turma: TurmaModel;
@@ -23,14 +22,13 @@ export class TurmaListarComponent implements OnInit {
   }
 
     listarTurma() {
-        this.turmaService.buscarTurma().subscribe(resposta => {
-
+        this.turmaService.buscar().subscribe(resposta => {
             this.turmas = resposta;
         });
     }
 
     show() {
-        const ref = this.dialogService.open(TurmaFormComponent, {
+        const ref = this.dialogService.open(FormComponent, {
             header: 'Cadastrar Turma',
             width: '70%',
             contentStyle: {'overflow': 'auto'}
@@ -38,23 +36,17 @@ export class TurmaListarComponent implements OnInit {
     }
 
     showOne(id) {
-
-        this.turmaService.buscarTurmaId(id).subscribe( resposta => {
+        this.turmaService.buscarId(id).subscribe( resposta => {
             this.turma = resposta;
-
-
-            const ref = this.dialogService.open(TurmaFormComponent, {
+            const ref = this.dialogService.open(FormComponent, {
                 data: this.turma,
                 width: '70%',
                 header: 'Colaborador'
             });
-
         })
-
     }
 
     onDelete(id){
-
         this.turmaService.deletar(id)
             .subscribe({
                     next: data => {
@@ -65,10 +57,7 @@ export class TurmaListarComponent implements OnInit {
                         this.messageService.addErrorMessage('Não foi possível deletar a turma')
                     }
                 }
-
             )
-
     }
-
 
 }

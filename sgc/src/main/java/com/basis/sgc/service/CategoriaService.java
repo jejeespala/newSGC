@@ -2,7 +2,6 @@ package com.basis.sgc.service;
 
 import com.basis.sgc.repository.CategoriaRepository;
 import com.basis.sgc.service.dto.CategoriaDTO;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

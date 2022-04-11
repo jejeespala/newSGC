@@ -2,15 +2,15 @@ import { ColaboradorRoutingModule } from './colaborador.routing.module';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import {CommonModule, DatePipe} from '@angular/common';
-import { ColaboradorListarComponent } from './components/colaborador-listar/colaborador-listar.component';
+import { ListarComponent } from './components/listar/listar.component';
 import {ColaboradorService} from './service/colaborador.service';
-import {ColaboradorFormComponent} from './components/colaborador-form/colaborador-form.component';
+import {FormComponent} from './components/form/form.component';
 import {DialogService} from 'primeng/dynamicdialog';
-import {ColaboradorCompetenciaFormComponent} from './components/colaborador-competencia-form/colaborador-competencia-form.component';
+import {VincularCompetenciaFormComponent} from './components/vincular-competencia-form/vincular-competencia-form.component';
 
 
 @NgModule({
-  declarations: [ColaboradorListarComponent, ColaboradorFormComponent, ColaboradorCompetenciaFormComponent],
+  declarations: [ListarComponent, FormComponent, VincularCompetenciaFormComponent],
     imports: [
         CommonModule,
         SharedModule,

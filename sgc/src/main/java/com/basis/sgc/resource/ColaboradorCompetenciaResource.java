@@ -44,7 +44,4 @@ public class ColaboradorCompetenciaResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
-
-
 }

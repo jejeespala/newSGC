@@ -13,8 +13,8 @@ import {ColaboradorDropdownModel} from "../models/colaboradordropdown.model";
 import {ColaboradorCompetenciaModel} from "../models/colaborador-competencia.model";
 
 
-const urlCol: string = environment.apiUrl + '/colaborador';
-const urlColComp: string = environment.apiUrl + '/colaborador_competencia';
+const urlCol: string = environment.apiUrl + '/colaboradores';
+const urlColComp: string = environment.apiUrl + '/colaboradores_competencias';
 const urlComp: string = environment.apiUrl + '/competencia/colaborador';
 const urlColCompNivelMax: string = environment.apiUrl + '/colaborador/competencia';
 
@@ -25,42 +25,31 @@ export class ColaboradorService {
 
   constructor(private httpClient: HttpClient) { }
 
-  buscarColaborador(): Observable<ColaboradorModel[]> {
-
+  buscar(): Observable<ColaboradorModel[]> {
     return this.httpClient.get<ColaboradorModel[]>(urlCol);
   }
 
-  buscarCompetencia(): Observable<CompetenciaDropdownModel[]> {
-
-      return this.httpClient.get<CompetenciaDropdownModel[]>(urlComp);
-  }
-
-  salvarColaborador(colaborador) {
-
+  salvar(colaborador) {
       return this.httpClient.post(urlCol, colaborador).pipe(take(1));
   }
 
   buscarNivel(): NivelModel[] {
-
       return niveis;
   }
 
-  buscarColaboradorNivelMaximo(id): Observable<ColaboradorDropdownModel[]> {
-
+  buscarNivelMaximo(id): Observable<ColaboradorDropdownModel[]> {
       return this.httpClient.get<ColaboradorDropdownModel[]>(`${urlColCompNivelMax}/${id}`).pipe(take(1));
-
   }
 
-    buscarColaboradorId(id): Observable<ColaboradorPostModel> {
+    buscarId(id): Observable<ColaboradorPostModel> {
         return this.httpClient.get<ColaboradorPostModel>(`${urlCol}/${id}`).pipe(take(1));
     }
 
-    buscarColaboradorCompetenciaId(id): Observable<ColaboradorCompetenciaModel[]> {
+    buscarCompetenciaId(id): Observable<ColaboradorCompetenciaModel[]> {
         return this.httpClient.get<ColaboradorCompetenciaModel[]>(`${urlColComp}/${id}`).pipe(take(1));
     }
 
     deletar(id) {
-
         return this.httpClient.delete(`${urlComp}/${id}`).pipe(take(1));
     }
 }

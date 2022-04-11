@@ -3,13 +3,14 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
 import {ColaboradorService} from "../../service/colaborador.service";
 import {SelectItem} from 'primeng';
+import {CompetenciaService} from '../../../competencia/service/competencia.service';
 
 @Component({
   selector: 'app-colaborador-competencia-form',
-  templateUrl: './colaborador-competencia-form.component.html',
-  styleUrls: ['./colaborador-competencia-form.component.css']
+  templateUrl: './vincular-competencia-form.component.html',
+  styleUrls: ['./vincular-competencia-form.component.css']
 })
-export class ColaboradorCompetenciaFormComponent implements OnInit {
+export class VincularCompetenciaFormComponent implements OnInit {
 
     form: FormGroup;
     competencia: SelectItem[];
@@ -18,7 +19,7 @@ export class ColaboradorCompetenciaFormComponent implements OnInit {
     @Output() aoAdicionar = new EventEmitter<ColaboradorCompetenciaModel>();
     @Input() aoReceber;
 
-  constructor(private fb: FormBuilder, private colaboradorService: ColaboradorService) { }
+  constructor(private fb: FormBuilder, private colaboradorService: ColaboradorService, private competenciaService: CompetenciaService) { }
 
   ngOnInit(): void {
 
@@ -28,7 +29,7 @@ export class ColaboradorCompetenciaFormComponent implements OnInit {
   }
 
     listarCompetencias() {
-        this.colaboradorService.buscarCompetencia().subscribe(
+        this.competenciaService.buscarDropdown().subscribe(
             resposta => {
                 this.competencia = resposta;
             });
@@ -60,20 +61,11 @@ export class ColaboradorCompetenciaFormComponent implements OnInit {
       // }
       //
       // console.log(this.form.value)
-
   }
 
   adicionar() {
       if (this.form.valid) {
-
           this.aoAdicionar.emit(this.form.value)
-
       }
   }
-
-
-
-
-
-
 }
