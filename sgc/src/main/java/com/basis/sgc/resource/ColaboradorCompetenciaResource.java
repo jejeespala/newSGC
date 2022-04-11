@@ -4,6 +4,7 @@ import com.basis.sgc.service.ColaboradorCompetenciaService;
 import com.basis.sgc.service.ColaboradorService;
 import com.basis.sgc.service.dto.ColaboradorCompetenciaDTO;
 import com.basis.sgc.service.dto.ColaboradorDTO;
+import com.basis.sgc.service.dto.CompetenciaDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,12 @@ public class ColaboradorCompetenciaResource {
 
         return ResponseEntity.ok(colaboradorCompetenciaService.buscar());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<List<ColaboradorCompetenciaDTO>> buscarPorId(@PathVariable Integer id){
+        return ResponseEntity.ok(colaboradorCompetenciaService.buscarPorId(id));
+    }
+
 
     @PostMapping
     public ResponseEntity<ColaboradorCompetenciaDTO> salvar(@RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){

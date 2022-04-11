@@ -29,6 +29,12 @@ public class ColaboradorResource {
         return ResponseEntity.ok(colaboradorService.buscarColaboradorNivelMaximo(id));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ColaboradorDTO> buscarPorId(@PathVariable Integer id){
+        return ResponseEntity.ok(colaboradorService.buscarPorId(id));
+    }
+
+
 
 
     @PostMapping

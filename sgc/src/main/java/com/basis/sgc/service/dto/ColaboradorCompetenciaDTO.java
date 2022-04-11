@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class ColaboradorCompetenciaDTO {
 
-    @NotNull
+
     private Integer id_colaborador;
 
     @NotNull
@@ -17,4 +17,10 @@ public class ColaboradorCompetenciaDTO {
 
     @NotNull
     private Nivel nivel;
+
+    public ColaboradorCompetenciaDTO(Integer id_colaborador, Integer id_competencia, Nivel nivel) {
+        this.id_colaborador = id_colaborador;
+        this.id_competencia = id_competencia;
+        this.nivel = nivel;
+    }
 }

@@ -39,7 +39,6 @@ export class ColaboradorCompetenciaFormComponent implements OnInit {
   novoFormulario() {
 
       this.form = this.fb.group({
-          id_colaborador: [null],
           id_competencia: [null, [Validators.required]],
           nivel: [null,[Validators.required]]
       })
