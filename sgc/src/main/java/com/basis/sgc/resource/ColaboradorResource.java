@@ -25,7 +25,7 @@ public class ColaboradorResource {
         return new ResponseEntity<>(colaboradorListDTOS, HttpStatus.OK);
     }
 
-    @GetMapping("/competencia/{id}")
+    @GetMapping("/competencias/{id}")
     public ResponseEntity<List<ColaboradorDropdownDTO>> listarNivelMaximo(@PathVariable Integer id){
         List<ColaboradorDropdownDTO> colaboradorDTOS = colaboradorService.buscarColaboradorNivelMaximo(id);
         return new ResponseEntity<>(colaboradorDTOS, HttpStatus.OK);

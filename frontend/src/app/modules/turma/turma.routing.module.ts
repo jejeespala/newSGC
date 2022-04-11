@@ -1,9 +1,9 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
-import {TurmaListarComponent} from "./components/turma-listar/turma-listar.component";
+import {ListarComponent} from "./components/listar/listar.component";
 
 const turmasRoutes = [
-    {path: '', component: TurmaListarComponent}
+    {path: '', component: ListarComponent}
 ];
 
 

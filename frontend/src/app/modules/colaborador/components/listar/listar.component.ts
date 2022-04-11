@@ -2,17 +2,17 @@ import { ColaboradorService } from './../../service/colaborador.service';
 import { ColaboradorModel } from './../../models/colaborador.model';
 import { Component, OnInit } from '@angular/core';
 import {DialogService} from 'primeng/dynamicdialog';
-import {ColaboradorFormComponent} from '../colaborador-form/colaborador-form.component';
+import {FormComponent} from '../form/form.component';
 import {ColaboradorPostModel} from "../../models/colaboradorPost.model";
 import {ColaboradorCompetenciaModel} from "../../models/colaborador-competencia.model";
 import {PageNotificationService} from "@nuvem/primeng-components";
 
 @Component({
   selector: 'app-colaborador-listar',
-  templateUrl: './colaborador-listar.component.html',
-  styleUrls: ['./colaborador-listar.component.css']
+  templateUrl: './listar.component.html',
+  styleUrls: ['./listar.component.css']
 })
-export class ColaboradorListarComponent implements OnInit {
+export class ListarComponent implements OnInit {
 
   colaboradores: ColaboradorModel[];
   colaborador: ColaboradorPostModel;
@@ -25,13 +25,13 @@ export class ColaboradorListarComponent implements OnInit {
   }
 
   listarColaboradores() {
-    this.colaboradorService.buscarColaborador().subscribe(resposta => {
+    this.colaboradorService.buscar().subscribe(resposta => {
       this.colaboradores = resposta;
     });
   }
 
     show() {
-        const ref = this.dialogService.open(ColaboradorFormComponent, {
+        const ref = this.dialogService.open(FormComponent, {
             header: 'Cadastrar Colaborador',
             width: '70%',
             contentStyle: {'overflow': 'auto'}
@@ -39,11 +39,11 @@ export class ColaboradorListarComponent implements OnInit {
     }
 
     showOne(id) {
-        this.colaboradorService.buscarColaboradorId(id).subscribe( resposta => {
-            this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta2 => {
+        this.colaboradorService.buscarId(id).subscribe( resposta => {
+            this.colaboradorService.buscarCompetenciaId(id).subscribe( resposta2 => {
                 this.colaborador = resposta
                 this.colaboradorCompetencia = resposta2
-                const ref = this.dialogService.open(ColaboradorFormComponent, {
+                const ref = this.dialogService.open(FormComponent, {
                     data: {colaboraCompetencia: this.colaboradorCompetencia,
                         colaborador: this.colaborador},
                     width: '70%',
@@ -55,14 +55,14 @@ export class ColaboradorListarComponent implements OnInit {
 
     buscarColaboradorCompetencia(id){
 
-        this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta => {
+        this.colaboradorService.buscarCompetenciaId(id).subscribe( resposta => {
             this.colaboradorCompetencia = resposta;
         })
     }
 
     buscarColaboradorId(id){
 
-        this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta => {
+        this.colaboradorService.buscarCompetenciaId(id).subscribe( resposta => {
             this.colaboradorCompetencia = resposta;
         })
     }

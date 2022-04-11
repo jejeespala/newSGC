@@ -7,10 +7,10 @@ import {CompetenciaService} from "../../../competencia/service/competencia.servi
 
 @Component({
   selector: 'app-colaborador-form',
-  templateUrl: './colaborador-form.component.html',
-  styleUrls: ['./colaborador-form.component.css']
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
-export class ColaboradorFormComponent implements OnInit {
+export class FormComponent implements OnInit {
 
     formCol: FormGroup;
     competencias: FormGroup;
@@ -53,7 +53,7 @@ export class ColaboradorFormComponent implements OnInit {
   salvarColaborador() {
 
         if (this.formCol.valid) {
-          this.colaboradorService.salvarColaborador(this.formCol.value).subscribe(
+          this.colaboradorService.salvar(this.formCol.value).subscribe(
               success => this.messageService.addSuccessMessage('Colaborador salvo com sucesso!'),
               error => this.messageService.addErrorMessage('Não foi possível realizar o cadastro do colaborador')
           );

@@ -1,9 +1,9 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
-import { ColaboradorListarComponent } from './components/colaborador-listar/colaborador-listar.component';
+import { ListarComponent } from './components/listar/listar.component';
 
 const colaboradorRoutes = [
-    {path: '', component: ColaboradorListarComponent}
+    {path: '', component: ListarComponent}
 ];
 
 

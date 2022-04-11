@@ -3,13 +3,14 @@ import {TurmaService} from "../../service/turma.service";
 import {DynamicDialogConfig, SelectItem} from 'primeng';
 import {ColaboradorService} from "../../../colaborador/service/colaborador.service";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CompetenciaService} from '../../../competencia/service/competencia.service';
 
 @Component({
   selector: 'app-turma-form',
-  templateUrl: './turma-form.component.html',
-  styleUrls: ['./turma-form.component.css']
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.css']
 })
-export class TurmaFormComponent implements OnInit {
+export class FormComponent implements OnInit {
 
     status: SelectItem[];
     competencias: SelectItem[];
@@ -17,17 +18,15 @@ export class TurmaFormComponent implements OnInit {
     formColComp: FormGroup;
 
   constructor(private turmaService: TurmaService, private colaboradorService: ColaboradorService, private fb: FormBuilder,
-              private config: DynamicDialogConfig) { }
+              private config: DynamicDialogConfig, private competenciaService: CompetenciaService) { }
 
   ngOnInit(): void {
-
       this.novoFormularioColaboradorCompetencia();
       this.listaStatus();
       this.listarCompetencias();
   }
 
   novoFormularioColaboradorCompetencia() {
-
       this.formColComp = this.fb.group(
           {
               nome: [null, [Validators.required]],
@@ -39,48 +38,32 @@ export class TurmaFormComponent implements OnInit {
               id_competencia: [null]
           }
       )
-
-
   }
 
   listaStatus() {
-
       this.turmaService.buscarStatus().subscribe( resposta =>{
           this.status = resposta;
       })
-
   }
 
   listarCompetencias() {
 
-      this.colaboradorService.buscarCompetencia().subscribe(resposta => {
-
+      this.competenciaService.buscarDropdown().subscribe(resposta => {
           this.competencias = resposta;
       })
 
-      if(this.config.data !== undefined) {
-
+      if(this.config.data) {
           this.formColComp.patchValue(this.config.data);
           this.formColComp.patchValue({data_inicio: new Date(this.config.data.data_inicio),
               data_termino: new Date(this.config.data.data_termino)})
       }
   }
 
-  listarColaborador(id: number) {
-
+  listarColaborador(id) {
       if(id) {
-
-          this.colaboradorService.buscarColaboradorNivelMaximo(id).subscribe( resposta => {
-
+          this.colaboradorService.buscarNivelMaximo(id).subscribe( resposta => {
               this.colaboradores = resposta;
-
           })
-
       }
-
-
   }
-
-
-
 }

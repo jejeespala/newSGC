@@ -6,7 +6,6 @@ import com.basis.sgc.service.dto.CompetenciaDTO;
 import com.basis.sgc.service.dto.CompetenciaDropdownDTO;
 import com.basis.sgc.service.dto.CompetenciaListDTO;
 import com.basis.sgc.service.mapper.CompetenciaMapper;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

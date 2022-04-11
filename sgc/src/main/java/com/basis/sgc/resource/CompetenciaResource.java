@@ -37,7 +37,7 @@ public class CompetenciaResource {
         return new ResponseEntity<>(competenciaDTO, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/colaborador")
+    @GetMapping(value = "/colaboradores")
     public ResponseEntity<List<CompetenciaDropdownDTO>> listarDrop(){
         List<CompetenciaDropdownDTO> competenciaDropdownDTOS = competenciaService.listarDrop();
         return new ResponseEntity<>(competenciaDropdownDTOS, HttpStatus.OK);

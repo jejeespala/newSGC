@@ -6,9 +6,10 @@ import {environment} from '../../../../environments/environment';
 import {CategoriaModel} from '../models/categoria.model';
 import {CompetenciaPostModel} from '../models/competenciaPost.model';
 import {take} from 'rxjs/operators';
+import {CompetenciaDropdownModel} from '../../colaborador/models/competencia.model';
 
-const urlComp: string = environment.apiUrl + '/competencia';
-const urlCat: string = environment.apiUrl + '/categoria';
+const urlComp: string = environment.apiUrl + '/competencias';
+const urlCat: string = environment.apiUrl + '/categorias';
 
 @Injectable({
   providedIn: 'root'
@@ -17,24 +18,27 @@ export class CompetenciaService {
 
   constructor(private httpClient: HttpClient) { }
 
-    buscarCompetencia(): Observable<CompetenciaModel[]> {
+    buscar(): Observable<CompetenciaModel[]> {
       return this.httpClient.get<CompetenciaModel[]>(urlComp);
+    }
+
+    buscarDropdown(): Observable<CompetenciaDropdownModel[]> {
+        return this.httpClient.get<CompetenciaDropdownModel[]>(urlComp);
     }
 
     buscarCategoria(): Observable<CategoriaModel[]> {
       return this.httpClient.get<CategoriaModel[]>(urlCat);
     }
 
-    salvarCompetencia(competencia): Observable<CompetenciaPostModel> {
+    salvar(competencia): Observable<CompetenciaPostModel> {
       return this.httpClient.post<CompetenciaPostModel>(urlComp, competencia).pipe(take(1));
     }
 
-    buscarCompetenciaId(id): Observable<CompetenciaModel> {
+    buscarId(id): Observable<CompetenciaModel> {
         return this.httpClient.get<CompetenciaModel>(`${urlComp}/${id}`).pipe(take(1));
     }
 
     deletar(id) {
-
         return this.httpClient.delete(`${urlComp}/${id}`).pipe(take(1));
     }
 
