@@ -5,6 +5,9 @@ import {CompetenciaFormComponent} from '../../../competencia/components/competen
 import {Dialog} from 'primeng';
 import {DialogService} from 'primeng/dynamicdialog';
 import {ColaboradorFormComponent} from '../colaborador-form/colaborador-form.component';
+import {ColaboradorPostModel} from "../../models/colaboradorPost.model";
+import {ColaboradorCompetenciaModel} from "../../models/colaborador-competencia.model";
+import {PageNotificationService} from "@nuvem/primeng-components";
 
 @Component({
   selector: 'app-colaborador-listar',
@@ -14,9 +17,11 @@ import {ColaboradorFormComponent} from '../colaborador-form/colaborador-form.com
 export class ColaboradorListarComponent implements OnInit {
 
   colaboradores: ColaboradorModel[];
+  colaborador: ColaboradorPostModel;
+  colaboradorCompetencia: ColaboradorCompetenciaModel[];
 
 
-  constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService) { }
+  constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService, private messageService: PageNotificationService) { }
 
   ngOnInit(): void {
 
@@ -39,13 +44,40 @@ export class ColaboradorListarComponent implements OnInit {
         });
     }
 
-    mostrarUm(id) {
+    showOne(id) {
 
-        const ref = this.dialogService.open(ColaboradorFormComponent, {
-            header: 'Atualizar Colaborador',
-            width: '70%',
-            contentStyle: {'overflow': 'auto'}
-        });
+        this.colaboradorService.buscarColaboradorId(id).subscribe( resposta => {
+            this.colaborador = resposta;
+            console.log(resposta)
+            this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta => {
+
+                this.colaboradorCompetencia = resposta;
+            })
+
+            const ref = this.dialogService.open(ColaboradorFormComponent, {
+                data: {colaborador: this.colaborador,
+                colaboraCompetencia: this.colaboradorCompetencia},
+                width: '70%',
+                header: 'Colaborador'
+            });
+        })
+
+    }
+
+    onDelete(id){
+
+        this.colaboradorService.deletar(id)
+            .subscribe({
+                    next: data => {
+                        this.listarColaboradores()
+                    },
+                    error: error => {
+                        this.messageService.addErrorMessage('Não foi possível deletar a competência')
+                    }
+                }
+
+            )
+
     }
 
 }

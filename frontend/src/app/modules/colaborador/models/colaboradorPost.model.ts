@@ -1,3 +1,5 @@
+import {ColaboradorCompetenciaModel} from "./colaborador-competencia.model";
+
 export class ColaboradorPostModel {
 
     nome: string;
@@ -7,5 +9,7 @@ export class ColaboradorPostModel {
     data_nasc: Date;
     data_admi: Date;
     id_senioridade: number;
+    competencias: ColaboradorCompetenciaModel[]
 
 }
+

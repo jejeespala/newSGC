@@ -5,11 +5,9 @@ import com.basis.sgc.domain.ColaboradorCompetencia;
 import com.basis.sgc.domain.Competencia;
 import com.basis.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.sgc.repository.ColaboradorRepository;
-import com.basis.sgc.repository.CompetenciaRepository;
 import com.basis.sgc.service.dto.*;
 import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
-import com.basis.sgc.service.mapper.CompetenciaMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +30,14 @@ public class ColaboradorService {
         return colaboradorRepository.listar();
     }
 
+    public ColaboradorDTO buscarPorId(Integer id){
+
+        Colaborador colaborador = colaboradorRepository.findById(id).orElseThrow(()->new RuntimeException("Competencia não encontrada!"));
+
+        return colaboradorMapper.toDto(colaborador);
+
+    }
+
     public List<ColaboradorDropdownDTO> buscarColaboradorNivelMaximo(Integer id){
 
         return colaboradorRepository.nivelMaximo(id);
@@ -41,7 +47,17 @@ public class ColaboradorService {
 
         Colaborador colaborador = colaboradorMapper.toEntity(colaboradorDTO);
 
-        colaboradorMapper.toDto(colaboradorRepository.save(colaborador));
+        Integer id = colaboradorMapper.toDto(colaboradorRepository.save(colaborador)).getId();
+
+        colaboradorDTO.getCompetencias().stream().forEach(
+                competencia -> competencia.setId_colaborador(id)
+        );
+
+        List<ColaboradorCompetencia> colaboradorCompetencia = colaboradorCompetenciaMapper.toEntity(colaboradorDTO.getCompetencias());
+
+        colaboradorCompetenciaRepository.saveAll(colaboradorCompetencia);
+
+
 
     }
 

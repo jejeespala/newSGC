@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,6 +38,6 @@ public class ColaboradorDTO {
     private Integer id_senioridade;
 
     @NotNull
-    private ColaboradorCompetenciaDTO competencias;
+    private List<ColaboradorCompetenciaDTO> competencias;
 
 }

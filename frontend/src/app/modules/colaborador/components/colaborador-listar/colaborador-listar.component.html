@@ -19,9 +19,9 @@
                 <td class="text-center">{{colaborador.email}}</td>
                 <td class="text-center">{{colaborador.senioridade}}</td>
                 <td style="text-align:center">
-                    <button pButton type="button"  icon="pi pi-pencil"
+                    <button pButton type="button" (click)="showOne(colaborador.id)" icon="pi pi-pencil"
                             styleClass="rounded-button ui-button-help"></button>
-                    <button pButton type="button"  icon="pi pi-trash"
+                    <button pButton type="button" (click)="onDelete(colaborador.id)" icon="pi pi-trash"
                             class="ui-button-danger" styleClass="rounded-button ui-button-danger"></button>
                 </td>
             </tr>

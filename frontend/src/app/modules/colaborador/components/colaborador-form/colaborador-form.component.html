@@ -1,4 +1,4 @@
-<form [formGroup]="formCol" >
+<form [formGroup]="formCol">
     <p-card>
         <div class="grid mb-4 pl-2 pr-2 align-items-center">
             <h2>Inscrição</h2>
@@ -30,14 +30,14 @@
             </div>
             <div class="col-2 mt-5">
             <span class="ui-float-label">
-                <p-calendar name="dataNascimento" formControlName="data_nasc">
+                <p-calendar dateFormat="dd/mm/yy" formControlName="data_nasc">
                 </p-calendar>
                 <label>Data de Nascimento</label>
             </span>
             </div>
             <div class="col-2 mt-5">
             <span class="ui-float-label">
-                <p-calendar  name="dataAdmissao" formControlName="data_admi"></p-calendar>
+                <p-calendar  dateFormat="dd/mm/yy" formControlName="data_admi"></p-calendar>
                 <label>Data de Admissão</label>
             </span>
             </div>
@@ -95,7 +95,7 @@
 
         </p-card>
         <div class="col-1 col-offset-11">
-            <p-button label="Salvar" type="submit" styleClass="ui-button-success"></p-button>
+            <p-button label="Salvar" (click)="salvarColaborador()" type="submit" styleClass="ui-button-success"></p-button>
         </div>
     </p-card>
 </form>

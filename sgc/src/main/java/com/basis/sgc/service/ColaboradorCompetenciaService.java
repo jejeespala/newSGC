@@ -2,11 +2,13 @@ package com.basis.sgc.service;
 
 import com.basis.sgc.domain.Colaborador;
 import com.basis.sgc.domain.ColaboradorCompetencia;
+import com.basis.sgc.domain.Competencia;
 import com.basis.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.sgc.repository.ColaboradorRepository;
 import com.basis.sgc.repository.CompetenciaRepository;
 import com.basis.sgc.service.dto.ColaboradorCompetenciaDTO;
 import com.basis.sgc.service.dto.ColaboradorDTO;
+import com.basis.sgc.service.dto.CompetenciaDTO;
 import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
 import lombok.AllArgsConstructor;
@@ -29,6 +31,14 @@ public class ColaboradorCompetenciaService {
     public List<ColaboradorCompetenciaDTO> buscar(){
 
         return colaboradorCompetenciaMapper.toDto(colaboradorCompetenciaRepository.findAll()) ;
+    }
+
+    public List<ColaboradorCompetenciaDTO> buscarPorId(Integer id){
+
+       return colaboradorCompetenciaRepository.listar(id);
+
+
+
     }
 
     public ColaboradorCompetenciaDTO salvar(ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
