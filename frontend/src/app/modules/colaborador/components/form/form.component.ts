@@ -20,9 +20,7 @@ export class FormComponent implements OnInit {
               private competenciaService: CompetenciaService, private config: DynamicDialogConfig ) { }
 
   ngOnInit(): void {
-
       this.novoFormularioColaborador();
-
   }
 
   novoFormularioColaborador() {
@@ -39,19 +37,14 @@ export class FormComponent implements OnInit {
     });
 
       if(this.config.data) {
-
-
           this.formCol.patchValue(this.config.data.colaborador);
           this.formCol.patchValue({data_nasc: new Date(this.config.data.colaborador.data_nasc),
                                         data_admi: new Date(this.config.data.colaborador.data_admi),
                                         competencias: this.config.data.colaboradorCompetencia})
-
-
       }
   }
 
   salvarColaborador() {
-
         if (this.formCol.valid) {
           this.colaboradorService.salvar(this.formCol.value).subscribe(
               success => this.messageService.addSuccessMessage('Colaborador salvo com sucesso!'),
@@ -61,17 +54,14 @@ export class FormComponent implements OnInit {
   }
 
   adicionarCompetencia (competencia) {
-
       if( this.formCol.get('competencias').value.some(cc => cc.id_competencia == competencia.id_competencia)){
           this.messageService.addErrorMessage('Competência já inserida')
       }else{
           this.formCol.get('competencias').value.push(competencia);
       }
-
   }
 
   deletarCompetencia(competencia) {
-
       this.formCol.get('competencias').value.pop(competencia);
   }
 
