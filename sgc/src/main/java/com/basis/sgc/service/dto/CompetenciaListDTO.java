@@ -4,9 +4,11 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class CompetenciaListDTO {
+public class CompetenciaListDTO implements Serializable {
 
     @NotNull
     private Integer id;

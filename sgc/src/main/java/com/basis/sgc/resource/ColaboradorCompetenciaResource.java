@@ -10,10 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/colaborador_competencia")
+@RequestMapping("/api/colaboradores_competencias")
 @AllArgsConstructor
 public class ColaboradorCompetenciaResource {
 
@@ -21,36 +22,26 @@ public class ColaboradorCompetenciaResource {
 
     @GetMapping
     public ResponseEntity<List<ColaboradorCompetenciaDTO>> listar(){
-
-        return ResponseEntity.ok(colaboradorCompetenciaService.buscar());
+        List<ColaboradorCompetenciaDTO> colaboradorCompetenciaDTOS = colaboradorCompetenciaService.buscar();
+        return new ResponseEntity<>(colaboradorCompetenciaDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<List<ColaboradorCompetenciaDTO>> buscarPorId(@PathVariable Integer id){
-        return ResponseEntity.ok(colaboradorCompetenciaService.buscarPorId(id));
+        List<ColaboradorCompetenciaDTO> colaboradorCompetenciaDTOS = colaboradorCompetenciaService.buscarPorId(id);
+        return new ResponseEntity<>(colaboradorCompetenciaDTOS, HttpStatus.OK);
     }
-
 
     @PostMapping
-    public ResponseEntity<ColaboradorCompetenciaDTO> salvar(@RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(colaboradorCompetenciaService.salvar(colaboradorCompetenciaDTO));
-
+    public ResponseEntity<Void> salvar(@Valid @RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
+        colaboradorCompetenciaService.salvar(colaboradorCompetenciaDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<?> deletar(@PathVariable("id") Integer id){
-//
-//        colaboradorCompetenciaService.deletar(id);
-//        return ResponseEntity.status(HttpStatus.OK).build();
-//
-//    }
-
     @PutMapping("/{id}")
-    public ResponseEntity<ColaboradorCompetenciaDTO> atualizar(@RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(colaboradorCompetenciaService.salvar(colaboradorCompetenciaDTO));
-
+    public ResponseEntity<Void> atualizar(@RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
+        colaboradorCompetenciaService.salvar(colaboradorCompetenciaDTO);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

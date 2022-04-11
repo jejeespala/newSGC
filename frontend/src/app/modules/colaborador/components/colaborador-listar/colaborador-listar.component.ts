@@ -1,8 +1,6 @@
 import { ColaboradorService } from './../../service/colaborador.service';
 import { ColaboradorModel } from './../../models/colaborador.model';
 import { Component, OnInit } from '@angular/core';
-import {CompetenciaFormComponent} from '../../../competencia/components/competencia-form/competencia-form.component';
-import {Dialog} from 'primeng';
 import {DialogService} from 'primeng/dynamicdialog';
 import {ColaboradorFormComponent} from '../colaborador-form/colaborador-form.component';
 import {ColaboradorPostModel} from "../../models/colaboradorPost.model";
@@ -20,20 +18,16 @@ export class ColaboradorListarComponent implements OnInit {
   colaborador: ColaboradorPostModel;
   colaboradorCompetencia: ColaboradorCompetenciaModel[];
 
-
   constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService, private messageService: PageNotificationService) { }
 
   ngOnInit(): void {
-
     this.listarColaboradores();
   }
 
   listarColaboradores() {
-
     this.colaboradorService.buscarColaborador().subscribe(resposta => {
       this.colaboradores = resposta;
     });
-
   }
 
     show() {
@@ -45,23 +39,32 @@ export class ColaboradorListarComponent implements OnInit {
     }
 
     showOne(id) {
-
         this.colaboradorService.buscarColaboradorId(id).subscribe( resposta => {
-            this.colaborador = resposta;
-            console.log(resposta)
-            this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta => {
-
-                this.colaboradorCompetencia = resposta;
+            this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta2 => {
+                this.colaborador = resposta
+                this.colaboradorCompetencia = resposta2
+                const ref = this.dialogService.open(ColaboradorFormComponent, {
+                    data: {colaboraCompetencia: this.colaboradorCompetencia,
+                        colaborador: this.colaborador},
+                    width: '70%',
+                    header: 'Colaborador'
+                });
             })
-
-            const ref = this.dialogService.open(ColaboradorFormComponent, {
-                data: {colaborador: this.colaborador,
-                colaboraCompetencia: this.colaboradorCompetencia},
-                width: '70%',
-                header: 'Colaborador'
-            });
         })
+    }
 
+    buscarColaboradorCompetencia(id){
+
+        this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta => {
+            this.colaboradorCompetencia = resposta;
+        })
+    }
+
+    buscarColaboradorId(id){
+
+        this.colaboradorService.buscarColaboradorCompetenciaId(id).subscribe( resposta => {
+            this.colaboradorCompetencia = resposta;
+        })
     }
 
     onDelete(id){

@@ -66,7 +66,7 @@
                 <h2>Lista de Tecnologias</h2>
                 <p-card class="mt-10" id="cardButton">
 
-                    <app-colaborador-competencia-form (aoAdicionar)="adicionarCompetencia($event)">
+                    <app-colaborador-competencia-form [aoReceber]="config" (aoAdicionar)="adicionarCompetencia($event)">
 
                     </app-colaborador-competencia-form>
 
@@ -84,7 +84,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-cc>
                     <tr>
-                        <td class="text-center">{{ cc.id_competencia }}</td>
+                        <td class="text-center">{{cc.id_competencia}}</td>
                         <td class="text-center">{{cc.nivel}}</td>
                         <td>
                             <p-button icon="pi pi-trash" class="ui-button-danger" (click)="deletarCompetencia(cc)" styleClass="rounded-button ui-button-danger"></p-button>

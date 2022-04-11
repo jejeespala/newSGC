@@ -6,12 +6,10 @@ import { Injectable } from '@angular/core';
 import { ColaboradorModel } from '../models/colaborador.model';
 import {CompetenciaDropdownModel} from '../models/competencia.model';
 import {NivelModel} from '../models/nivel.model';
-import {niveis} from './nivel.service';
+import {niveis} from '../util/nivel.service';
 import {ColaboradorPostModel} from '../models/colaboradorPost.model';
 import {take} from 'rxjs/operators';
 import {ColaboradorDropdownModel} from "../models/colaboradordropdown.model";
-import {CompetenciaPostModel} from "../../competencia/models/competenciaPost.model";
-import {CompetenciaModel} from "../../competencia/models/competencia.model";
 import {ColaboradorCompetenciaModel} from "../models/colaborador-competencia.model";
 
 

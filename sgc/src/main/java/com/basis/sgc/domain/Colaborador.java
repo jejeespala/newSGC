@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @SequenceGenerator(name = "seq_colaborador", sequenceName = "seq_colaborador", allocationSize = 1)
-public class Colaborador {
+public class Colaborador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_colaborador")
@@ -40,7 +41,6 @@ public class Colaborador {
 
     @Column(name = "data_nasc", nullable = false)
     private LocalDate data_nasc;
-
 
     @Column (name = "data_admi", nullable = false)
     private LocalDate data_admi;

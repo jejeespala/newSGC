@@ -9,12 +9,15 @@ import com.basis.sgc.service.dto.*;
 import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
+@Transactional
 public class ColaboradorService {
 
     private final ColaboradorMapper colaboradorMapper;
@@ -26,45 +29,30 @@ public class ColaboradorService {
     private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     public List<ColaboradorListDTO> buscar(){
-
         return colaboradorRepository.listar();
     }
 
     public ColaboradorDTO buscarPorId(Integer id){
-
         Colaborador colaborador = colaboradorRepository.findById(id).orElseThrow(()->new RuntimeException("Competencia não encontrada!"));
-
         return colaboradorMapper.toDto(colaborador);
-
     }
 
     public List<ColaboradorDropdownDTO> buscarColaboradorNivelMaximo(Integer id){
-
         return colaboradorRepository.nivelMaximo(id);
     }
 
     public void salvar(ColaboradorDTO colaboradorDTO){
-
         Colaborador colaborador = colaboradorMapper.toEntity(colaboradorDTO);
-
-        Integer id = colaboradorMapper.toDto(colaboradorRepository.save(colaborador)).getId();
-
+        colaboradorRepository.save(colaborador);
         colaboradorDTO.getCompetencias().stream().forEach(
-                competencia -> competencia.setId_colaborador(id)
+                competencia -> competencia.setId_colaborador(colaborador.getId())
         );
-
         List<ColaboradorCompetencia> colaboradorCompetencia = colaboradorCompetenciaMapper.toEntity(colaboradorDTO.getCompetencias());
-
         colaboradorCompetenciaRepository.saveAll(colaboradorCompetencia);
-
-
-
     }
 
     public void deletar(Integer id){
-
         colaboradorRepository.deleteById(id);
-
     }
 
 }

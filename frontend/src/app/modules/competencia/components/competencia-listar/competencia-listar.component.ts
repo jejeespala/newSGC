@@ -4,7 +4,7 @@ import {CompetenciaModel} from '../../models/competencia.model';
 import {CategoriaModel} from '../../models/categoria.model';
 import {DialogService} from 'primeng/dynamicdialog';
 import {CompetenciaFormComponent} from '../competencia-form/competencia-form.component';
-import {MessageService} from "primeng";
+import {DynamicDialogRef, MessageService} from 'primeng';
 import {PageNotificationService} from "@nuvem/primeng-components";
 
 @Component({
@@ -18,7 +18,8 @@ export class CompetenciaListarComponent implements OnInit {
     categorias: CategoriaModel [];
     competencia: CompetenciaModel;
 
-  constructor(private competenciasService: CompetenciaService, private dialogService: DialogService, private messageService: PageNotificationService) { }
+  constructor(private competenciasService: CompetenciaService, private dialogService: DialogService, private messageService: PageNotificationService,
+              private ref: DynamicDialogRef) { }
 
   ngOnInit(): void {
 
@@ -48,6 +49,7 @@ export class CompetenciaListarComponent implements OnInit {
             width: '35%',
             height: '75%'
         });
+
     }
 
     showOne(id) {
@@ -63,6 +65,8 @@ export class CompetenciaListarComponent implements OnInit {
               width: '35%',
               height: '75%'
           });
+
+
       })
 
     }
@@ -72,6 +76,9 @@ export class CompetenciaListarComponent implements OnInit {
         this.competenciasService.deletar(id)
             .subscribe({
                     next: data => {
+
+                        this.messageService.addSuccessMessage("Competência excluída com sucesso")
+
                         this.listarCompetencias()
                     },
                     error: error => {

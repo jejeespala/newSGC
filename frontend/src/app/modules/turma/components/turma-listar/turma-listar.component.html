@@ -23,9 +23,9 @@
                 <td class="text-center">{{turma.data_termino | date: 'dd/MM/yyyy'}}</td>
                 <td class="text-center">{{turma.status}}</td>
                 <td style="text-align:center">
-                    <button pButton type="button" (click)="navigateTo(turma.id)" icon="pi pi-pencil"
+                    <button pButton type="button" (click)="showOne(turma.id)" icon="pi pi-pencil"
                             styleClass="rounded-button ui-button-help"></button>
-                    <button pButton type="button" (click)="excluirTurma(turma)" icon="pi pi-trash"
+                    <button pButton type="button" (click)="onDelete(turma.id)" icon="pi pi-trash"
                             class="ui-button-danger" styleClass="rounded-button ui-button-danger"></button>
                 </td>
             </tr>

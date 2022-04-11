@@ -4,13 +4,14 @@ import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
-public class TurmaDTO {
+public class TurmaDTO implements Serializable {
 
     @NotNull
     private Integer id;
