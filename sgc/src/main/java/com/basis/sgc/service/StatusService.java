@@ -1,7 +1,7 @@
 package com.basis.sgc.service;
 
 import com.basis.sgc.repository.StatusRepository;
-import com.basis.sgc.service.dto.StatusDropdownDTO;
+import com.basis.sgc.service.dto.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ public class StatusService {
 
     private final StatusRepository statusRepository;
 
-    public List<StatusDropdownDTO> buscar(){
+    public List<DropdownDTO> buscar(){
         return statusRepository.listar();
     }
 

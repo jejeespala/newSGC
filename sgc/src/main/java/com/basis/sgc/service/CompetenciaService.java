@@ -3,8 +3,8 @@ package com.basis.sgc.service;
 import com.basis.sgc.domain.Competencia;
 import com.basis.sgc.repository.CompetenciaRepository;
 import com.basis.sgc.service.dto.CompetenciaDTO;
-import com.basis.sgc.service.dto.CompetenciaDropdownDTO;
 import com.basis.sgc.service.dto.CompetenciaListDTO;
+import com.basis.sgc.service.dto.DropdownDTO;
 import com.basis.sgc.service.mapper.CompetenciaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,7 +30,7 @@ public class CompetenciaService {
         return competenciaMapper.toDto(competencia);
     }
 
-    public List<CompetenciaDropdownDTO> listarDrop(){
+    public List<DropdownDTO> listarDrop(){
         return competenciaRepository.listarDrop();
     }
 

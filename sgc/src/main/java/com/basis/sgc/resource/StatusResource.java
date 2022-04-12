@@ -1,9 +1,7 @@
 package com.basis.sgc.resource;
 
 import com.basis.sgc.service.StatusService;
-import com.basis.sgc.service.dto.StatusDTO;
-import com.basis.sgc.service.dto.StatusDropdownDTO;
-import lombok.AllArgsConstructor;
+import com.basis.sgc.service.dto.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +19,8 @@ public class StatusResource {
     private final StatusService statusService;
 
     @GetMapping
-    private ResponseEntity<List<StatusDropdownDTO>> listar(){
-        List<StatusDropdownDTO> statusDropdownDTOS = statusService.buscar();
+    private ResponseEntity<List<DropdownDTO>> listar(){
+        List<DropdownDTO> statusDropdownDTOS = statusService.buscar();
         return new ResponseEntity<>(statusDropdownDTOS, HttpStatus.OK);
     }
 }

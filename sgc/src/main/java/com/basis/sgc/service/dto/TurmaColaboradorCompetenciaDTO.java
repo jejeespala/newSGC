@@ -20,5 +20,4 @@ public class TurmaColaboradorCompetenciaDTO implements Serializable {
     @NotNull
     private Integer id_competencia;
 
-
 }

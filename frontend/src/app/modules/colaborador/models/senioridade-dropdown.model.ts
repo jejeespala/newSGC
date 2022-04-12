@@ -1,4 +1,4 @@
-export class CompetenciaDropdownModel {
+export class SenioridadeDropdownModel {
     label: string;
     value: number;
 }

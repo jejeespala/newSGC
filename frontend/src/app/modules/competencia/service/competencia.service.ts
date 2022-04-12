@@ -8,7 +8,7 @@ import {CompetenciaPostModel} from '../models/competenciaPost.model';
 import {take} from 'rxjs/operators';
 import {CompetenciaDropdownModel} from '../../colaborador/models/competencia.model';
 
-const urlComp: string = environment.apiUrl + '/competencias';
+const urlComp: string = environment.apiUrl + '/competencias/dropdown';
 const urlCat: string = environment.apiUrl + '/categorias';
 
 @Injectable({

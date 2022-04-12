@@ -31,5 +31,7 @@ public class TurmaDTO implements Serializable {
     @NotNull
     private Integer id_status;
 
+    @NotNull
+    private List<TurmaColaboradorCompetenciaDTO> turmas;
 
 }

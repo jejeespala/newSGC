@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {TurmaService} from "../../service/turma.service";
-import {DynamicDialogConfig, SelectItem} from 'primeng';
+import {DynamicDialogConfig, DynamicDialogRef, SelectItem} from 'primeng';
 import {ColaboradorService} from "../../../colaborador/service/colaborador.service";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CompetenciaService} from '../../../competencia/service/competencia.service';
+import {PageNotificationService} from '@nuvem/primeng-components';
+import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
 
 @Component({
   selector: 'app-turma-form',
@@ -16,9 +18,12 @@ export class FormComponent implements OnInit {
     competencias: SelectItem[];
     colaboradores: SelectItem[];
     formColComp: FormGroup;
+    colaboradorCompetencia: FormArray;
+    colComp: FormGroup;
 
   constructor(private turmaService: TurmaService, private colaboradorService: ColaboradorService, private fb: FormBuilder,
-              private config: DynamicDialogConfig, private competenciaService: CompetenciaService) { }
+              private config: DynamicDialogConfig, private competenciaService: CompetenciaService,
+              private messageService: PageNotificationService, private ref: DynamicDialogRef) { }
 
   ngOnInit(): void {
       this.novoFormularioColaboradorCompetencia();
@@ -34,8 +39,7 @@ export class FormComponent implements OnInit {
               data_inicio: [null,[Validators.required]],
               data_termino: [null, [Validators.required]],
               id_status: [null, [Validators.required]],
-              id_colaborador: [null],
-              id_competencia: [null]
+              colaboradorCompetencia: this.fb.array([])
           }
       )
   }
@@ -66,4 +70,35 @@ export class FormComponent implements OnInit {
           })
       }
   }
+
+    salvar() {
+        if (this.formColComp.valid) {
+            console.log(this.formColComp.value)
+            // this.competenciaService.salvar(this.formColComp.value).subscribe(
+            //     succcess => this.ref.close(this.messageService.addSuccessMessage('Salvo com sucesso', 'Turma')),
+            //     error => this.messageService.addErrorMessage('Não foi possível salvar!', 'Turma')
+            // );
+        }
+    }
+
+    // adicionarColaboradorCompetencia(colaboradorCompetencia) {
+    //     this.formColComp.get('colaboradorCompetencia').value.push(colaboradorCompetencia);
+    //
+    //
+    // }
+
+    pegarColaboradoresCompetencias() {
+      return this.formColComp.controls["colaboradorCompetencia"] as FormArray;
+    }
+
+    adicionarColaboradorCompetencia() {
+
+          const colComp = this.fb.group({
+              id_turma: [null],
+              id_colaborador: [null],
+              id_competencia: [null]
+          })
+
+        this.colaboradorCompetencia.push(colComp);
+    }
 }

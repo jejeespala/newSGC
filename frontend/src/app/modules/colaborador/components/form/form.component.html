@@ -37,24 +37,29 @@
             </div>
             <div class="col-2 mt-5">
             <span class="ui-float-label">
-                <p-calendar  dateFormat="dd/mm/yy" formControlName="data_admi"></p-calendar>
+                <p-calendar dateFormat="dd/mm/yy" formControlName="data_admi"></p-calendar>
                 <label>Data de Admissão</label>
             </span>
             </div>
 
             <div class="col mt-5">
-                <label class="pr-2">Senioridade:</label>
-                <p-radioButton name="groupname" value="1" label="Estagiário" class="pr-2" formControlName="id_senioridade"></p-radioButton>
-                <p-radioButton name="groupname" value="2" label="Júnior" class="pr-2" formControlName="id_senioridade"></p-radioButton>
-                <p-radioButton name="groupname" value="3" label="Pleno" class="pr-2" formControlName="id_senioridade"></p-radioButton>
-                <p-radioButton name="groupname" value="4" label="Sênior" formControlName="id_senioridade"></p-radioButton>
+            <span class="ui-float-label">
+                <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="senioridades" formControlName="id_senioridade"></p-dropdown>
+                <label for="float-input">Senioridade</label>
+            </span>
             </div>
         </div>
         <div class="grid">
             <div class="col-2 " class='img-wrapper m-3'>
             </div>
             <div class=" col-5 mt-5">
-                <p-fileUpload name="myfile[]" accept="image/*" maxFileSize="5000000" customUpload="true" chooseLabel="Escolher Foto">
+                <p-fileUpload mode="basic" url="./upload.php" (onUpload)="onUpload($event)"
+                              multiple="multiple" accept="image/*" maxFileSize="1000000">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
                 </p-fileUpload>
             </div>
 
@@ -74,7 +79,7 @@
             </div>
 
 
-            <p-table [value]="formCol.get('competencias').value" responsiveLayout="scroll">
+            <p-table [value]="comps" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Competência</th>

@@ -1,8 +1,7 @@
 package com.basis.sgc.resource;
 
 import com.basis.sgc.service.CategoriaService;
-import com.basis.sgc.service.dto.CategoriaDTO;
-import lombok.AllArgsConstructor;
+import com.basis.sgc.service.dto.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +19,8 @@ public class CategoriaResource {
     private final CategoriaService categoriaService;
 
     @GetMapping
-    private ResponseEntity<List<CategoriaDTO>> listar(){
-        List<CategoriaDTO> categoriaDTOS = categoriaService.buscar();
+    private ResponseEntity<List<DropdownDTO>> listar(){
+        List<DropdownDTO> categoriaDTOS = categoriaService.buscar();
         return new ResponseEntity<>(categoriaDTOS, HttpStatus.OK);
     }
 }
