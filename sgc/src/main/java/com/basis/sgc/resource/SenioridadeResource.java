@@ -2,6 +2,7 @@ package com.basis.sgc.resource;
 
 import com.basis.sgc.service.SenioridadeService;
 import com.basis.sgc.service.StatusService;
+import com.basis.sgc.service.dto.DropdownDTO;
 import com.basis.sgc.service.dto.SenioridadeDTO;
 import com.basis.sgc.service.dto.StatusDTO;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,8 @@ public class SenioridadeResource {
     private final SenioridadeService senioridadeService;
 
     @GetMapping
-    private ResponseEntity<List<SenioridadeDTO>> listar(){
-        List<SenioridadeDTO> senioridadeDTOS = senioridadeService.buscar();
+    private ResponseEntity<List<DropdownDTO>> listar(){
+        List<DropdownDTO> senioridadeDTOS = senioridadeService.buscar();
         return new ResponseEntity<>(senioridadeDTOS, HttpStatus.OK);
     }
 }

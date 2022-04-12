@@ -47,19 +47,17 @@
             </div>
         </div>
         <div class="grid mt-3 pl-2 pr-2">
-            <button type="submit" pButton label="Salvar"></button>
+            <button type="submit" pButton label="Salvar" (click)="salvar()"></button>
         </div>
         </div>
     </p-card>
-</form>
-<form [formGroup]="formColComp">
-    <div class="grid pl-2 pr-2">
+    <div class="grid pl-2 pr-2" formArrayName="colaboradorCompetencia" [formGroup]="colComp">
         <p-card class="mt-3">
             <div class="grid mb-3 pl-3 pr-2 align-items-center">
                 <h2>Adicionar Competencias e Colaboradores</h2>
             </div>
             <div class="grid mb-6 pl-2 pr-2 align-items-center">
-                <div class="col-12 sm:col-2 md:col-2 mt-3">
+                <div class="col-12 sm:col-2 md:col-2 mt-3" >
                     <span class="ui-float-label">
                         <p-dropdown formControlName="id_competencia" placeholder="." [options]="competencias" [showClear]="true"
                                     (onChange)="listarColaborador(formColComp.get('id_competencia').value)">
@@ -71,14 +69,14 @@
                 <div class="col-12 sm:col-2 md:col-2 mt-3">
                     <span class="ui-float-label">
                         <p-dropdown [options]="colaboradores" placeholder="." [showClear]="true"
-                                    formControlName="id_colaborador" >
+                                    formControlName="id_colaborador">
                         </p-dropdown>
                         <label for="float-input">Colaborador</label>
                     </span>
                 </div>
                 <span class="pr-3"></span>
                 <div class="col-12 sm:col-2 md:col-2 mt-5">
-                    <button type="button" icon="ui-icon-plus" pButton
+                    <button type="button" icon="ui-icon-plus" pButton (click)="adicionarColaboradorCompetencia()"
                             ></button>
                 </div>
 

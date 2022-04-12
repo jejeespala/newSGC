@@ -1,22 +1,22 @@
-import { CategoriaModel } from './../../competencia/models/categoria.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { ColaboradorModel } from '../models/colaborador.model';
-import {CompetenciaDropdownModel} from '../models/competencia.model';
 import {NivelModel} from '../models/nivel.model';
 import {niveis} from '../util/nivel.service';
 import {ColaboradorPostModel} from '../models/colaboradorPost.model';
 import {take} from 'rxjs/operators';
-import {ColaboradorDropdownModel} from "../models/colaboradordropdown.model";
+import {ColaboradorDropdownModel} from "../models/colaborador-dropdown.model";
 import {ColaboradorCompetenciaModel} from "../models/colaborador-competencia.model";
+import {SenioridadeDropdownModel} from '../models/senioridade-dropdown.model';
 
 
 const urlCol: string = environment.apiUrl + '/colaboradores';
+const urlSenioridade: string = environment.apiUrl + '/senioridades';
 const urlColComp: string = environment.apiUrl + '/colaboradores_competencias';
-const urlComp: string = environment.apiUrl + '/competencia/colaborador';
-const urlColCompNivelMax: string = environment.apiUrl + '/colaborador/competencia';
+const urlComp: string = environment.apiUrl + '/competencias/colaboradores';
+const urlColCompNivelMax: string = environment.apiUrl + '/colaboradores/competencias';
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +52,15 @@ export class ColaboradorService {
     deletar(id) {
         return this.httpClient.delete(`${urlComp}/${id}`).pipe(take(1));
     }
+
+    buscarSenioridade(): Observable<SenioridadeDropdownModel[]> {
+      return this.httpClient.get<SenioridadeDropdownModel[]>(urlSenioridade);
+    }
+
+    // carregarImagem(file): Observable<any> {
+    //
+    //   let formData = new FormData();
+    //   formData.append("file", file, file.name);
+    //
+    // }
 }

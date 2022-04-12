@@ -17,5 +17,4 @@ public interface TurmaRepository extends JpaRepository<Turma, Integer> {
     )
     public List<TurmaListDTO> buscar();
 
-
 }

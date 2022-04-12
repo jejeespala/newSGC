@@ -35,16 +35,18 @@ public class ColaboradorService {
         return colaboradorMapper.toDto(colaborador);
     }
 
-    public List<ColaboradorDropdownDTO> buscarColaboradorNivelMaximo(Integer id){
+    public List<DropdownDTO> buscarColaboradorNivelMaximo(Integer id){
         return colaboradorRepository.nivelMaximo(id);
     }
 
     public void salvar(ColaboradorDTO colaboradorDTO){
         Colaborador colaborador = colaboradorMapper.toEntity(colaboradorDTO);
         colaboradorRepository.save(colaborador);
+
         colaboradorDTO.getCompetencias().stream().forEach(
                 competencia -> competencia.setId_colaborador(colaborador.getId())
         );
+
         List<ColaboradorCompetencia> colaboradorCompetencia = colaboradorCompetenciaMapper.toEntity(colaboradorDTO.getCompetencias());
         colaboradorCompetenciaRepository.saveAll(colaboradorCompetencia);
     }

@@ -1,9 +1,8 @@
 package com.basis.sgc.repository;
 
 import com.basis.sgc.domain.Colaborador;
-import com.basis.sgc.domain.Competencia;
-import com.basis.sgc.service.dto.ColaboradorDropdownDTO;
 import com.basis.sgc.service.dto.ColaboradorListDTO;
+import com.basis.sgc.service.dto.DropdownDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,8 +18,8 @@ public interface ColaboradorRepository extends JpaRepository<Colaborador, Intege
     List<ColaboradorListDTO> listar();
 
     @Query("select new " +
-            "com.basis.sgc.service.dto.ColaboradorDropdownDTO(c.colaborador.nome, c.colaborador.id)" +
+            "com.basis.sgc.service.dto.DropdownDTO(c.colaborador.nome, c.colaborador.id)" +
             "from ColaboradorCompetencia c where c.nivel = 2 and c.competencia.id = ?1")
-    List<ColaboradorDropdownDTO> nivelMaximo(Integer id);
+    List<DropdownDTO> nivelMaximo(Integer id);
 
 }

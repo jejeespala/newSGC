@@ -1,9 +1,12 @@
 package com.basis.sgc.service;
 
 import com.basis.sgc.domain.Turma;
+import com.basis.sgc.domain.TurmaColaboradorCompetencia;
+import com.basis.sgc.repository.TurmaColaboradorCompetenciaRepository;
 import com.basis.sgc.repository.TurmaRepository;
 import com.basis.sgc.service.dto.TurmaDTO;
 import com.basis.sgc.service.dto.TurmaListDTO;
+import com.basis.sgc.service.mapper.TurmaColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.TurmaMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,10 @@ public class TurmaService {
 
     private final TurmaRepository turmaRepository;
 
+    private final TurmaColaboradorCompetenciaRepository turmaColaboradorCompetenciaRepository;
+
+    private final TurmaColaboradorCompetenciaMapper turmaColaboradorCompetenciaMapper;
+
     public List<TurmaListDTO> buscar(){
         return turmaRepository.buscar();
     }
@@ -29,9 +36,18 @@ public class TurmaService {
         return turmaMapper.toDto(turma);
     }
 
-    public TurmaDTO salvar(TurmaDTO turmaDTO){
+    public void salvar(TurmaDTO turmaDTO){
+
         Turma turma = turmaMapper.toEntity(turmaDTO);
-        return turmaMapper.toDto(turmaRepository.save(turma));
+        turmaRepository.save(turma);
+
+        turmaDTO.getTurmas().stream().forEach(
+                colaborador -> colaborador.setId_colaborador(turma.getId())
+        );
+
+        List<TurmaColaboradorCompetencia> turmaColaboradorCompetencias = turmaColaboradorCompetenciaMapper.toEntity(turmaDTO.getTurmas());
+
+        turmaColaboradorCompetenciaRepository.saveAll(turmaColaboradorCompetencias);
     }
 
     public void deletar(Integer id){

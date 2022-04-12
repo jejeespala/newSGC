@@ -4,6 +4,9 @@ import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.
 import {ColaboradorService} from "../../service/colaborador.service";
 import {SelectItem} from 'primeng';
 import {CompetenciaService} from '../../../competencia/service/competencia.service';
+import {CompetenciaModel} from '../../../competencia/models/competencia.model';
+import {CompetenciaDropdownModel} from '../../models/competencia.model';
+import {ColaboradorDropdownModel} from '../../models/colaborador-dropdown.model';
 
 @Component({
   selector: 'app-colaborador-competencia-form',
@@ -13,7 +16,7 @@ import {CompetenciaService} from '../../../competencia/service/competencia.servi
 export class VincularCompetenciaFormComponent implements OnInit {
 
     form: FormGroup;
-    competencia: SelectItem[];
+    competencias: SelectItem[];
     nivel: SelectItem[];
 
     @Output() aoAdicionar = new EventEmitter<ColaboradorCompetenciaModel>();
@@ -26,12 +29,13 @@ export class VincularCompetenciaFormComponent implements OnInit {
       this.novoFormulario()
       this.listarCompetencias();
       this.listarNiveis();
+
   }
 
     listarCompetencias() {
         this.competenciaService.buscarDropdown().subscribe(
             resposta => {
-                this.competencia = resposta;
+                this.competencias = resposta;
             });
     }
 
@@ -49,7 +53,7 @@ export class VincularCompetenciaFormComponent implements OnInit {
       // if( this.aoReceber !== undefined ){
       //
       //     this.aoReceber.data.colaboraCompetencia.forEach(el =>
-      //       this.form.val
+      //       this.form.valcom
       //
       //       (
       //           this.form.patchValue({
@@ -68,4 +72,6 @@ export class VincularCompetenciaFormComponent implements OnInit {
           this.aoAdicionar.emit(this.form.value)
       }
   }
+
+
 }

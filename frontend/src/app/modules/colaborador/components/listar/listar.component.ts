@@ -53,20 +53,6 @@ export class ListarComponent implements OnInit {
         })
     }
 
-    buscarColaboradorCompetencia(id){
-
-        this.colaboradorService.buscarCompetenciaId(id).subscribe( resposta => {
-            this.colaboradorCompetencia = resposta;
-        })
-    }
-
-    buscarColaboradorId(id){
-
-        this.colaboradorService.buscarCompetenciaId(id).subscribe( resposta => {
-            this.colaboradorCompetencia = resposta;
-        })
-    }
-
     onDelete(id){
 
         this.colaboradorService.deletar(id)
@@ -78,9 +64,7 @@ export class ListarComponent implements OnInit {
                         this.messageService.addErrorMessage('Não foi possível deletar a competência')
                     }
                 }
-
             )
-
     }
 
 }
