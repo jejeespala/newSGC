@@ -15,9 +15,9 @@ import java.io.Serializable;
 public class ColaboradorCompetenciaChave implements Serializable {
 
     @Column(name = "id_colaborador")
-    private Integer id_colaborador;
+    private Integer idColaborador;
 
     @Column(name = "id_competencia")
-    private Integer id_competencia;
+    private Integer idCompetencia;
 
 }

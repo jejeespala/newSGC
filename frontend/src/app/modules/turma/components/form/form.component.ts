@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {TurmaService} from "../../service/turma.service";
-import {DynamicDialogConfig, DynamicDialogRef, SelectItem} from 'primeng';
+import {Dropdown, DynamicDialogConfig, DynamicDialogRef, SelectItem} from 'primeng';
 import {ColaboradorService} from "../../../colaborador/service/colaborador.service";
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CompetenciaService} from '../../../competencia/service/competencia.service';
 import {PageNotificationService} from '@nuvem/primeng-components';
 import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
+import {ColaboradorCompetenciaNomeModel} from '../../models/colaborador-competencia-table.model';
 
 @Component({
   selector: 'app-turma-form',
@@ -19,9 +20,8 @@ export class FormComponent implements OnInit {
     colaboradores: SelectItem[];
     formTurma: FormGroup;
     formColComp: FormGroup;
-
-    //colaboradoresCompetencias: ColaboradorCompetenciaModel[];
-
+    colaboradorCompetencias: ColaboradorCompetenciaModel[] = [];
+    nomes: ColaboradorCompetenciaNomeModel[] = [];
 
   constructor(private turmaService: TurmaService, private colaboradorService: ColaboradorService, private fb: FormBuilder,
               private config: DynamicDialogConfig, private competenciaService: CompetenciaService,
@@ -44,7 +44,6 @@ export class FormComponent implements OnInit {
               colcomps: [[]]
           }
       )
-
       this.formColComp = this.fb.group({
           id_competencia: [null],
           id_colaborador: [null]
@@ -94,20 +93,39 @@ export class FormComponent implements OnInit {
     //
     // }
 
-    get formColaboradorCompetencia(): FormArray {
-        return this.formTurma.get('formColaboradorCompetencia') as FormArray
-    }
-
     novoColaboradorCompetencia():FormGroup {
         return this.fb.group({
             id_colaborador: '',
             id_competencia: ''
         })
     }
-    adicionarColaboradorCompetencia() {
+    adicionarColaboradorCompetencia(ddCompetencia, ddColaborador) {
+
 
       this.formTurma.get("colcomps").value.push(this.formColComp.value)
+        this.colaboradorCompetencias.push(this.formColComp.value)
+        this.pegarLabelDropdown(ddCompetencia, ddColaborador);
 
     }
+
+    removerColaboradorCompetencia(turma) {
+        console.log(turma)
+
+        this.formTurma.get("colcomps").value
+        this.colaboradorCompetencias.pop()
+    }
+
+    pegarLabelDropdown(ddCompetencia: Dropdown, ddColaborador: Dropdown){
+
+        // this.colaboradorCompetencias.push({
+        //     id_competencia.
+        // })
+        //
+        // if (this.nomes) {
+        //
+        //     console.log(this.nomes)
+        // }
+    }
+
 
 }

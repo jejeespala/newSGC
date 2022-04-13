@@ -12,14 +12,14 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ColaboradorCompetenciaMapper extends EntityMapper<ColaboradorCompetenciaDTO, ColaboradorCompetencia> {
 
-    @Mapping(target = "id.id_competencia", source = "id_competencia")
-    @Mapping(target = "id.id_colaborador", source = "id_colaborador")
-    @Mapping(target = "colaborador.id", source = "id_colaborador")
-    @Mapping(target = "competencia.id", source = "id_competencia")
+    @Mapping(target = "id.idCompetencia", source = "idCompetencia")
+    @Mapping(target = "id.idColaborador", source = "idColaborador")
+    @Mapping(target = "colaborador.id", source = "idColaborador")
+    @Mapping(target = "competencia.id", source = "idCompetencia")
     ColaboradorCompetencia toEntity(ColaboradorCompetenciaDTO colaboradorCompetenciaDTO);
 
-    @Mapping(target = "id_colaborador", source = "colaborador.id")
-    @Mapping(target = "id_competencia", source = "competencia.id")
+    @Mapping(target = "idColaborador", source = "colaborador.id")
+    @Mapping(target = "idCompetencia", source = "competencia.id")
     ColaboradorCompetenciaDTO toDto (ColaboradorCompetencia colaboradorCompetencia);
 
 

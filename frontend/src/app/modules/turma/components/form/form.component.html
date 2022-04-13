@@ -61,7 +61,7 @@
             <div class="grid mb-6 pl-2 pr-2 align-items-center">
                 <div  class="col-12 sm:col-2 md:col-2 mt-3" >
                     <span class="ui-float-label">
-                        <p-dropdown  placeholder="." formControlName="id_competencia" [options]="competencias" [showClear]="true"  (onChange)="listarColaborador($event.value)">
+                        <p-dropdown #ddCompetencia [filter]="true" filterBy="label,value.name" placeholder="." formControlName="id_competencia" [options]="competencias" [showClear]="true"  (onChange)="listarColaborador($event.value)">
                         </p-dropdown>
                         <label for="float-input">Competencia</label>
                     </span>
@@ -69,16 +69,16 @@
                 <span class="pr-3"></span>
                 <div class="col-12 sm:col-2 md:col-2 mt-3">
                     <span class="ui-float-label">
-                        <p-dropdown formControlName="id_colaborador" [options]="colaboradores" placeholder="." [showClear]="true"></p-dropdown>
+                        <p-dropdown #ddColaborador formControlName="id_colaborador" [options]="colaboradores" placeholder="." [showClear]="true"></p-dropdown>
                         <label for="float-input">Colaborador</label>
                     </span>
                 </div>
                 <span class="pr-3"></span>
                 <div class="col-12 sm:col-2 md:col-2 mt-5">
-                    <button (click)="adicionarColaboradorCompetencia()" type="button" icon="ui-icon-plus" pButton></button>
+                    <button (click)="adicionarColaboradorCompetencia(ddCompetencia, ddColaborador)" type="button" icon="ui-icon-plus" pButton></button>
                 </div>
 
-                <p-table [value]="" [responsive]="true" class="mt-5">
+                <p-table [value]="colaboradorCompetencias" [responsive]="true" class="mt-5">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Competencia</th>
@@ -88,11 +88,11 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-cc let-rowIndex="rowIndex">
                         <tr >
-                            <td class="text-center" >{{cc.competencia.nome}}</td>
-                            <td class="text-center" >{{cc.colaborador.nome}} {{cc.colaborador.sobrenome}}</td>
+                            <td class="text-center">{{cc.id_competencia}}</td>
+                            <td class="text-center">{{cc.id_colaborador}}</td>
                             <td class="text-center">
                                 <button type="button" icon="ui-icon-trash" pButton class="ui-button-danger"
-                                        ></button>
+                                        (click)="removerColaboradorCompetencia(cc)"></button>
                             </td>
                         </tr>
                     </ng-template>
