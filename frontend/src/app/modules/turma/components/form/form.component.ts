@@ -17,9 +17,11 @@ export class FormComponent implements OnInit {
     status: SelectItem[];
     competencias: SelectItem[];
     colaboradores: SelectItem[];
+    formTurma: FormGroup;
     formColComp: FormGroup;
-    colaboradorCompetencia: FormArray;
-    colComp: FormGroup;
+
+    //colaboradoresCompetencias: ColaboradorCompetenciaModel[];
+
 
   constructor(private turmaService: TurmaService, private colaboradorService: ColaboradorService, private fb: FormBuilder,
               private config: DynamicDialogConfig, private competenciaService: CompetenciaService,
@@ -32,16 +34,21 @@ export class FormComponent implements OnInit {
   }
 
   novoFormularioColaboradorCompetencia() {
-      this.formColComp = this.fb.group(
+      this.formTurma = this.fb.group(
           {
               nome: [null, [Validators.required]],
               descricao: [null, [Validators.required]],
               data_inicio: [null,[Validators.required]],
               data_termino: [null, [Validators.required]],
               id_status: [null, [Validators.required]],
-              colaboradorCompetencia: this.fb.array([])
+              colcomps: [[]]
           }
       )
+
+      this.formColComp = this.fb.group({
+          id_competencia: [null],
+          id_colaborador: [null]
+      })
   }
 
   listaStatus() {
@@ -57,8 +64,8 @@ export class FormComponent implements OnInit {
       })
 
       if(this.config.data) {
-          this.formColComp.patchValue(this.config.data);
-          this.formColComp.patchValue({data_inicio: new Date(this.config.data.data_inicio),
+          this.formTurma.patchValue(this.config.data);
+          this.formTurma.patchValue({data_inicio: new Date(this.config.data.data_inicio),
               data_termino: new Date(this.config.data.data_termino)})
       }
   }
@@ -72,9 +79,9 @@ export class FormComponent implements OnInit {
   }
 
     salvar() {
-        if (this.formColComp.valid) {
-            console.log(this.formColComp.value)
-            // this.competenciaService.salvar(this.formColComp.value).subscribe(
+        if (this.formTurma.valid) {
+            console.log(this.formTurma.value)
+            // this.competenciaService.salvar(this.turma.value).subscribe(
             //     succcess => this.ref.close(this.messageService.addSuccessMessage('Salvo com sucesso', 'Turma')),
             //     error => this.messageService.addErrorMessage('Não foi possível salvar!', 'Turma')
             // );
@@ -82,23 +89,25 @@ export class FormComponent implements OnInit {
     }
 
     // adicionarColaboradorCompetencia(colaboradorCompetencia) {
-    //     this.formColComp.get('colaboradorCompetencia').value.push(colaboradorCompetencia);
+    //     this.turma.get('colaboradorCompetencia').value.push(colaboradorCompetencia);
     //
     //
     // }
 
-    pegarColaboradoresCompetencias() {
-      return this.formColComp.controls["colaboradorCompetencia"] as FormArray;
+    get formColaboradorCompetencia(): FormArray {
+        return this.formTurma.get('formColaboradorCompetencia') as FormArray
     }
 
+    novoColaboradorCompetencia():FormGroup {
+        return this.fb.group({
+            id_colaborador: '',
+            id_competencia: ''
+        })
+    }
     adicionarColaboradorCompetencia() {
 
-          const colComp = this.fb.group({
-              id_turma: [null],
-              id_colaborador: [null],
-              id_competencia: [null]
-          })
+      this.formTurma.get("colcomps").value.push(this.formColComp.value)
 
-        this.colaboradorCompetencia.push(colComp);
     }
+
 }
