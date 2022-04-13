@@ -1,3 +1,5 @@
+import {SelectItem} from 'primeng';
+
 export class ColaboradorCompetenciaModel {
 
     id_turma: number;

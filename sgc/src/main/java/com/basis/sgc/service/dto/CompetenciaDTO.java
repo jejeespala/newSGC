@@ -21,6 +21,6 @@ public class CompetenciaDTO implements Serializable {
     private String descricao;
 
     @NotNull
-    private Integer id_categoria;
+    private Integer idCategoria;
 
 }

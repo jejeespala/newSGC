@@ -20,12 +20,12 @@ public class ColaboradorCompetencia implements Serializable {
     private ColaboradorCompetenciaChave id;
 
     @ManyToOne
-    @MapsId("id_colaborador")
-    @JoinColumn(name = "id_colaborador")
+    @MapsId("idColaborador")
+    @JoinColumn(name = "idColaborador")
     private Colaborador colaborador;
 
     @ManyToOne
-    @MapsId("id_competencia")
+    @MapsId("idCompetencia")
     @JoinColumn(name = "id_competencia")
     private Competencia competencia;
 

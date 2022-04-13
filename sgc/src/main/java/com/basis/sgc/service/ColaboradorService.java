@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,12 +44,12 @@ public class ColaboradorService {
         Colaborador colaborador = colaboradorMapper.toEntity(colaboradorDTO);
         colaboradorRepository.save(colaborador);
 
-        colaboradorDTO.getCompetencias().stream().forEach(
-                competencia -> competencia.setId_colaborador(colaborador.getId())
-        );
 
-        List<ColaboradorCompetencia> colaboradorCompetencia = colaboradorCompetenciaMapper.toEntity(colaboradorDTO.getCompetencias());
-        colaboradorCompetenciaRepository.saveAll(colaboradorCompetencia);
+        List<ColaboradorCompetencia> colaboradorCompetencias = colaboradorDTO.getComptencias().stream().map(
+                competencia -> colaboradorCompetenciaMapper.toEntity(new ColaboradorCompetenciaDTO(colaborador.getId(), competencia.getIdCompetencia(), competencia.getNivel()))
+        ).collect(Collectors.toList());
+
+        colaboradorCompetenciaRepository.saveAll(colaboradorCompetencias);
     }
 
     public void deletar(Integer id){

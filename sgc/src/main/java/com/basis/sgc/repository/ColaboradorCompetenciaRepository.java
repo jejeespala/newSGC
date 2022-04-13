@@ -15,7 +15,7 @@ public interface ColaboradorCompetenciaRepository extends JpaRepository<Colabora
 
     @Query("select new " +
             "com.basis.sgc.service.dto.ColaboradorCompetenciaDTO(c.colaborador.id, c.competencia.id, c.nivel)" +
-            "from ColaboradorCompetencia c where c.id.id_colaborador = ?1")
+            "from ColaboradorCompetencia c where c.id.idColaborador = ?1")
     public List<ColaboradorCompetenciaDTO> listar(Integer id);
     
 }

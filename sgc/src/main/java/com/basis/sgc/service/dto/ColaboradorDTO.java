@@ -1,5 +1,6 @@
 package com.basis.sgc.service.dto;
 
+import com.basis.sgc.domain.Nivel;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,10 +43,10 @@ public class ColaboradorDTO implements Serializable {
 
     @NotNull
     @NotEmpty
-    private Integer id_senioridade;
+    private Integer idSenioridade;
 
     @NotNull
     @NotEmpty
-    private List<ColaboradorCompetenciaDTO> competencias;
+    private List<ColaboradorCompetenciaDTO> comptencias;
 
 }
