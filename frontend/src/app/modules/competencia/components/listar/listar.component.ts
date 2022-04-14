@@ -4,8 +4,9 @@ import {CompetenciaModel} from '../../models/competencia.model';
 import {CategoriaModel} from '../../models/categoria.model';
 import {DialogService} from 'primeng/dynamicdialog';
 import {FormComponent} from '../form/form.component';
-import {DynamicDialogRef, MessageService} from 'primeng';
+import {DynamicDialogRef} from 'primeng';
 import {PageNotificationService} from "@nuvem/primeng-components";
+import {CompetenciaFormModel} from '../../models/competencia-form.model';
 
 @Component({
   selector: 'app-competencia-listar',
@@ -16,7 +17,7 @@ export class ListarComponent implements OnInit {
 
     competencias: CompetenciaModel[];
     categorias: CategoriaModel [];
-    competencia: CompetenciaModel;
+    competencia: CompetenciaFormModel;
 
   constructor(private competenciasService: CompetenciaService, private dialogService: DialogService, private messageService: PageNotificationService,
               private ref: DynamicDialogRef) { }

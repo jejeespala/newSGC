@@ -5,8 +5,10 @@ import {Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {StatusDropdownModel} from "../models/status.model";
 import {take} from 'rxjs/operators';
+import {TurmaColaboradorCompetenciaModel} from '../models/colaborador-competencia.model';
 
 const urlTurma: string = environment.apiUrl + '/turmas';
+const urlTurmaCol: string = environment.apiUrl + '/turmas_colaboradores_competencias';
 const urlStatus: string = environment.apiUrl + '/status';
 
 
@@ -27,6 +29,10 @@ export class TurmaService {
 
     buscarId(id): Observable<TurmaModel> {
         return this.httpClient.get<TurmaModel>(`${urlTurma}/${id}`).pipe(take(1));
+    }
+
+    buscarColaboradorId(id): Observable<TurmaColaboradorCompetenciaModel[]> {
+        return this.httpClient.get<TurmaColaboradorCompetenciaModel[]>(`${urlTurmaCol}/${id}`);
     }
 
     deletar(id) {

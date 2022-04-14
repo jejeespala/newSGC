@@ -27,6 +27,12 @@ public class TurmaColaboradorCompetenciaResource {
         return new ResponseEntity<>(turmaColaboradorCompetenciaDTOS, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<List<TurmaColaboradorCompetenciaDTO>> listar(@PathVariable Integer id){
+        List<TurmaColaboradorCompetenciaDTO> turmaColaboradorCompetenciaDTOS = turmaColaboradorCompetenciaService.buscarId(id);
+        return new ResponseEntity<>(turmaColaboradorCompetenciaDTOS, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Void> salvar(@Valid @RequestBody TurmaColaboradorCompetenciaDTO turmaColaboradorCompetenciaDTO){
         turmaColaboradorCompetenciaService.salvar(turmaColaboradorCompetenciaDTO);

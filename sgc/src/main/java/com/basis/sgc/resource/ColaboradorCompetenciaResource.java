@@ -32,16 +32,5 @@ public class ColaboradorCompetenciaResource {
         return new ResponseEntity<>(colaboradorCompetenciaDTOS, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> salvar(@Valid @RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
-        colaboradorCompetenciaService.salvar(colaboradorCompetenciaDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> atualizar(@RequestBody ColaboradorCompetenciaDTO colaboradorCompetenciaDTO){
-        colaboradorCompetenciaService.salvar(colaboradorCompetenciaDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 }

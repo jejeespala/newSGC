@@ -29,7 +29,7 @@ public class TurmaDTO implements Serializable {
     private LocalDate data_termino;
 
     @NotNull
-    private Integer id_status;
+    private Integer idStatus;
 
     @NotNull
     private List<TurmaColaboradorCompetenciaDTO> turmas;

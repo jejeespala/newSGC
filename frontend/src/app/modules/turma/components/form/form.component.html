@@ -61,7 +61,7 @@
             <div class="grid mb-6 pl-2 pr-2 align-items-center">
                 <div  class="col-12 sm:col-2 md:col-2 mt-3" >
                     <span class="ui-float-label">
-                        <p-dropdown #ddCompetencia [filter]="true" filterBy="label,value.name" placeholder="." formControlName="id_competencia" [options]="competencias" [showClear]="true"  (onChange)="listarColaborador($event.value)">
+                        <p-dropdown #ddCompetencia placeholder="." formControlName="idCompetencia" [options]="competencias" [showClear]="true"  (onChange)="listarColaborador($event.value)">
                         </p-dropdown>
                         <label for="float-input">Competencia</label>
                     </span>
@@ -69,7 +69,7 @@
                 <span class="pr-3"></span>
                 <div class="col-12 sm:col-2 md:col-2 mt-3">
                     <span class="ui-float-label">
-                        <p-dropdown #ddColaborador formControlName="id_colaborador" [options]="colaboradores" placeholder="." [showClear]="true"></p-dropdown>
+                        <p-dropdown #ddColaborador formControlName="idColaborador" [options]="colaboradores" placeholder="." [showClear]="true"></p-dropdown>
                         <label for="float-input">Colaborador</label>
                     </span>
                 </div>
@@ -88,8 +88,8 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-cc let-rowIndex="rowIndex">
                         <tr >
-                            <td class="text-center">{{cc.id_competencia}}</td>
-                            <td class="text-center">{{cc.id_colaborador}}</td>
+                            <td class="text-center">{{cc.idCompetencia}}</td>
+                            <td class="text-center">{{cc.idColaborador}}</td>
                             <td class="text-center">
                                 <button type="button" icon="ui-icon-trash" pButton class="ui-button-danger"
                                         (click)="removerColaboradorCompetencia(cc)"></button>

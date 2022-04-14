@@ -11,13 +11,18 @@ import java.io.Serializable;
 @Setter
 public class TurmaColaboradorCompetenciaDTO implements Serializable {
 
-    @NotNull
-    private Integer id_turma;
+
+    private Integer idTurma;
 
     @NotNull
-    private Integer id_colaborador;
+    private Integer idColaborador;
 
     @NotNull
-    private Integer id_competencia;
+    private Integer idCompetencia;
 
+    public TurmaColaboradorCompetenciaDTO(Integer idTurma, Integer idColaborador, Integer idCompetencia) {
+        this.idTurma = idTurma;
+        this.idColaborador = idColaborador;
+        this.idCompetencia = idCompetencia;
+    }
 }

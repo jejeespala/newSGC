@@ -15,12 +15,12 @@ import java.io.Serializable;
 public class TurmaColaboradorCompetenciaChave implements Serializable {
 
     @Column(name = "id_turma")
-    private Integer id_turma;
+    private Integer idTurma;
 
     @Column(name = "id_colaborador")
-    private Integer id_colaborador;
+    private Integer idColaborador;
 
     @Column(name = "id_competencia")
-    private Integer id_competencia;
+    private Integer idCompetencia;
 
 }

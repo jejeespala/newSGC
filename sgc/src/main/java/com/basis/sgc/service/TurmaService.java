@@ -4,6 +4,7 @@ import com.basis.sgc.domain.Turma;
 import com.basis.sgc.domain.TurmaColaboradorCompetencia;
 import com.basis.sgc.repository.TurmaColaboradorCompetenciaRepository;
 import com.basis.sgc.repository.TurmaRepository;
+import com.basis.sgc.service.dto.TurmaColaboradorCompetenciaDTO;
 import com.basis.sgc.service.dto.TurmaDTO;
 import com.basis.sgc.service.dto.TurmaListDTO;
 import com.basis.sgc.service.mapper.TurmaColaboradorCompetenciaMapper;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,15 +39,12 @@ public class TurmaService {
     }
 
     public void salvar(TurmaDTO turmaDTO){
-
         Turma turma = turmaMapper.toEntity(turmaDTO);
         turmaRepository.save(turma);
 
-        turmaDTO.getTurmas().stream().forEach(
-                colaborador -> colaborador.setId_colaborador(turma.getId())
-        );
-
-        List<TurmaColaboradorCompetencia> turmaColaboradorCompetencias = turmaColaboradorCompetenciaMapper.toEntity(turmaDTO.getTurmas());
+        List<TurmaColaboradorCompetencia> turmaColaboradorCompetencias = turmaDTO.getTurmas().stream().map(
+                colaborador -> turmaColaboradorCompetenciaMapper.toEntity(new TurmaColaboradorCompetenciaDTO(turma.getId(), colaborador.getIdColaborador(), colaborador.getIdCompetencia())
+        )).collect(Collectors.toList());
 
         turmaColaboradorCompetenciaRepository.saveAll(turmaColaboradorCompetencias);
     }

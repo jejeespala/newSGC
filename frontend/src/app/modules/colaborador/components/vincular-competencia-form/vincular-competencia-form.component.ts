@@ -1,12 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ColaboradorCompetenciaNivelModel} from '../../models/colaborador-competencia-nivel.model';
 import {ColaboradorService} from "../../service/colaborador.service";
 import {SelectItem} from 'primeng';
 import {CompetenciaService} from '../../../competencia/service/competencia.service';
-import {CompetenciaModel} from '../../../competencia/models/competencia.model';
-import {CompetenciaDropdownModel} from '../../models/competencia.model';
-import {ColaboradorDropdownModel} from '../../models/colaborador-dropdown.model';
+import {CompetenciaNivelModel} from '../../models/competencia-nivel.model';
 
 @Component({
   selector: 'app-colaborador-competencia-form',
@@ -15,21 +13,22 @@ import {ColaboradorDropdownModel} from '../../models/colaborador-dropdown.model'
 })
 export class VincularCompetenciaFormComponent implements OnInit {
 
-    form: FormGroup;
+    formArr: FormArray;
     competencias: SelectItem[];
     nivel: SelectItem[];
+    comps: CompetenciaNivelModel[] = [];
+    //compForm: FormGroup;
 
-    @Output() aoAdicionar = new EventEmitter<ColaboradorCompetenciaModel>();
+    @Output() aoAdicionar = new EventEmitter<ColaboradorCompetenciaNivelModel>();
     @Input() aoReceber;
+    @Input() formPai: FormGroup;
 
   constructor(private fb: FormBuilder, private colaboradorService: ColaboradorService, private competenciaService: CompetenciaService) { }
 
   ngOnInit(): void {
-
       this.novoFormulario()
       this.listarCompetencias();
       this.listarNiveis();
-
   }
 
     listarCompetencias() {
@@ -43,12 +42,17 @@ export class VincularCompetenciaFormComponent implements OnInit {
         this.nivel = this.colaboradorService.buscarNivel();
     }
 
+    get vai() {
+        return this.formPai.controls["vai"] as FormArray;
+    }
+
   novoFormulario() {
 
-      this.form = this.fb.group({
-          id_competencia: [null, [Validators.required]],
-          nivel: [null,[Validators.required]]
-      })
+      this.formArr = this.fb.array([])
+      this.formPai.addControl('vai', this.formArr);
+      this.adicionar();
+      console.log(this.formPai.value);
+
 
       // if( this.aoReceber !== undefined ){
       //
@@ -57,7 +61,7 @@ export class VincularCompetenciaFormComponent implements OnInit {
       //
       //       (
       //           this.form.patchValue({
-      //               id_competencia: el.id_competencia,
+      //               idCompetencia: el.idCompetencia,
       //               nivel: el.nivel
       //           })
       //       )
@@ -67,11 +71,20 @@ export class VincularCompetenciaFormComponent implements OnInit {
       // console.log(this.form.value)
   }
 
-  adicionar() {
-      if (this.form.valid) {
-          this.aoAdicionar.emit(this.form.value)
-      }
-  }
+    // get form() {
+    //     return this.form as FormArray;
+    // }
 
+  adicionar() {
+      // if (this.form.valid) {
+      //     this.aoAdicionar.emit(this.form.value)
+      // }
+      const compForm = this.fb.group({
+          idCompetencia: ['', Validators.required],
+          nivel: ['', Validators.required]
+      });
+
+      this.formPai.get('vai').value.push(compForm.value);
+  }
 
 }

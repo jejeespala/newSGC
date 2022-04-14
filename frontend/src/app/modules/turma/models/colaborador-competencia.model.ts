@@ -1,9 +1,7 @@
-import {SelectItem} from 'primeng';
+export class TurmaColaboradorCompetenciaModel {
 
-export class ColaboradorCompetenciaModel {
-
-    id_turma: number;
-    id_colaborador: number;
-    id_competencia: number;
+    idTurma: number;
+    idColaborador: number;
+    idCompetencia: number;
 
 }

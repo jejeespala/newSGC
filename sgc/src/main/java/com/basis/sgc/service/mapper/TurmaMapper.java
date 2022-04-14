@@ -10,17 +10,17 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface TurmaMapper extends EntityMapper<TurmaDTO, Turma> {
 
-    @Mapping(target = "status.id", source = "id_status")
+    @Mapping(target = "status.id", source = "idStatus")
     Turma toEntity(TurmaDTO turmaDTO);
 
 
-    @Mapping(target = "id_status", source = "status.id")
+    @Mapping(target = "idStatus", source = "status.id")
     TurmaDTO toDto (Turma turma);
 
-    @Mapping(target = "status.id", source = "id_status")
+    @Mapping(target = "status.id", source = "idStatus")
     List<Turma> toEntity (List<TurmaDTO> turmaDTOS);
 
-    @Mapping(target = "id_status", source = "status.id")
+    @Mapping(target = "idStatus", source = "status.id")
     List<TurmaDTO> toDto (List<Turma> turmas);
 
 

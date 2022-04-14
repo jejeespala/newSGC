@@ -5,7 +5,7 @@ import {ColaboradorService} from '../../service/colaborador.service';
 import {PageNotificationService} from '@nuvem/primeng-components';
 import {CompetenciaService} from "../../../competencia/service/competencia.service";
 import {CompetenciaDropdownModel} from '../../models/competencia.model';
-import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
+import {ColaboradorCompetenciaNivelModel} from '../../models/colaborador-competencia-nivel.model';
 import {CompetenciaModel} from '../../../competencia/models/competencia.model';
 
 @Component({
@@ -20,7 +20,7 @@ export class FormComponent implements OnInit {
     competencias: FormGroup;
     senioridades: SelectItem[];
     comp: CompetenciaDropdownModel[];
-    comps: ColaboradorCompetenciaModel[];
+    comps: ColaboradorCompetenciaNivelModel[];
 
 
   constructor(private colaboradorService: ColaboradorService, private fb: FormBuilder, private messageService: PageNotificationService,
@@ -33,6 +33,7 @@ export class FormComponent implements OnInit {
   }
 
   novoFormularioColaborador() {
+
     this.formCol = this.fb.group( {
         id: [null],
         nome: [null, [Validators.required, Validators.minLength(3)]],
@@ -42,24 +43,13 @@ export class FormComponent implements OnInit {
         email: [null, [Validators.required, Validators.minLength(3)]],
         data_nasc: [null, [Validators.required]],
         data_admi: [null, [Validators.required]],
-        id_senioridade: [null, [Validators.required]],
+        idSenioridade: [null, [Validators.required]],
         competencias: [[]]
     });
 
-      if(this.config.data) {
-          let dataNascimento = new Date(this.config.data.colaborador.data_nasc);
-          let dataAdmissao = new Date(this.config.data.colaborador.data_admi);
-
-          this.config.data.colaborador.data_nasc = dataNascimento;
-          this.config.data.colaborador.data_admi = dataAdmissao;
-
-          this.formCol.patchValue(this.config.data.colaborador);
-
-          if(this.config.data.colaboraCompetencia){
-              this.comps = this.config.data.colaboraCompetencia;
-          }
-
-      }
+    if(this.config.data) {
+        this.atualizar(this.config.data);
+    }
 
   }
 
@@ -73,8 +63,25 @@ export class FormComponent implements OnInit {
       // }
   }
 
+  atualizar(colaborador) {
+
+      let dataNascimento = new Date(colaborador.colaborador.data_nasc);
+      let dataAdmissao = new Date(colaborador.colaborador.data_admi);
+
+      colaborador.colaborador.data_nasc = dataNascimento;
+      colaborador.colaborador.data_admi = dataAdmissao;
+
+      this.formCol.patchValue(colaborador.colaborador);
+
+      if(colaborador.colaboraCompetencia){
+          this.comps = colaborador.colaboraCompetencia;
+          this.formCol.get('competencias').patchValue(colaborador.colaboraCompetencia);
+          console.log(this.formCol.value);
+      }
+  }
+
   adicionarCompetencia (competencia) {
-      if( this.formCol.get('competencias').value.some(cc => cc.id_competencia == competencia.id_competencia)){
+      if( this.formCol.get('competencias').value.some(cc => cc.idCompetencia == competencia.idCompetencia)){
           this.messageService.addErrorMessage('Competência já inserida')
       }else{
           this.formCol.get('competencias').value.push(competencia);
@@ -82,7 +89,8 @@ export class FormComponent implements OnInit {
   }
 
   deletarCompetencia(competencia) {
-      this.formCol.get('competencias').value.pop(competencia);
+
+      this.formCol.controls[competencia].patchValue(null);
   }
 
   buscarSenioridade() {
