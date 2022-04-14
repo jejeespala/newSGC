@@ -27,6 +27,8 @@ public class ColaboradorService {
 
     private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
+    private final ColaboradorCompetenciaService colaboradorCompetenciaService;
+
     public List<ColaboradorListDTO> buscar(){
         return colaboradorRepository.listar();
     }
@@ -43,13 +45,7 @@ public class ColaboradorService {
     public void salvar(ColaboradorDTO colaboradorDTO){
         Colaborador colaborador = colaboradorMapper.toEntity(colaboradorDTO);
         colaboradorRepository.save(colaborador);
-
-
-        List<ColaboradorCompetencia> colaboradorCompetencias = colaboradorDTO.getComptencias().stream().map(
-                competencia -> colaboradorCompetenciaMapper.toEntity(new ColaboradorCompetenciaDTO(colaborador.getId(), competencia.getIdCompetencia(), competencia.getNivel()))
-        ).collect(Collectors.toList());
-
-        colaboradorCompetenciaRepository.saveAll(colaboradorCompetencias);
+        colaboradorCompetenciaService.salvar(colaboradorDTO, colaborador);
     }
 
     public void deletar(Integer id){

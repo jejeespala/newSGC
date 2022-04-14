@@ -1,4 +1,4 @@
-export class CompetenciaPostModel {
+export class CompetenciaFormModel {
 
     id: number;
     nome: string;

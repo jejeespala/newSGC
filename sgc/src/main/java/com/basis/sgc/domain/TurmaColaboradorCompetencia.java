@@ -20,17 +20,17 @@ public class TurmaColaboradorCompetencia implements Serializable {
     private TurmaColaboradorCompetenciaChave id;
 
     @ManyToOne
-    @MapsId("id_turma")
-    @JoinColumn(name = "id_turma")
+    @MapsId("idTurma")
+    @JoinColumn(name = "idTurma")
     private Turma turma;
 
     @ManyToOne
-    @MapsId("id_colaborador")
-    @JoinColumn(name = "id_colaborador")
+    @MapsId("idColaborador")
+    @JoinColumn(name = "idColaborador")
     private Colaborador colaborador;
 
     @ManyToOne
-    @MapsId("id_competencia")
+    @MapsId("idCompetencia")
     @JoinColumn(name = "id_competencia")
     private Competencia competencia;
 

@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import {DialogService} from 'primeng/dynamicdialog';
 import {FormComponent} from '../form/form.component';
 import {ColaboradorPostModel} from "../../models/colaboradorPost.model";
-import {ColaboradorCompetenciaModel} from "../../models/colaborador-competencia.model";
+import {ColaboradorCompetenciaNivelModel} from "../../models/colaborador-competencia-nivel.model";
 import {PageNotificationService} from "@nuvem/primeng-components";
 
 @Component({
@@ -16,7 +16,7 @@ export class ListarComponent implements OnInit {
 
   colaboradores: ColaboradorModel[];
   colaborador: ColaboradorPostModel;
-  colaboradorCompetencia: ColaboradorCompetenciaModel[];
+  colaboradorCompetencia: ColaboradorCompetenciaNivelModel[];
 
   constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService, private messageService: PageNotificationService) { }
 
@@ -54,14 +54,13 @@ export class ListarComponent implements OnInit {
     }
 
     onDelete(id){
-
         this.colaboradorService.deletar(id)
             .subscribe({
                     next: data => {
                         this.listarColaboradores()
                     },
                     error: error => {
-                        this.messageService.addErrorMessage('Não foi possível deletar a competência')
+                        this.messageService.addErrorMessage('Não foi possível deletar o colaborador')
                     }
                 }
             )

@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
           id: [null],
           nome: [null, [Validators.required, Validators.minLength(3)]],
           descricao: [null, [Validators.required, Validators.minLength(3)]],
-          id_categoria: [null, [Validators.required]]
+          idCategoria: [null, [Validators.required]]
       });
   }
 
@@ -36,6 +36,7 @@ export class FormComponent implements OnInit {
       this.competenciaService.buscarCategoria().subscribe(resposta => {
           this.categorias = resposta;
           if(this.config.data) {
+              console.log(this.config.data)
               this.form.patchValue(this.config.data);
           }
       });

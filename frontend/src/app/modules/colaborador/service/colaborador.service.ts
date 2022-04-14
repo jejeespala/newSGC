@@ -8,7 +8,7 @@ import {niveis} from '../util/nivel.service';
 import {ColaboradorPostModel} from '../models/colaboradorPost.model';
 import {take} from 'rxjs/operators';
 import {ColaboradorDropdownModel} from "../models/colaborador-dropdown.model";
-import {ColaboradorCompetenciaModel} from "../models/colaborador-competencia.model";
+import {ColaboradorCompetenciaNivelModel} from "../models/colaborador-competencia-nivel.model";
 import {SenioridadeDropdownModel} from '../models/senioridade-dropdown.model';
 
 
@@ -45,8 +45,8 @@ export class ColaboradorService {
         return this.httpClient.get<ColaboradorPostModel>(`${urlCol}/${id}`).pipe(take(1));
     }
 
-    buscarCompetenciaId(id): Observable<ColaboradorCompetenciaModel[]> {
-        return this.httpClient.get<ColaboradorCompetenciaModel[]>(`${urlColComp}/${id}`).pipe(take(1));
+    buscarCompetenciaId(id): Observable<ColaboradorCompetenciaNivelModel[]> {
+        return this.httpClient.get<ColaboradorCompetenciaNivelModel[]>(`${urlColComp}/${id}`).pipe(take(1));
     }
 
     deletar(id) {

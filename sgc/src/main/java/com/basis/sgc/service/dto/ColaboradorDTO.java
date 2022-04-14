@@ -47,6 +47,6 @@ public class ColaboradorDTO implements Serializable {
 
     @NotNull
     @NotEmpty
-    private List<ColaboradorCompetenciaDTO> comptencias;
+    private List<ColaboradorCompetenciaDTO> competencias;
 
 }

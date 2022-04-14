@@ -44,7 +44,7 @@
 
             <div class="col mt-5">
             <span class="ui-float-label">
-                <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="senioridades" formControlName="id_senioridade"></p-dropdown>
+                <p-dropdown id="float-input" [autoDisplayFirst]="false" [options]="senioridades" formControlName="idSenioridade"></p-dropdown>
                 <label for="float-input">Senioridade</label>
             </span>
             </div>
@@ -71,7 +71,7 @@
                 <h2>Lista de Tecnologias</h2>
                 <p-card class="mt-10" id="cardButton">
 
-                    <app-colaborador-competencia-form [aoReceber]="config" (aoAdicionar)="adicionarCompetencia($event)">
+                    <app-colaborador-competencia-form [formPai]="formCol" [aoReceber]="config" (aoAdicionar)="adicionarCompetencia($event)">
 
                     </app-colaborador-competencia-form>
 
@@ -89,9 +89,9 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-cc>
                     <tr>
-                        <td class="text-center">{{cc.id_competencia}}</td>
+                        <td class="text-center">{{cc.idCompetencia}}</td>
                         <td class="text-center">{{cc.nivel}}</td>
-                        <td>
+                        <td style="text-align:center">
                             <p-button icon="pi pi-trash" class="ui-button-danger" (click)="deletarCompetencia(cc)" styleClass="rounded-button ui-button-danger"></p-button>
                         </td>
                     </tr>

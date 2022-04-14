@@ -10,17 +10,17 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface TurmaColaboradorCompetenciaMapper extends EntityMapper<TurmaColaboradorCompetenciaDTO, TurmaColaboradorCompetencia> {
 
-    @Mapping(target = "id.id_colaborador", source = "id_colaborador")
-    @Mapping(target = "id.id_competencia", source = "id_competencia")
-    @Mapping(target = "id.id_turma", source = "id_turma")
-    @Mapping(target = "turma.id", source = "id_turma")
-    @Mapping(target = "colaborador.id", source = "id_colaborador")
-    @Mapping(target = "competencia.id", source = "id_competencia")
+    @Mapping(target = "id.idColaborador", source = "idColaborador")
+    @Mapping(target = "id.idCompetencia", source = "idCompetencia")
+    @Mapping(target = "id.idTurma", source = "idTurma")
+    @Mapping(target = "turma.id", source = "idTurma")
+    @Mapping(target = "colaborador.id", source = "idColaborador")
+    @Mapping(target = "competencia.id", source = "idCompetencia")
     TurmaColaboradorCompetencia toEntity(TurmaColaboradorCompetenciaDTO turmaColaboradorCompetenciaDTO);
 
-    @Mapping(target = "id_turma", source = "id.id_turma")
-    @Mapping(target = "id_colaborador", source = "id.id_colaborador")
-    @Mapping(target = "id_competencia", source = "id.id_competencia")
+    @Mapping(target = "idTurma", source = "id.idTurma")
+    @Mapping(target = "idColaborador", source = "id.idColaborador")
+    @Mapping(target = "idCompetencia", source = "id.idCompetencia")
     TurmaColaboradorCompetenciaDTO toDto (TurmaColaboradorCompetencia turmaColaboradorCompetencia);
 
 

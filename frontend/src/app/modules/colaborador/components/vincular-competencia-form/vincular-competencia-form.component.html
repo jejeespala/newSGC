@@ -1,11 +1,17 @@
-<div class="grid"  [formGroup]="form">
-    <div class="col-6">
-        <p-dropdown [options]="competencias" formControlName="id_competencia" placeholder="Selecione uma Competência"></p-dropdown>
-    </div>
-    <div class="col-6">
-        <p-dropdown [options]="nivel" formControlName="nivel" placeholder="Selecione um Nível"></p-dropdown>
-    </div>
-    <div class="col-1 col-offset-5">
-        <button type="button" (click)="adicionar()" icon="ui-icon-plus" pButton ></button>
-    </div>
-</div>
+<form [formGroup]="formPai">
+    <ng-container formArrayName="vai">
+        <ng-container >
+            <div class="grid" >
+                <div class="col-6">
+                    <p-dropdown [options]="competencias" formControlName="idCompetencia" placeholder="Selecione uma Competência"></p-dropdown>
+                </div>
+                <div class="col-6">
+                    <p-dropdown [options]="nivel" formControlName="nivel" placeholder="Selecione um Nível"></p-dropdown>
+                </div>
+                <div class="col-1 col-offset-5">
+                    <button type="button" (click)="adicionar()" icon="ui-icon-plus" pButton ></button>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+</form>

@@ -5,7 +5,6 @@ import {ColaboradorService} from "../../../colaborador/service/colaborador.servi
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CompetenciaService} from '../../../competencia/service/competencia.service';
 import {PageNotificationService} from '@nuvem/primeng-components';
-import {ColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
 import {ColaboradorCompetenciaNomeModel} from '../../models/colaborador-competencia-table.model';
 
 @Component({
@@ -20,7 +19,7 @@ export class FormComponent implements OnInit {
     colaboradores: SelectItem[];
     formTurma: FormGroup;
     formColComp: FormGroup;
-    colaboradorCompetencias: ColaboradorCompetenciaModel[] = [];
+    colaboradorCompetencias: ColaboradorCompetenciaNomeModel[] = [];
     nomes: ColaboradorCompetenciaNomeModel[] = [];
 
   constructor(private turmaService: TurmaService, private colaboradorService: ColaboradorService, private fb: FormBuilder,
@@ -45,8 +44,8 @@ export class FormComponent implements OnInit {
           }
       )
       this.formColComp = this.fb.group({
-          id_competencia: [null],
-          id_colaborador: [null]
+          idCompetencia: [null],
+          idColaborador: [null]
       })
   }
 
@@ -63,9 +62,9 @@ export class FormComponent implements OnInit {
       })
 
       if(this.config.data) {
+          this.config.data.data_inicio = new Date(this.config.data.data_inicio)
+          this.config.data.data_termino = new Date(this.config.data.data_termino)
           this.formTurma.patchValue(this.config.data);
-          this.formTurma.patchValue({data_inicio: new Date(this.config.data.data_inicio),
-              data_termino: new Date(this.config.data.data_termino)})
       }
   }
 
@@ -95,8 +94,8 @@ export class FormComponent implements OnInit {
 
     novoColaboradorCompetencia():FormGroup {
         return this.fb.group({
-            id_colaborador: '',
-            id_competencia: ''
+            idColaborador: '',
+            idCompetencia: ''
         })
     }
     adicionarColaboradorCompetencia(ddCompetencia, ddColaborador) {
@@ -118,7 +117,7 @@ export class FormComponent implements OnInit {
     pegarLabelDropdown(ddCompetencia: Dropdown, ddColaborador: Dropdown){
 
         // this.colaboradorCompetencias.push({
-        //     id_competencia.
+        //     idCompetencia.
         // })
         //
         // if (this.nomes) {

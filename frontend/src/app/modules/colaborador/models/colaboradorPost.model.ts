@@ -1,4 +1,4 @@
-import {ColaboradorCompetenciaModel} from "./colaborador-competencia.model";
+import {ColaboradorCompetenciaNivelModel} from "./colaborador-competencia-nivel.model";
 
 export class ColaboradorPostModel {
 
@@ -8,8 +8,8 @@ export class ColaboradorPostModel {
     email: string;
     data_nasc: Date;
     data_admi: Date;
-    id_senioridade: number;
-    competencias: ColaboradorCompetenciaModel[]
+    idSenioridade: number;
+    competencias: ColaboradorCompetenciaNivelModel[]
 
 }
 

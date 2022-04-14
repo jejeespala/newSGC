@@ -4,6 +4,7 @@ import {TurmaService} from "../../service/turma.service";
 import {DialogService} from "primeng/dynamicdialog";
 import {FormComponent} from "../form/form.component";
 import {PageNotificationService} from '@nuvem/primeng-components';
+import {TurmaColaboradorCompetenciaModel} from '../../models/colaborador-competencia.model';
 
 @Component({
   selector: 'app-turma-listar',
@@ -14,6 +15,7 @@ export class ListarComponent implements OnInit {
 
     turmas: TurmaModel[];
     turma: TurmaModel;
+    colsComps: TurmaColaboradorCompetenciaModel[];
 
     constructor(private turmaService: TurmaService, private dialogService: DialogService, private messageService: PageNotificationService) { }
 
@@ -37,9 +39,14 @@ export class ListarComponent implements OnInit {
 
     showOne(id) {
         this.turmaService.buscarId(id).subscribe( resposta => {
-            this.turma = resposta;
+            this.turmaService.buscarColaboradorId(id).subscribe( resposta2 => {
+                this.turma = resposta;
+                this.colsComps = resposta2;
+            })
+
             const ref = this.dialogService.open(FormComponent, {
-                data: this.turma,
+                data: {turma: this.turma,
+                colsComps: this.colsComps},
                 width: '70%',
                 header: 'Colaborador'
             });
