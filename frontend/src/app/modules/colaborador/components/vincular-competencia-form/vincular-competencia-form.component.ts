@@ -17,7 +17,6 @@ export class VincularCompetenciaFormComponent implements OnInit {
     competencias: SelectItem[];
     nivel: SelectItem[];
     comps: CompetenciaNivelModel[] = [];
-    //compForm: FormGroup;
 
     @Output() aoAdicionar = new EventEmitter<ColaboradorCompetenciaNivelModel>();
     @Input() aoReceber;
@@ -47,11 +46,9 @@ export class VincularCompetenciaFormComponent implements OnInit {
     }
 
   novoFormulario() {
-
       this.formArr = this.fb.array([])
       this.formPai.addControl('vai', this.formArr);
       this.adicionar();
-      console.log(this.formPai.value);
 
 
       // if( this.aoReceber !== undefined ){
