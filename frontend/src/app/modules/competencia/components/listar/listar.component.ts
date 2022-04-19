@@ -4,9 +4,11 @@ import {CompetenciaModel} from '../../models/competencia.model';
 import {CategoriaModel} from '../../models/categoria.model';
 import {DialogService} from 'primeng/dynamicdialog';
 import {FormComponent} from '../form/form.component';
-import {DynamicDialogRef} from 'primeng';
 import {PageNotificationService} from "@nuvem/primeng-components";
 import {CompetenciaFormModel} from '../../models/competencia-form.model';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import {catchError, finalize, take} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-competencia-listar',
@@ -18,25 +20,30 @@ export class ListarComponent implements OnInit {
     competencias: CompetenciaModel[];
     categorias: CategoriaModel [];
     competencia: CompetenciaFormModel;
+    @BlockUI() blockUI: NgBlockUI;
 
-  constructor(private competenciasService: CompetenciaService, private dialogService: DialogService, private messageService: PageNotificationService,
-              private ref: DynamicDialogRef) { }
+    constructor(private competenciasService: CompetenciaService, private dialogService: DialogService,
+                private messageService: PageNotificationService) { }
 
   ngOnInit(): void {
-      this.listarCompetencias();
+      this.listar();
       this.listarCategorias();
   }
 
-  listarCompetencias() {
-      this.competenciasService.buscar().subscribe(resposta => {
-          this.competencias = resposta;
-      });
+  listar() {
+      this.blockUI.start("Por favor, aguarde!");
+      this.competenciasService.buscar().pipe(
+            catchError(err => of([])),
+            finalize(() => this.blockUI.stop())
+        ).subscribe(resposta => {
+            this.competencias = resposta;
+        },
+        error => this.messageService.addErrorMessage("Não foi possível realizar a listagram"))
   }
 
   listarCategorias() {
       this.competenciasService.buscarCategoria().subscribe( resposta => {
           this.categorias = resposta;
-
       });
   }
 
@@ -65,7 +72,7 @@ export class ListarComponent implements OnInit {
             .subscribe({
                     next: data => {
                         this.messageService.addSuccessMessage("Competência excluída com sucesso")
-                        this.listarCompetencias()
+                        this.listar()
                     },
                     error: error => {
                         this.messageService.addErrorMessage('Não foi possível deletar a competência')

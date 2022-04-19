@@ -8,6 +8,7 @@ import {DialogService} from 'primeng/dynamicdialog';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {FormComponent} from './components/form/form.component';
 import {DynamicDialogConfig, DynamicDialogRef, MessageService} from 'primeng';
+import {BlockUIModule, BlockUIService} from 'ng-block-ui';
 
 
 
@@ -16,8 +17,11 @@ import {DynamicDialogConfig, DynamicDialogRef, MessageService} from 'primeng';
     imports: [
         CommonModule,
         SharedModule,
-        CompetenciasRoutingModule
+        CompetenciasRoutingModule,
+        BlockUIModule
     ],
-  providers: [CompetenciaService, DialogService, FormBuilder, MessageService, DynamicDialogConfig, DynamicDialogRef]
+  providers: [CompetenciaService, DialogService, FormBuilder,
+      MessageService, DynamicDialogConfig, DynamicDialogRef,
+      BlockUIService]
 })
 export class CompetenciaModule { }

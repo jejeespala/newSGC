@@ -61,7 +61,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
-import {DynamicDialogModule} from 'primeng';
+import {BlockUIModule, DynamicDialogModule} from 'primeng';
 import {ReactiveFormsModule} from '@angular/forms';
 
 export const PRIMENG_IMPORTS = [
@@ -129,5 +129,6 @@ export const PRIMENG_IMPORTS = [
     TreeModule,
     TreeTableModule,
     DynamicDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BlockUIModule
 ];

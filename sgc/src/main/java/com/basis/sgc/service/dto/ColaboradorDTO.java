@@ -31,7 +31,7 @@ public class ColaboradorDTO implements Serializable {
     @NotNull
     private String email;
 
-//    private String foto;
+    private String foto;
 
     @NotNull
     @NotEmpty

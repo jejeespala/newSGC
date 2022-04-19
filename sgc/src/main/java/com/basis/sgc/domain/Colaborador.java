@@ -36,8 +36,8 @@ public class Colaborador implements Serializable {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-//    @Column(name = "foto")
-//    private String foto;
+    @Column(name = "foto")
+    private String foto;
 
     @Column(name = "data_nasc", nullable = false)
     private LocalDate data_nasc;

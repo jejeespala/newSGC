@@ -53,7 +53,7 @@
             <div class="col-2 " class='img-wrapper m-3'>
             </div>
             <div class=" col-5 mt-5">
-                <p-fileUpload mode="basic" url="./upload.php" (onUpload)="onUpload($event)"
+                <p-fileUpload (onSelect)="onUpload($event)"
                               multiple="multiple" accept="image/*" maxFileSize="1000000">
                     <ng-template pTemplate="content">
                         <ul *ngIf="uploadedFiles.length">
@@ -66,39 +66,39 @@
         </div>
 
 
-        <p-card>
-            <div class="grid mb-3 mt-2 pl-2 pr-2 align-items-center" >
-                <h2>Lista de Tecnologias</h2>
-                <p-card class="mt-10" id="cardButton">
+<!--        <p-card>-->
+<!--            <div class="grid mb-3 mt-2 pl-2 pr-2 align-items-center" >-->
+<!--                <h2>Lista de Tecnologias</h2>-->
+<!--                <p-card class="mt-10" id="cardButton">-->
 
-                    <app-colaborador-competencia-form [formPai]="formCol" [aoReceber]="config" (aoAdicionar)="adicionarCompetencia($event)">
+<!--                    <app-colaborador-competencia-form [formPai]="formCol" [aoReceber]="config" (aoAdicionar)="adicionarCompetencia($event)">-->
 
-                    </app-colaborador-competencia-form>
+<!--                    </app-colaborador-competencia-form>-->
 
-                </p-card>
-            </div>
+<!--                </p-card>-->
+<!--            </div>-->
 
 
-            <p-table [value]="comps" responsiveLayout="scroll">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>Competência</th>
-                        <th>Nível</th>
-                        <th>Ação</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-cc>
-                    <tr>
-                        <td class="text-center">{{cc.idCompetencia}}</td>
-                        <td class="text-center">{{cc.nivel}}</td>
-                        <td style="text-align:center">
-                            <p-button icon="pi pi-trash" class="ui-button-danger" (click)="deletarCompetencia(cc)" styleClass="rounded-button ui-button-danger"></p-button>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
+<!--            <p-table [value]="comps" responsiveLayout="scroll">-->
+<!--                <ng-template pTemplate="header">-->
+<!--                    <tr>-->
+<!--                        <th>Competência</th>-->
+<!--                        <th>Nível</th>-->
+<!--                        <th>Ação</th>-->
+<!--                    </tr>-->
+<!--                </ng-template>-->
+<!--                <ng-template pTemplate="body" let-cc>-->
+<!--                    <tr>-->
+<!--                        <td class="text-center">{{cc.idCompetencia}}</td>-->
+<!--                        <td class="text-center">{{cc.nivel}}</td>-->
+<!--                        <td style="text-align:center">-->
+<!--                            <p-button icon="pi pi-trash" class="ui-button-danger" (click)="deletarCompetencia(cc)" styleClass="rounded-button ui-button-danger"></p-button>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                </ng-template>-->
+<!--            </p-table>-->
 
-        </p-card>
+<!--        </p-card>-->
         <div class="col-1 col-offset-11">
             <p-button label="Salvar" (click)="salvarColaborador()" type="submit" styleClass="ui-button-success"></p-button>
         </div>
