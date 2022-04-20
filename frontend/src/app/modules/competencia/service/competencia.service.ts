@@ -32,7 +32,7 @@ export class CompetenciaService {
     }
 
     salvar(competencia): Observable<CompetenciaFormModel> {
-      return this.httpClient.post<CompetenciaFormModel>(urlComp, competencia).pipe(take(1));
+      return this.httpClient.post<CompetenciaFormModel>(url, competencia).pipe(take(1));
     }
 
     buscarId(id): Observable<CompetenciaFormModel> {

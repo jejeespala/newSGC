@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {DynamicDialogConfig, SelectItem} from 'primeng';
+import {DynamicDialogConfig, DynamicDialogRef, SelectItem} from 'primeng';
 import {ColaboradorService} from '../../service/colaborador.service';
 import {PageNotificationService} from '@nuvem/primeng-components';
 import {CompetenciaService} from "../../../competencia/service/competencia.service";
 import {CompetenciaDropdownModel} from '../../models/competencia.model';
 import {ColaboradorCompetenciaNivelModel} from '../../models/colaborador-competencia-nivel.model';
+import {DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-colaborador-form',
@@ -26,7 +27,8 @@ export class FormComponent implements OnInit {
     imagem: File;
 
   constructor(private colaboradorService: ColaboradorService, private fb: FormBuilder, private messageService: PageNotificationService,
-              private competenciaService: CompetenciaService, private config: DynamicDialogConfig ) { }
+              private competenciaService: CompetenciaService, private config: DynamicDialogConfig, private domSanatizer: DomSanitizer,
+              private ref: DynamicDialogRef) { }
 
   ngOnInit(): void {
       this.listarCompetencias();
@@ -59,25 +61,29 @@ export class FormComponent implements OnInit {
         fileReader.readAsBinaryString(this.imagem);
         fileReader.onload = (evento: any) => this.converterParaBase64(evento.target.result);
         this.formato = this.imagem.type;
-
-
     }
 
     converterParaBase64(bytes: string) {
-        //this.imagebase64 = this.base64image.replace("*", this.formato) + btoa(bytes);
         this.imagebase64 = this.base64image.replace("*", this.formato).concat(btoa(bytes));
+        console.log(this.imagebase64)
     }
 
+    tratarUrlImagem(imageEmBase64): SafeResourceUrl {
+        return this.domSanatizer.bypassSecurityTrustResourceUrl(imageEmBase64);
+    }
+
+    imagemForm() {
+        return this.tratarUrlImagem(this.imagebase64 ? this.imagebase64 : this.formCol.get('foto').value);
+    }
 
     salvarColaborador() {
         this.formCol.patchValue({foto: this.imagebase64})
-        console.log(this.formCol.value)
         if (this.formCol.valid) {
           this.colaboradorService.salvar(this.formCol.value).subscribe(
-              success => this.messageService.addSuccessMessage('Colaborador salvo com sucesso!'),
-              error => this.messageService.addErrorMessage('Não foi possível realizar o cadastro do colaborador')
+              success => this.ref.close(this.messageService.addSuccessMessage('Colaborador salvo com sucesso!')),
+              error => this.ref.close(this.messageService.addErrorMessage('Não foi possível realizar o cadastro do colaborador'))
           );
-      }
+        }
   }
 
   atualizar(colaborador) {

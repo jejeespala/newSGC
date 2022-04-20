@@ -46,7 +46,7 @@ public class TurmaService {
                 colaborador -> turmaColaboradorCompetenciaMapper.toEntity(new TurmaColaboradorCompetenciaDTO(turma.getId(), colaborador.getIdColaborador(), colaborador.getIdCompetencia())
         )).collect(Collectors.toList());
 
-        turmaColaboradorCompetenciaRepository.saveAll(turmaColaboradorCompetencias);
+         turmaColaboradorCompetenciaRepository.saveAll(turmaColaboradorCompetencias);
     }
 
     public void deletar(Integer id){
