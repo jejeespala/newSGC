@@ -1,33 +1,39 @@
 package com.basis.sgc.service;
 
 import com.basis.sgc.domain.Colaborador;
-import com.basis.sgc.domain.ColaboradorCompetencia;
 import com.basis.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.sgc.repository.ColaboradorRepository;
-import com.basis.sgc.service.dto.*;
+import com.basis.sgc.service.dto.ColaboradorDTO;
+import com.basis.sgc.service.dto.ColaboradorListDTO;
+import com.basis.sgc.service.dto.DropdownDTO;
 import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ColaboradorService {
 
-    private final ColaboradorMapper colaboradorMapper;
+    ColaboradorMapper colaboradorMapper;
 
-    private final ColaboradorRepository colaboradorRepository;
+    ColaboradorRepository colaboradorRepository;
 
-    private final ColaboradorCompetenciaMapper colaboradorCompetenciaMapper;
+    ColaboradorCompetenciaMapper colaboradorCompetenciaMapper;
 
-    private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
+    ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
-    private final ColaboradorCompetenciaService colaboradorCompetenciaService;
+    ColaboradorCompetenciaService colaboradorCompetenciaService;
 
     public List<ColaboradorListDTO> buscar(){
         return colaboradorRepository.listar();

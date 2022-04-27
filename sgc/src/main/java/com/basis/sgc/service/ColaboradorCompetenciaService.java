@@ -6,8 +6,11 @@ import com.basis.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.sgc.service.dto.ColaboradorCompetenciaDTO;
 import com.basis.sgc.service.dto.ColaboradorDTO;
 import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -15,12 +18,13 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class ColaboradorCompetenciaService {
 
-    private final ColaboradorCompetenciaMapper colaboradorCompetenciaMapper;
+    ColaboradorCompetenciaMapper colaboradorCompetenciaMapper;
 
-    private final ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
+    ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     public List<ColaboradorCompetenciaDTO> buscar(){
         List<ColaboradorCompetencia> colaboradorCompetencias = colaboradorCompetenciaRepository.findAll();

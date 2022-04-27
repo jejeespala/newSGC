@@ -9,25 +9,31 @@ import com.basis.sgc.service.dto.TurmaDTO;
 import com.basis.sgc.service.dto.TurmaListDTO;
 import com.basis.sgc.service.mapper.TurmaColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.TurmaMapper;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class TurmaService {
 
-    private final TurmaMapper turmaMapper;
+    TurmaMapper turmaMapper;
 
-    private final TurmaRepository turmaRepository;
+    TurmaRepository turmaRepository;
 
-    private final TurmaColaboradorCompetenciaRepository turmaColaboradorCompetenciaRepository;
+    TurmaColaboradorCompetenciaRepository turmaColaboradorCompetenciaRepository;
 
-    private final TurmaColaboradorCompetenciaMapper turmaColaboradorCompetenciaMapper;
+    TurmaColaboradorCompetenciaMapper turmaColaboradorCompetenciaMapper;
 
     public List<TurmaListDTO> buscar(){
         return turmaRepository.buscar();

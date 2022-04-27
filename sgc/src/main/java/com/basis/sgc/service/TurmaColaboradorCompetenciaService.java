@@ -4,20 +4,24 @@ import com.basis.sgc.domain.TurmaColaboradorCompetencia;
 import com.basis.sgc.repository.TurmaColaboradorCompetenciaRepository;
 import com.basis.sgc.service.dto.TurmaColaboradorCompetenciaDTO;
 import com.basis.sgc.service.mapper.TurmaColaboradorCompetenciaMapper;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class TurmaColaboradorCompetenciaService {
 
-    private final TurmaColaboradorCompetenciaMapper turmaColaboradorCompetenciaMapper;
+    TurmaColaboradorCompetenciaMapper turmaColaboradorCompetenciaMapper;
 
-    private final TurmaColaboradorCompetenciaRepository turmaColaboradorCompetenciaRepository;
+    TurmaColaboradorCompetenciaRepository turmaColaboradorCompetenciaRepository;
 
     public List<TurmaColaboradorCompetenciaDTO> buscar(){
         return turmaColaboradorCompetenciaMapper.toDto(turmaColaboradorCompetenciaRepository.findAll());
