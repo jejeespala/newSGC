@@ -1,37 +1,39 @@
 package com.basis.sgc.service.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
+@FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class TurmaDTO implements Serializable {
 
     @NotNull
-    private Integer id;
+    Integer id;
 
     @NotNull
-    private String nome;
+    String nome;
 
     @NotNull
-    private String descricao;
+    String descricao;
 
     @NotNull
-    private LocalDate data_inicio;
+    LocalDate data_inicio;
 
     @NotNull
-    private LocalDate data_termino;
+    LocalDate data_termino;
 
     @NotNull
-    private Integer idStatus;
+    Integer idStatus;
 
     @NotNull
-    private List<TurmaColaboradorCompetenciaDTO> turmas;
+    List<TurmaColaboradorCompetenciaDTO> turmas;
 
 }

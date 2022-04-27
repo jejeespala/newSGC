@@ -7,6 +7,7 @@ import {ColaboradorService} from './service/colaborador.service';
 import {FormComponent} from './components/form/form.component';
 import {DialogService} from 'primeng/dynamicdialog';
 import {VincularCompetenciaFormComponent} from './components/vincular-competencia-form/vincular-competencia-form.component';
+import {DynamicDialogRef} from 'primeng';
 
 
 @NgModule({
@@ -16,6 +17,6 @@ import {VincularCompetenciaFormComponent} from './components/vincular-competenci
         SharedModule,
         ColaboradorRoutingModule
     ],
-  providers: [ColaboradorService, DialogService, DatePipe]
+  providers: [ColaboradorService, DialogService, DatePipe, DynamicDialogRef]
 })
 export class ColaboradorModule { }

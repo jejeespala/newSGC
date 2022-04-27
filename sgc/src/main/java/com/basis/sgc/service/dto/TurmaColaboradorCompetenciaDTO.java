@@ -1,24 +1,26 @@
 package com.basis.sgc.service.dto;
 
-import com.basis.sgc.domain.Nivel;
 import com.sun.istack.NotNull;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
+@FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class TurmaColaboradorCompetenciaDTO implements Serializable {
 
 
-    private Integer idTurma;
+    Integer idTurma;
 
     @NotNull
-    private Integer idColaborador;
+    Integer idColaborador;
 
     @NotNull
-    private Integer idCompetencia;
+    Integer idCompetencia;
 
     public TurmaColaboradorCompetenciaDTO(Integer idTurma, Integer idColaborador, Integer idCompetencia) {
         this.idTurma = idTurma;

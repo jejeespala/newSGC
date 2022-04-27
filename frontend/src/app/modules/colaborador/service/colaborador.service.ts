@@ -50,7 +50,7 @@ export class ColaboradorService {
     }
 
     deletar(id) {
-        return this.httpClient.delete(`${urlComp}/${id}`).pipe(take(1));
+        return this.httpClient.delete(`${urlCol}/${id}`).pipe(take(1));
     }
 
     buscarSenioridade(): Observable<SenioridadeDropdownModel[]> {

@@ -1,8 +1,10 @@
 package com.basis.sgc.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,13 +17,14 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
+@FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class Status implements Serializable {
 
     @Id
     @Column(name = "id", nullable = false, unique = true)
-    private Integer id;
+    Integer id;
 
     @Column(name = "nome", nullable = false)
-    private String nome;
+    String nome;
 
 }

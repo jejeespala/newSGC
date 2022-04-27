@@ -18,6 +18,15 @@ export class VincularCompetenciaFormComponent implements OnInit {
     nivel: SelectItem[];
     comps: CompetenciaNivelModel[] = [];
 
+    formTest = this.fb.group({
+        arrTest: this.fb.array([
+            this.fb.group({
+                idCompetencia: [null],
+                nivel: [null]
+            })
+        ])
+    })
+
     @Output() aoAdicionar = new EventEmitter<ColaboradorCompetenciaNivelModel>();
     @Input() aoReceber;
     @Input() formPai: FormGroup;
@@ -41,8 +50,24 @@ export class VincularCompetenciaFormComponent implements OnInit {
         this.nivel = this.colaboradorService.buscarNivel();
     }
 
-    get vai() {
-        return this.formPai.controls["vai"] as FormArray;
+    get arrTest() {
+        return this.formTest.get('arrTest') as FormArray;
+    }
+
+    addTst() {
+      this.arrTest.push(this.fb.group({
+          idCompetencia: ['nulão'],
+          nivel: ['nulao2']
+      }))
+    }
+
+    onSubmit() {
+        console.log(this.arrTest.value)
+        console.log(this.formTest.value)
+    }
+
+    setPreset() {
+        this.arrTest.patchValue(['LA', 'MTV']);
     }
 
   novoFormulario() {

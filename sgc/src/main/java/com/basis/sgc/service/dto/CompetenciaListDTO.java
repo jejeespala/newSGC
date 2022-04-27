@@ -1,26 +1,29 @@
 package com.basis.sgc.service.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 
 @Getter
 @Setter
+@FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class CompetenciaListDTO implements Serializable {
 
     @NotNull
-    private Integer id;
+    Integer id;
 
     @NotNull
-    private String nome;
+    String nome;
 
     @NotNull
-    private String descricao;
+    String descricao;
 
     @NotNull
-    private String nomeCategoria;
+    String nomeCategoria;
 
     public CompetenciaListDTO(Integer id, String nome, String descricao, String nomeCategoria) {
         this.id = id;

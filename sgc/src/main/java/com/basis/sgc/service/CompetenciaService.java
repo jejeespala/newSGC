@@ -6,20 +6,24 @@ import com.basis.sgc.service.dto.CompetenciaDTO;
 import com.basis.sgc.service.dto.CompetenciaListDTO;
 import com.basis.sgc.service.dto.DropdownDTO;
 import com.basis.sgc.service.mapper.CompetenciaMapper;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class CompetenciaService {
 
-    private final CompetenciaMapper competenciaMapper;
+    CompetenciaMapper competenciaMapper;
 
-    private final CompetenciaRepository competenciaRepository;
+    CompetenciaRepository competenciaRepository;
 
     public List<CompetenciaListDTO> buscar(){
         return competenciaRepository.listar();

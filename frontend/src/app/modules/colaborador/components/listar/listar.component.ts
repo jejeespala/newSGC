@@ -6,6 +6,7 @@ import {FormComponent} from '../form/form.component';
 import {ColaboradorPostModel} from "../../models/colaboradorPost.model";
 import {ColaboradorCompetenciaNivelModel} from "../../models/colaborador-competencia-nivel.model";
 import {PageNotificationService} from "@nuvem/primeng-components";
+import {DynamicDialogRef} from 'primeng';
 
 @Component({
   selector: 'app-colaborador-listar',
@@ -18,7 +19,8 @@ export class ListarComponent implements OnInit {
   colaborador: ColaboradorPostModel;
   colaboradorCompetencia: ColaboradorCompetenciaNivelModel[];
 
-  constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService, private messageService: PageNotificationService) { }
+  constructor(private colaboradorService: ColaboradorService, private dialogService: DialogService, private messageService: PageNotificationService,
+              private ref: DynamicDialogRef) { }
 
   ngOnInit(): void {
     this.listarColaboradores();
@@ -58,6 +60,7 @@ export class ListarComponent implements OnInit {
             .subscribe({
                     next: data => {
                         this.listarColaboradores()
+                        this.ref.close();
                     },
                     error: error => {
                         this.messageService.addErrorMessage('Não foi possível deletar o colaborador')

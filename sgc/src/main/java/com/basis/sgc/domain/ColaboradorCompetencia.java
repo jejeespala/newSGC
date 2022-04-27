@@ -1,9 +1,7 @@
 package com.basis.sgc.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,23 +12,24 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Getter
 @Setter
+@FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class ColaboradorCompetencia implements Serializable {
 
     @EmbeddedId
-    private ColaboradorCompetenciaChave id;
+    ColaboradorCompetenciaChave id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idColaborador")
     @JoinColumn(name = "idColaborador")
-    private Colaborador colaborador;
+    Colaborador colaborador;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idCompetencia")
     @JoinColumn(name = "id_competencia")
-    private Competencia competencia;
+    Competencia competencia;
 
     @Enumerated(value = EnumType.ORDINAL)
     @Column(name = "nivel")
-    private Nivel nivel;
+    Nivel nivel;
 
 }
