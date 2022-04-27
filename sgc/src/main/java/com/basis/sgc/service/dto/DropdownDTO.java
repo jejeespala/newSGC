@@ -1,23 +1,26 @@
 package com.basis.sgc.service.dto;
 
 import com.sun.istack.NotNull;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Getter
 @Setter
+@FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class DropdownDTO implements Serializable {
 
     @NotNull
     @NotEmpty
-    private String label;
+    String label;
 
     @NotNull
     @NotEmpty
-    private Integer value;
+    Integer value;
 
     public DropdownDTO(String label, Integer value) {
         this.label = label;
