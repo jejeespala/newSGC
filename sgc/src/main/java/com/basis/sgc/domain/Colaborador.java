@@ -1,9 +1,7 @@
 package com.basis.sgc.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,42 +15,43 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @SequenceGenerator(name = "seq_colaborador", sequenceName = "seq_colaborador", allocationSize = 1)
+@FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class Colaborador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_colaborador")
     @Column(name = "id", nullable = false)
-    private Integer id;
+    Integer id;
 
     @Column(name = "nome", nullable = false)
-    private String nome;
+    String nome;
 
     @Column(name = "sobrenome", nullable = false)
-    private String sobrenome;
+    String sobrenome;
 
     @Column(name = "cpf", nullable = false, unique = true)
-    private String cpf;
+    String cpf;
 
     @Column(name = "email", nullable = false, unique = true)
-    private String email;
+    String email;
 
     @Column(name = "foto")
-    private String foto;
+    String foto;
 
     @Column(name = "data_nasc", nullable = false)
-    private LocalDate data_nasc;
+    LocalDate data_nasc;
 
     @Column (name = "data_admi", nullable = false)
-    private LocalDate data_admi;
+    LocalDate data_admi;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_senioridade", referencedColumnName = "id")
-    private Senioridade senioridade;
+    Senioridade senioridade;
 
     @OneToMany(mappedBy = "colaborador")
-    private Set<ColaboradorCompetencia> colaboradorCompetencias;
+    Set<ColaboradorCompetencia> colaboradorCompetencias;
 
     @OneToMany(mappedBy = "colaborador")
-    private Set<TurmaColaboradorCompetencia> turmaColaboradorCompetencias;
+    Set<TurmaColaboradorCompetencia> turmaColaboradorCompetencias;
 
 }
