@@ -18,17 +18,17 @@ public class TurmaColaboradorCompetencia implements Serializable {
     @EmbeddedId
     TurmaColaboradorCompetenciaChave id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idTurma")
     @JoinColumn(name = "idTurma")
     Turma turma;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idColaborador")
     @JoinColumn(name = "idColaborador")
     Colaborador colaborador;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idCompetencia")
     @JoinColumn(name = "id_competencia")
     Competencia competencia;

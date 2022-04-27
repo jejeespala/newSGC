@@ -28,7 +28,7 @@ public class Competencia implements Serializable {
     @Column(name = "descricao", nullable = false)
     String descricao;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_categoria", nullable = false)
     Categoria categoria;
 

@@ -18,12 +18,12 @@ public class ColaboradorCompetencia implements Serializable {
     @EmbeddedId
     ColaboradorCompetenciaChave id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idColaborador")
     @JoinColumn(name = "idColaborador")
     Colaborador colaborador;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idCompetencia")
     @JoinColumn(name = "id_competencia")
     Competencia competencia;

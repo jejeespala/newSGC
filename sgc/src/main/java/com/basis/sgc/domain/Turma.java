@@ -8,7 +8,6 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,7 +35,7 @@ public class Turma implements Serializable {
     @Column(name = "data_termino", nullable = false)
     LocalDate data_termino;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_status", nullable = false)
     Status status;
 
