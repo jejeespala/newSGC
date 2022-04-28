@@ -1,9 +1,6 @@
 package com.basis.sgc.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
@@ -16,6 +13,7 @@ import java.io.Serializable;
 @Table(name = "categoria")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class Categoria implements Serializable {

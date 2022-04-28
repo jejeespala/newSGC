@@ -19,7 +19,7 @@ public class CategoriaResource {
     private final CategoriaService categoriaService;
 
     @GetMapping
-    private ResponseEntity<List<DropdownDTO>> listar(){
+    public ResponseEntity<List<DropdownDTO>> listar(){
         List<DropdownDTO> categoriaDTOS = categoriaService.buscar();
         return new ResponseEntity<>(categoriaDTOS, HttpStatus.OK);
     }

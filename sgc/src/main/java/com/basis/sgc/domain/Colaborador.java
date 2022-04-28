@@ -13,6 +13,7 @@ import java.util.Set;
 @Table(name = "colaborador")
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @SequenceGenerator(name = "seq_colaborador", sequenceName = "seq_colaborador", allocationSize = 1)
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
