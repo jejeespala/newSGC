@@ -1,12 +1,10 @@
 package com.basis.sgc.service;
 
 import com.basis.sgc.domain.Colaborador;
-import com.basis.sgc.repository.ColaboradorCompetenciaRepository;
 import com.basis.sgc.repository.ColaboradorRepository;
 import com.basis.sgc.service.dto.ColaboradorDTO;
 import com.basis.sgc.service.dto.ColaboradorListDTO;
 import com.basis.sgc.service.dto.DropdownDTO;
-import com.basis.sgc.service.mapper.ColaboradorCompetenciaMapper;
 import com.basis.sgc.service.mapper.ColaboradorMapper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -28,10 +26,6 @@ public class ColaboradorService {
     ColaboradorMapper colaboradorMapper;
 
     ColaboradorRepository colaboradorRepository;
-
-    ColaboradorCompetenciaMapper colaboradorCompetenciaMapper;
-
-    ColaboradorCompetenciaRepository colaboradorCompetenciaRepository;
 
     ColaboradorCompetenciaService colaboradorCompetenciaService;
 

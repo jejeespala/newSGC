@@ -1,9 +1,6 @@
 package com.basis.sgc.domain;
 
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Column;
@@ -14,6 +11,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class ColaboradorCompetenciaChave implements Serializable {
 

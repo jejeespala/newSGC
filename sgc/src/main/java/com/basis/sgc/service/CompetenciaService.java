@@ -30,7 +30,7 @@ public class CompetenciaService {
     }
 
     public CompetenciaDTO buscarPorId(Integer id){
-        Competencia competencia = competenciaRepository.findById(id).orElseThrow(()->new RuntimeException("Competencia não encontrada!"));
+        Competencia competencia = competenciaRepository.findById(id).orElseThrow(()->new RuntimeException("Colaborador não encontrado!"));
         return competenciaMapper.toDto(competencia);
     }
 

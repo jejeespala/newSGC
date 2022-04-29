@@ -7,13 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 class CategoriaServiceTest {
 
@@ -33,7 +33,7 @@ class CategoriaServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        openMocks(this);
         iniciarCategoria();
     }
 
@@ -42,7 +42,7 @@ class CategoriaServiceTest {
     }
 
     @Test
-    void quandoBuscarPorTodosEntaoRetorneUmaCategoria() {
+    void quandoBuscarPorTodosEntaoRetorneTodasCategorias() {
         when(categoriaService.buscar()).thenReturn(List.of(dropdownDTO));
 
         List<DropdownDTO> response = categoriaService.buscar();
@@ -53,7 +53,6 @@ class CategoriaServiceTest {
 
         assertEquals(ID, response.get(INDEX).getValue());
         assertEquals(NOME, response.get(INDEX).getLabel());
-
     }
 
     private void iniciarCategoria(){

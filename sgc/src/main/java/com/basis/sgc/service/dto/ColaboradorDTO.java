@@ -2,6 +2,7 @@ package com.basis.sgc.service.dto;
 
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @FieldDefaults(makeFinal = false, level = AccessLevel.PRIVATE)
 public class ColaboradorDTO implements Serializable {
 

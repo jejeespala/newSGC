@@ -55,4 +55,15 @@ public class Colaborador implements Serializable {
     @OneToMany(mappedBy = "colaborador")
     Set<TurmaColaboradorCompetencia> turmaColaboradorCompetencias;
 
+    public Colaborador(Integer id, String nome, String sobrenome, String cpf, String email, String foto, LocalDate data_nasc, LocalDate data_admi, Senioridade senioridade) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.cpf = cpf;
+        this.email = email;
+        this.foto = foto;
+        this.data_nasc = data_nasc;
+        this.data_admi = data_admi;
+        this.senioridade = senioridade;
+    }
 }
